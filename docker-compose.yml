@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+
+  client:
+    image: node:20.3.1
+    container_name: projet_client
+    restart: always
+    working_dir: /home/node/app
+    volumes:
+      - ./frontend-projet-master-master:/home/node/app
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install && npm run dev"
+    depends_on:
+      - server
+    networks:
+      - server-client
+
+  server:
+    image: node:20.3.1
+    container_name: projet_server
+    restart: always
+    working_dir: /home/node/app
+    volumes:
+      - ./backend-projet-master-master:/home/node/app
+    ports:
+      - "8080:8080"
+    command: sh -c "npm install && npm run dev"
+    networks:
+      - server-client
+
+networks:
+  server-client:
