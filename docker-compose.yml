@@ -8,12 +8,13 @@ services:
     restart: always
     working_dir: /home/node/app
     volumes:
-      - ./frontend-projet-master-master:/home/node/app
+      - ./frontend-projet-master:/home/node/app
     ports:
       - "3000:3000"
     command: sh -c "npm install && npm run dev"
     depends_on:
       - server
+      - mysql
     networks:
       - server-client
 
@@ -23,12 +24,29 @@ services:
     restart: always
     working_dir: /home/node/app
     volumes:
-      - ./backend-projet-master-master:/home/node/app
+      - ./backend-projet-master:/home/node/app
     ports:
-      - "8080:8080"
+      - "4000:4000"
     command: sh -c "npm install && npm run dev"
     networks:
       - server-client
+      - server-database
+
+  mysql:
+    volumes:
+      - ./database:/var/lib/mysql
+    image: mariadb:latest
+    container_name: projet_mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MARIADB_DATABASE: Banzan9771
+      MARIADB_ROOT_PASSWORD: clients
+     
+    
+    networks:
+      - server-database
 
 networks:
   server-client:
+  server-database:
