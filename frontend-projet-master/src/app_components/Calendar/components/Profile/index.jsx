@@ -15,7 +15,7 @@ const Profile = () => {
     useEffect(() => {
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         if (acuityUserId) {
-            axios.get(`http://localhost:4000/api/user/${acuityUserId}`)
+            axios.get(`http://projet_server:4000/api/user/${acuityUserId}`)
             .then(response => {
                 setUserData({ 
                     Lastname: response.data.last_name || '',
@@ -34,7 +34,7 @@ const Profile = () => {
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         if (acuityUserId) {
          
-          axios.get(`http://localhost:4000/api/appointments/user/${acuityUserId}`)
+          axios.get(`http://projet_server:4000/api/appointments/user/${acuityUserId}`)
           .then(response => {
             setAppointments(response.data);
           })
@@ -101,7 +101,7 @@ const ProfilePage = ({ userData, setUserData }) => {
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         
         try {
-            const response = await axios.put(`http://localhost:4000/api/user/${acuityUserId}`, {
+            const response = await axios.put(`http://projet_server:4000/api/user/${acuityUserId}`, {
                 Lastname: userData.Lastname,
                 Firstname: userData.Firstname,
                 Mail: userData.Mail,
@@ -189,7 +189,7 @@ const Appointments = ({ appointments }) => {
     const testAppointmentId = '1199896419';
     if (selectedAppointment) {
       try {
-        const response = await axios.put(`http://localhost:4000/api/appointments/${testAppointmentId}/reschedule`, {
+        const response = await axios.put(`http://projet_server:4000/api/appointments/${testAppointmentId}/reschedule`, {
           newDate,
           newTime
         });
@@ -207,7 +207,7 @@ const Appointments = ({ appointments }) => {
     
     if (window.confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')) {
       try {
-        await axios.put(`http://localhost:4000/api/appointments/${testAppointmentId}/cancel`);
+        await axios.put(`http://projet_server:4000/api/appointments/${testAppointmentId}/cancel`);
         alert('Rendez-vous annulé avec succès.');
   
         

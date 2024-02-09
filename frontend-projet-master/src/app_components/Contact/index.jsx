@@ -24,7 +24,7 @@ const Contact = () => {
     console.log('Submitting form', { name, email, message }); 
 
     try {
-      const response = await axios.post('http://localhost:8080/api/contact', contactData);
+      const response = await axios.post('http://projet_server:4000/api/contact', contactData);
       if (response.status === 200) {
         
         setName('');
