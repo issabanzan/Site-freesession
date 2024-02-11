@@ -19,6 +19,7 @@ import axios from 'axios';
 
 
 
+
 const PraticionerDetails = () => {
 
 
@@ -72,7 +73,7 @@ const PraticionerDetails = () => {
 
 
       const response = await axios.post(
-        'http://projet_server:4000/api/book-appointment',
+        'http://localhost:4000/api/book-appointment',
         {
           firstName,
           lastName,
@@ -99,7 +100,7 @@ const PraticionerDetails = () => {
 
 
   const handleDateChange = (date) => {
-    console.log('issa')
+    
     console.log(date)
     setSelectedDate(date);
     fetchAvailableTimes(date);
@@ -108,8 +109,8 @@ const PraticionerDetails = () => {
 
   const fetchAppointmentTypes = async () => {
     try {
-      const response = await axios.get('http://projet_server:4000/appointment-types/all');
-      const specificAppointmentType = response.data.filter(appointmentType => appointmentType.id === 23715014);
+      const response = await axios.get('http://localhost:4000/appointment-types/all');
+      const specificAppointmentType = response.data.filter(appointmentType => appointmentType.id === 58939154);
       setAppointmentTypes(specificAppointmentType);
 
       if (specificAppointmentType.length > 0) {
@@ -136,7 +137,7 @@ const PraticionerDetails = () => {
 
   const fetchCalendars = async () => {
     try {
-      const response = await axios.get('http://projet_server:4000/calendars/all');
+      const response = await axios.get('http://localhost:4000/calendars/all');
       const filteredData = response.data.calendars.map(calendar => ({
         id: calendar.id,
         name: calendar.name,
@@ -151,44 +152,48 @@ const PraticionerDetails = () => {
 
 
   const fetchAvailableDates = async () => {
-    const appointmentTypeID = 23715014;
-    const calendarID = 8758616;
+    const appointmentTypeID = 58939154;
+    const selectedCalendarID = selectedCalendar; // ID du calendrier sélectionné
     let allAvailableSlots = [];
 
     try {
-      const currentYear = new Date().getFullYear();
+        const currentYear = new Date().getFullYear();
 
-      for (let month = 1; month <= 12; month++) {
-        const monthFormatted = `${currentYear}-${month.toString().padStart(2, '0')}`;
+        for (let month = 1; month <= 12; month++) {
+            const monthFormatted = `${currentYear}-${month.toString().padStart(2, '0')}`;
 
-        const response = await axios.get('http://projet_server:4000/fetch_appointment_dates', {
-          params: {
-            appointmentTypeID: appointmentTypeID,
-            month: monthFormatted,
-            calendarID: calendarID
-          }
-        });
+            const response = await axios.get('http://localhost:4000/fetch_appointment_dates', {
+                params: {
+                    appointmentTypeID: appointmentTypeID,
+                    month: monthFormatted,
+                    calendarID: selectedCalendarID // Utiliser l'ID du calendrier sélectionné
+                }
+            });
 
-        const dates = response.data.map(dateObj => {
-          const dateUTC = new Date(dateObj.date);
-          // Conversion de UTC à l'heure locale
-          const dateLocal = new Date(dateUTC.getTime() + dateUTC.getTimezoneOffset() * 60000);
-          return dateLocal;
-        });
+            const dates = response.data.map(dateObj => {
+                const dateUTC = new Date(dateObj.date);
+                // Conversion de UTC à l'heure locale
+                const dateLocal = new Date(dateUTC.getTime() + dateUTC.getTimezoneOffset() * 60000);
+                return dateLocal;
+            });
 
-        allAvailableSlots = [...allAvailableSlots, ...dates];
-      }
+            allAvailableSlots = [...allAvailableSlots, ...dates];
+        }
 
-      setAvailableSlots(allAvailableSlots);
+        setAvailableSlots(allAvailableSlots);
     } catch (error) {
-      console.error('Erreur lors de la récupération des dates disponibles :', error);
-      setAvailableSlots([]);
+        console.error('Erreur lors de la récupération des dates disponibles :', error);
+        setAvailableSlots([]);
     }
-  };
+};
 
-  useEffect(() => {
-    fetchAvailableDates();
-  }, [selectedAppointmentType, selectedCalendar]);
+useEffect(() => {
+    if (selectedCalendar) {
+        fetchAvailableDates();
+    }
+}, [selectedAppointmentType, selectedCalendar]);
+
+
 
 
 
@@ -201,7 +206,7 @@ const PraticionerDetails = () => {
     console.log('parisDate', parisDate)
 
     try {
-      const response = await axios.get('http://projet_server:4000/fetch_appointment_times', {
+      const response = await axios.get('http://localhost:4000/fetch_appointment_times', {
         params: {
           appointmentTypeID: selectedAppointmentType,
           calendarID: selectedCalendar,
@@ -272,6 +277,21 @@ const PraticionerDetails = () => {
                   <h5 className="text-slate-700 font-bold text-sm mb-2">Contact</h5>
                   <p className="text-slate-600 text-sm mb-2 inter">{practitioner.contact}</p>
                 </div>
+              </div>
+            </DetailsCard>
+            <DetailsCard id="#specialites" icon={<AlignLeft className='w-4 h-4 text-cyan-600' />} title="Specialties">
+            <div className='grid grid-cols-2 gap-8'>
+            <div>
+            <h5 className="text-slate-700 font-bold text-sm mb-2">Specialist</h5>
+              <p className="text-slate-600 text-sm mb-2 inter">{practitioner.specialist.specialities[0]}, {practitioner.specialist.specialities[1]}, {practitioner.specialist.specialities[2]}</p>
+        
+              </div>
+              <div className='ml-50'>
+              <h5 className="text-slate-700 font-bold text-sm mb-2">Languages</h5>
+              <p className="text-slate-600 text-sm mb-2 inter">{practitioner.languages[0]}, {practitioner.languages[1]}</p>
+
+              
+              </div>
               </div>
             </DetailsCard>
           </div>

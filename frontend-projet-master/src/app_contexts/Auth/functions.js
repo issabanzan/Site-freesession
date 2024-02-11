@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const loginUser = async (username) => {
-  const backendBaseUrl = "http://projet_server:4000";
+  const backendBaseUrl = "http://localhost:8080";
 
   const payload = { username, payload };
 

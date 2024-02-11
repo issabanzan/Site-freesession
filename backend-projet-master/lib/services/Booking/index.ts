@@ -164,12 +164,15 @@ class Booking extends Core {
 
       const header = this.getBookingAuthorizationHeader();
 
+      const response = await axios.put(url, postData, { headers: header });
 
-      await axios.put(url, postData, { headers: header });
-
+      
+      const acuityUserId = response.data.user.id;
+ 
+      console.log(acuityUserId);
 
       const db = new Database();
-      await db.updateAppointment(id, newDate, newTime);
+      await db.updateAppointment(newDate, newTime, acuityUserId);
 
       res.status(200).json({ message: 'Appointment rescheduled successfully' });
     } catch (error) {
@@ -179,7 +182,7 @@ class Booking extends Core {
       }
       res.status(500).json({ message: 'Internal server error' });
     }
-  };
+};
 
 
 
@@ -206,7 +209,7 @@ class Booking extends Core {
         return res.status(401).json({ message: 'Invalid login credentials.' });
       }
 
-      // Si les mots de passe correspondent, procédez avec la connexion.
+     
       res.status(200).json({ message: 'Authentication successful', acuityUserId: user_id });
     } catch (error) {
       console.error('Error during the login process:', error);

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
+import { useNavigate } from 'react-router-dom';
 const Profile = () => {
+  
     const [activeTab, setActiveTab] = useState('profile');
     const [userData, setUserData] = useState({
         Lastname: '', 
@@ -15,7 +17,7 @@ const Profile = () => {
     useEffect(() => {
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         if (acuityUserId) {
-            axios.get(`http://projet_server:4000/api/user/${acuityUserId}`)
+            axios.get(`http://localhost:4000/api/user/${acuityUserId}`)
             .then(response => {
                 setUserData({ 
                     Lastname: response.data.last_name || '',
@@ -34,7 +36,7 @@ const Profile = () => {
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         if (acuityUserId) {
          
-          axios.get(`http://projet_server:4000/api/appointments/user/${acuityUserId}`)
+          axios.get(`http://localhost:4000/api/appointments/user/${acuityUserId}`)
           .then(response => {
             setAppointments(response.data);
           })
@@ -43,6 +45,11 @@ const Profile = () => {
           });
         }
       }, []);
+      const navigate = useNavigate();
+      const handleLogout = () => {
+        console.log('Déconnecter');
+        navigate('/');
+      };
     
 
   return (
@@ -63,20 +70,15 @@ const Profile = () => {
             >
               My appointments
             </button>
-            <button
-              className={`text-sm font-semibold ${activeTab === 'recommend' ? 'text-[#333C4E' : 'text-[#3BAFBC]'}`}
-              onClick={() => setActiveTab('recommend')}
-            >
-              My folders
-            </button>
+            
           </div>
           <div className="absolute right-4">
-            <button
-              className="rounded-full border border-gray-300 px-4 py-1 text-sm font-semibold text-black hover:bg-gray-100"
-              onClick={() => console.log('Déconnecter')}
-            >
-              Log out
-            </button>
+          <button
+      className="rounded-full border border-gray-300 px-4 py-1 text-sm font-semibold text-black hover:bg-gray-100"
+      onClick={handleLogout}
+    >
+      Log out
+    </button>
           </div>
         </nav>
       </div>
@@ -101,7 +103,7 @@ const ProfilePage = ({ userData, setUserData }) => {
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         
         try {
-            const response = await axios.put(`http://projet_server:4000/api/user/${acuityUserId}`, {
+            const response = await axios.put(`http://localhost:4000/api/user/${acuityUserId}`, {
                 Lastname: userData.Lastname,
                 Firstname: userData.Firstname,
                 Mail: userData.Mail,
@@ -186,28 +188,34 @@ const Appointments = ({ appointments }) => {
   };
 
   const rescheduleAppointment = async () => {
-    const testAppointmentId = '1199896419';
     if (selectedAppointment) {
-      try {
-        const response = await axios.put(`http://projet_server:4000/api/appointments/${testAppointmentId}/reschedule`, {
-          newDate,
-          newTime
-        });
-        console.log('Rendez-vous reprogrammé avec succès:', response.data);
-        
-      } catch (error) {
-        console.error('Erreur lors de la reprogrammation du rendez-vous:', error);
-        
-      }
+        try {
+            
+            const userResponse = await axios.get(`http://localhost:4000/api/user/${acuityUserId}`);
+            const acuityUserId = userResponse.data.id;
+
+            
+            const response = await axios.put(`http://localhost:4000/api/appointments/${acuityUserId}/reschedule`, {
+                newDate,
+                newTime
+            });
+
+            console.log('Rendez-vous reprogrammé avec succès:', response.data);
+
+        } catch (error) {
+            console.error('Erreur lors de la reprogrammation du rendez-vous:', error);
+        }
     }
-  };
+};
+
+  
 
   const cancelAppointment = async () => {
-    const testAppointmentId = '1199896419';
+    const testAppointmentId = '1204234320';
     
     if (window.confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')) {
       try {
-        await axios.put(`http://projet_server:4000/api/appointments/${testAppointmentId}/cancel`);
+        await axios.put(`http://localhost:4000/api/appointments/${testAppointmentId}/cancel`);
         alert('Rendez-vous annulé avec succès.');
   
         
@@ -299,6 +307,7 @@ const Appointments = ({ appointments }) => {
           >
             Cancel
           </button>
+
         </div>
       </div>
     ))}

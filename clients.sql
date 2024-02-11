@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 07 fév. 2024 à 13:48
+-- Généré le : dim. 11 fév. 2024 à 11:51
 -- Version du serveur : 11.2.0-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -39,15 +39,14 @@ CREATE TABLE IF NOT EXISTS `appointments` (
   KEY `user_id` (`user_id`),
   KEY `appointment_type_id` (`appointment_type_id`),
   KEY `calendar_id` (`calendar_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Déchargement des données de la table `appointments`
 --
 
 INSERT INTO `appointments` (`appointment_id`, `user_id`, `appointment_type_id`, `calendar_id`, `date`, `time`) VALUES
-(39, 1, 23715014, 8758616, '2024-01-27', '10:00:00'),
-(52, 1199896419, 23715014, 8758616, '2024-02-08', '09:00:00');
+(62, 1204269323, 58939154, 9694290, '2024-02-12', '14:45:00');
 
 -- --------------------------------------------------------
 
@@ -61,14 +60,14 @@ CREATE TABLE IF NOT EXISTS `appointment_types` (
   `name` varchar(255) NOT NULL,
   `duration` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23715015 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=58939156 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Déchargement des données de la table `appointment_types`
 --
 
 INSERT INTO `appointment_types` (`id`, `name`, `duration`) VALUES
-(23715014, 'RDV visio gratuit de 15 minutes', 15);
+(58939154, 'Fressession', 15);
 
 -- --------------------------------------------------------
 
@@ -82,14 +81,17 @@ CREATE TABLE IF NOT EXISTS `calendars` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8758617 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9697380 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Déchargement des données de la table `calendars`
 --
 
 INSERT INTO `calendars` (`id`, `name`, `email`) VALUES
-(8758616, 'ik en télé-présentiel', 'ibk@itk.com');
+(9693638, 'Nathalie Déga', 'papikonate@icloud.com'),
+(9694290, 'Nathalie Conté', 'issabanzan.konate@gmail.com'),
+(9694299, 'Véronique Oualid', 'issabanzan.konate@yahoo.fr'),
+(9697379, 'Muriel Dangremont', 'papikonate97@yahoo.com');
 
 -- --------------------------------------------------------
 
@@ -114,8 +116,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `phone`, `password_hash`) VALUES
-(1, 'IS', 'K', 'is@yahoo.fr', '0768636902', '66'),
-(1199896419, 'Darkou', 'Darkou', 'Darkou@gmail.com', '07-17-34-59-32', 'Darkou');
+(1204269323, 'issa', 'issa', 'issa@yahoo.fr', '07-17-23-59-32', 'Issa');
 
 --
 -- Contraintes pour les tables déchargées

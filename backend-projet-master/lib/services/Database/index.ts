@@ -97,17 +97,23 @@ class Database {
     return results; 
   }
 
-  public updateAppointment(newDate: string, newTime: string, id: string): Promise<void> {
+  public updateAppointment(newDate: string, newTime: string, acuityUserId: string): Promise<void> {
     const formattedTime = newTime.length === 5 ? `${newTime}:00` : newTime;
     const sql = `UPDATE appointments SET date = ?, time = ? WHERE user_id = ?`;
-    return this.query(sql, [newDate, formattedTime, id]);
+    return this.query(sql, [newDate, formattedTime, acuityUserId]);
 }
 
 async cancelAppointment(id) {
-  // Ceci est un exemple; ajustez selon votre schéma de base de données
-  const sql = 'UPDATE appointments SET status = "cancelled" WHERE user_id = ?';
-  await this.query(sql, [id]);
+  try {
+    const sql = 'DELETE FROM appointments WHERE user_id = ?';
+    await this.query(sql, [id]);
+    console.log('Rendez-vous annulé avec succès.');
+  } catch (error) {
+    console.error('Erreur lors de l’annulation du rendez-vous:', error);
+    throw error;
+  }
 }
+
 
 
 

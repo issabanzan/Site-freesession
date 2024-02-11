@@ -1,6 +1,5 @@
-
 import logo from '../../../assets/logo.png';
-import { Heart, Home, Phone, Users } from 'react-feather';
+import { LogIn, Home, Phone, Users } from 'react-feather'; // Assurez-vous que LogIn est importé avec la bonne casse
 
 const navigationLinks = [
     {
@@ -17,9 +16,9 @@ const navigationLinks = [
         icon: <Phone />,
     },
     {
-        label: 'Become practitioner',
-        url: '/become-practitioner',
-        icon: <Heart />,
+        label: 'Log in',
+        url: '/Login',
+        icon: <LogIn />, // Utilisez LogIn avec la casse correcte
     }
 ];
 
@@ -30,7 +29,6 @@ function Header() {
                 <a className="navbar-brand">
                     <img src={logo} alt="logo" className="h-10" />
                 </a>
-                {/* <h2 className="slogan">Découvrez des séances gratuites avec nos praticiens qualifiés !</h2> */}
                 <ul className="navbar-nav text-white flex flex-row gap-3">
                     {
                         navigationLinks.map((link, index) => (

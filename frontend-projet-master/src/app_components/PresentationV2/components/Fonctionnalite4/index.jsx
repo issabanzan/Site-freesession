@@ -14,19 +14,19 @@ const testimonials = [
     videoUrl: 'path-to-video'
   },
   {
-    name: 'Véronique Oualid',
+    name: 'Véronique',
     role: 'a consulté en naturopathie',
     imageUrl: Veronique,
     videoUrl: 'path-to-video'
   },
   {
-    name: 'Muriel Dangremont',
+    name: 'Joel',
     role: 'a consulté en sophrologie',
     imageUrl: Joel,
     videoUrl: 'path-to-video'
   },
   {
-    name: 'Nathalie Conter',
+    name: 'Sarah',
     role: 'a consulté en réflexologie',
     imageUrl: Sarah,
     videoUrl: 'path-to-video'

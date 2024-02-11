@@ -136,8 +136,8 @@ app.get('/api/appointments/user/:acuityUserId', async (req, res) => {
   }
 });
 
-app.put('/api/appointments/:id/reschedule', async (req, res) => {
-  const { id } = req.params;
+app.put('/api/appointments/:acuityUserId/reschedule', async (req, res) => {
+  const { acuityUserId } = req.params;
   const { newDate, newTime } = req.body;
 
 
@@ -150,14 +150,15 @@ app.put('/api/appointments/:id/reschedule', async (req, res) => {
   };
 
 
-  const url = `${process.env.ACUITY_BASE_URL}/appointments/${id}/reschedule`;
+  const url = `${process.env.ACUITY_BASE_URL}/appointments/${acuityUserId}/reschedule`;
+
 
   try {
 
     const acuityResponse = await axios.put(url, { datetime: newDateTimeISO }, { headers: authHeader });
 
     const db = new Database();
-    await db.updateAppointment(newDate, newTime, id);
+    await db.updateAppointment(newDate, newTime, acuityUserId);
     
 
 
@@ -188,9 +189,9 @@ app.put('/api/appointments/:id/cancel', async (req, res) => {
     // Annuler le rendez-vous via l'API Acuity
     await axios.put(url, {}, { headers: authHeader });
 
-    // Mettre à jour la base de données pour refléter l'annulation du rendez-vous
+    
     const db = new Database();
-    await db.cancelAppointment(id); // Assurez-vous d'implémenter cette méthode dans votre classe Database
+    await db.cancelAppointment(id); 
 
     res.json({ message: 'Le rendez-vous a été annulé avec succès.' });
   } catch (error) {
