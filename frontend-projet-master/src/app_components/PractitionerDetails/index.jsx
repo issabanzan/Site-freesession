@@ -16,6 +16,7 @@ import { Heart, Home, Phone, Users } from 'react-feather';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
+import PaiementComponent from './components/PaiementComponent';
 
 
 
@@ -36,6 +37,8 @@ const PraticionerDetails = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [appointmentTaken, setAppointmentTaken] = useState(false); // Etat pour suivre si le rendez-vous a été pris avec succès
+  const [showPaymentModal, setShowPaymentModal] = useState(false); // Nouvel état pour la modale de paiement de la caution
 
   const { id } = useParams();
 
@@ -73,7 +76,7 @@ const PraticionerDetails = () => {
 
 
       const response = await axios.post(
-        'http://localhost:4000/api/book-appointment',
+        'https://api.freesession.net/api/book-appointment',
         {
           firstName,
           lastName,
@@ -92,12 +95,33 @@ const PraticionerDetails = () => {
         }
       );
       console.log(response.data);
+      
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPhone('');
+      setPassword('');
+      setShowInput(false);
+      setSelectedDate(null);
+      setSelectedTime(null);
     } catch (error) {
       console.error(error);
     }
   };
 
+  const handlePayCautionClick = () => {
+    
+    setShowPaymentModal(true);
+  };
 
+  const handlePaymentSubmit = async () => {
+    // Logique pour traiter le paiement avec les informations existantes
+    console.log("Traitement du paiement pour:", firstName, lastName, email, phone);
+    // Intégrez ici votre logique pour initier le paiement
+
+    // Ferme la modale après le paiement
+    setShowPaymentModal(false);
+  };
 
   const handleDateChange = (date) => {
     
@@ -109,7 +133,7 @@ const PraticionerDetails = () => {
 
   const fetchAppointmentTypes = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/appointment-types/all');
+      const response = await axios.get('https://api.freesession.net/appointment-types/all');
       const specificAppointmentType = response.data.filter(appointmentType => appointmentType.id === 58939154);
       setAppointmentTypes(specificAppointmentType);
 
@@ -137,7 +161,7 @@ const PraticionerDetails = () => {
 
   const fetchCalendars = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/calendars/all');
+      const response = await axios.get('https://api.freesession.net/calendars/all');
       const filteredData = response.data.calendars.map(calendar => ({
         id: calendar.id,
         name: calendar.name,
@@ -162,7 +186,7 @@ const PraticionerDetails = () => {
         for (let month = 1; month <= 12; month++) {
             const monthFormatted = `${currentYear}-${month.toString().padStart(2, '0')}`;
 
-            const response = await axios.get('http://localhost:4000/fetch_appointment_dates', {
+            const response = await axios.get('https://api.freesession.net/fetch_appointment_dates', {
                 params: {
                     appointmentTypeID: appointmentTypeID,
                     month: monthFormatted,
@@ -206,7 +230,7 @@ useEffect(() => {
     console.log('parisDate', parisDate)
 
     try {
-      const response = await axios.get('http://localhost:4000/fetch_appointment_times', {
+      const response = await axios.get('https://api.freesession.net/fetch_appointment_times', {
         params: {
           appointmentTypeID: selectedAppointmentType,
           calendarID: selectedCalendar,
@@ -430,6 +454,8 @@ useEffect(() => {
 
                       />
                     </div>
+
+          
                     <button
                       type="submit"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 w-full"
@@ -437,6 +463,9 @@ useEffect(() => {
                     >
                       Take Appointment
                     </button>
+
+                          
+                    
 
                   </div>
 

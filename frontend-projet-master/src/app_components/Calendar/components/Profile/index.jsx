@@ -3,8 +3,8 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 import { useNavigate } from 'react-router-dom';
+
 const Profile = () => {
-  
     const [activeTab, setActiveTab] = useState('profile');
     const [userData, setUserData] = useState({
         Lastname: '', 
@@ -13,11 +13,12 @@ const Profile = () => {
         Mobile: ''
     });
     const [appointments, setAppointments] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         if (acuityUserId) {
-            axios.get(`http://localhost:4000/api/user/${acuityUserId}`)
+            axios.get(`https://api.freesession.net/api/user/${acuityUserId}`)
             .then(response => {
                 setUserData({ 
                     Lastname: response.data.last_name || '',
@@ -35,62 +36,56 @@ const Profile = () => {
     useEffect(() => {
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         if (acuityUserId) {
-         
-          axios.get(`http://localhost:4000/api/appointments/user/${acuityUserId}`)
-          .then(response => {
-            setAppointments(response.data);
-          })
-          .catch(error => {
-            console.error('Error fetching appointments:', error);
-          });
+            axios.get(`https://api.freesession.net/api/appointments/user/${acuityUserId}`)
+            .then(response => {
+                setAppointments(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching appointments:', error);
+            });
         }
-      }, []);
-      const navigate = useNavigate();
-      const handleLogout = () => {
+    }, []);
+
+    const handleLogout = () => {
         console.log('Déconnecter');
-        navigate('/');
-      };
-    
+        navigate('/'); // Redirection vers la page d'accueil
+    };
 
-  return (
-    
-    <div className="max-w-9xl bg-slate-100">
-      <div className="bg-slate-100 rounded-lg mt-1 shadow-lg left-0 right-0 z-50">
-        <nav className="flex justify-center items-center p-4 border-b">
-          <div className="flex space-x-4">
-            <button
-              className={`text-sm font-semibold ${activeTab === 'profile' ? 'text-[#333C4E]' : 'text-[#3BAFBC]'}`}
-              onClick={() => setActiveTab('profile')}
-            >
-              My profile
-            </button>
-            <button
-              className={`text-sm font-semibold ${activeTab === 'appointments' ? 'text-[#333C4E]' : 'text-[#3BAFBC]'}`}
-              onClick={() => setActiveTab('appointments')}
-            >
-              My appointments
-            </button>
-            
-          </div>
-          <div className="absolute right-4">
-          <button
-      className="rounded-full border border-gray-300 px-4 py-1 text-sm font-semibold text-black hover:bg-gray-100"
-      onClick={handleLogout}
-    >
-      Log out
-    </button>
-          </div>
-        </nav>
-      </div>
-      <div className="pt-16 flex justify-center">
-      {activeTab === 'profile' && <ProfilePage userData={userData} setUserData={setUserData} />}
-      {activeTab === 'appointments' && <Appointments appointments={appointments} />}
-      </div>
-    </div>
-  );
+    return (
+        <div className="max-w-9xl bg-slate-100">
+            <div className="bg-slate-100 rounded-lg mt-1 shadow-lg left-0 right-0 z-50">
+                <nav className="flex justify-center items-center p-4 border-b">
+                    <div className="flex space-x-4">
+                        <button
+                            className={`text-sm font-semibold ${activeTab === 'profile' ? 'text-[#333C4E]' : 'text-[#3BAFBC]'}`}
+                            onClick={() => setActiveTab('profile')}
+                        >
+                            My profile
+                        </button>
+                        <button
+                            className={`text-sm font-semibold ${activeTab === 'appointments' ? 'text-[#333C4E]' : 'text-[#3BAFBC]'}`}
+                            onClick={() => setActiveTab('appointments')}
+                        >
+                            My appointments
+                        </button>
+                    </div>
+                    <div className="absolute right-4">
+                        <button
+                            className="rounded-full border border-gray-300 px-4 py-1 text-sm font-semibold text-black hover:bg-gray-100"
+                            onClick={handleLogout}
+                        >
+                            Log out
+                        </button>
+                    </div>
+                </nav>
+            </div>
+            <div className="pt-16 flex justify-center">
+                {activeTab === 'profile' && <ProfilePage userData={userData} setUserData={setUserData} />}
+                {activeTab === 'appointments' && <Appointments appointments={appointments} />}
+            </div>
+        </div>
+    );
 };
-
-
 
 const ProfilePage = ({ userData, setUserData }) => {
     const handleInputChange = (e) => {
@@ -98,12 +93,21 @@ const ProfilePage = ({ userData, setUserData }) => {
         setUserData({ ...userData, [name]: value });
     };
 
+    const resetFields = () => {
+        setUserData({
+            Lastname: '',
+            Firstname: '',
+            Mail: '',
+            Mobile: ''
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         
         try {
-            const response = await axios.put(`http://localhost:4000/api/user/${acuityUserId}`, {
+            const response = await axios.put(`https://api.freesession.net/api/user/${acuityUserId}`, {
                 Lastname: userData.Lastname,
                 Firstname: userData.Firstname,
                 Mail: userData.Mail,
@@ -111,46 +115,43 @@ const ProfilePage = ({ userData, setUserData }) => {
             });
             console.log('Mise à jour réussie:', response.data);
             setUserData({ ...userData });
+            resetFields(); // Réinitialiser les champs après la sauvegarde
         } catch (error) {
             console.error('Erreur lors de la mise à jour:', error);
         }
     };
-    
 
     return (
         <form onSubmit={handleSubmit}>
-           <div className="bg-white shadow-lg rounded-lg p-8 max-w-2xl mx-auto">
-        <h1 className="text-2xl font-bold text-gray-800 mb-8">My profile</h1>
-        <div className="grid grid-cols-2 gap-6 mb-6">
-          
-          
-          <div className="col-span-2 sm:col-span-1">
-        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Lastname</label>
-        <input name="Lastname" type="text" value={userData.Lastname} onChange={handleInputChange} className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
-        </div>
-        <div className="col-span-2 sm:col-span-1">
-        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">Firstname</label>
-        <input name="Firstname" type="text" value={userData.Firstname} onChange={handleInputChange} className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
-        </div>
-        <div className="col-span-2">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Mail</label>
-        <input name="Mail" type="email" value={userData.Mail} onChange={handleInputChange} className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
-        </div>
-        <div className="col-span-2">
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Mobile</label>
-        <input name="Mobile" type="tel" value={userData.Mobile} onChange={handleInputChange} className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
-        </div>
-
-        </div>
-        <div className="flex justify-end">
-          <button className="px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#3BAFBC] hover:bg-[#3BAFBC] focus:outline-none focus:ring focus:ring-red-200 active:bg-red-700 transition ease-in-out duration-150">
-            Save
-          </button>
-        </div>
-        <p className="text-xs text-gray-500 mt-4">
-          Ces données sont confidentielles et destinées aux praticiens
-        </p>
-      </div>
+            <div className="bg-white shadow-lg rounded-lg p-8 max-w-2xl mx-auto">
+                <h1 className="text-2xl font-bold text-gray-800 mb-8">My profile</h1>
+                <div className="grid grid-cols-2 gap-6 mb-6">
+                    <div className="col-span-2 sm:col-span-1">
+                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Lastname</label>
+                        <input name="Lastname" type="text" value={userData.Lastname} onChange={handleInputChange} className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
+                    </div>
+                    <div className="col-span-2 sm:col-span-1">
+                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">Firstname</label>
+                        <input name="Firstname" type="text" value={userData.Firstname} onChange={handleInputChange} className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
+                    </div>
+                    <div className="col-span-2">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Mail</label>
+                        <input name="Mail" type="email" value={userData.Mail} onChange={handleInputChange} className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
+                    </div>
+                    <div className="col-span-2">
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Mobile</label>
+                        <input name="Mobile" type="tel" value={userData.Mobile} onChange={handleInputChange} className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
+                    </div>
+                </div>
+                <div className="flex justify-end">
+                    <button className="px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#3BAFBC] hover:bg-[#3BAFBC] focus:outline-none focus:ring focus:ring-red-200 active:bg-red-700 transition ease-in-out duration-150">
+                        Save
+                    </button>
+                </div>
+                <p className="text-xs text-gray-500 mt-4">
+                    Ces données sont confidentielles et destinées aux praticiens
+                </p>
+            </div>
         </form>
     );
 };
@@ -172,6 +173,7 @@ const Appointments = ({ appointments }) => {
   const [newDate, setNewDate] = useState('');
   const [newTime, setNewTime] = useState('');
   const [selectedAppointment, setSelectedAppointment] = useState(null);
+ 
 
   const handleDateChange = (e) => {
     setNewDate(e.target.value);
@@ -187,45 +189,48 @@ const Appointments = ({ appointments }) => {
     setNewTime(appointment.time);
   };
 
+ 
+
   const rescheduleAppointment = async () => {
+    const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
     if (selectedAppointment) {
-        try {
-            
-            const userResponse = await axios.get(`http://localhost:4000/api/user/${acuityUserId}`);
-            const acuityUserId = userResponse.data.id;
-
-            
-            const response = await axios.put(`http://localhost:4000/api/appointments/${acuityUserId}/reschedule`, {
-                newDate,
-                newTime
-            });
-
-            console.log('Rendez-vous reprogrammé avec succès:', response.data);
-
-        } catch (error) {
-            console.error('Erreur lors de la reprogrammation du rendez-vous:', error);
-        }
+      try {
+        const response = await axios.put(`https://api.freesession.net/api/appointments/${acuityUserId}/reschedule`, {
+          newDate,
+          newTime
+        });
+        console.log('Rendez-vous reprogrammé avec succès:', response.data);
+        // Actualiser la page après la confirmation de changement de rendez-vous
+        window.location.reload(); // Actualiser la page
+      } catch (error) {
+        console.error('Erreur lors de la reprogrammation du rendez-vous:', error);
+      }
     }
-};
+  };
+  
+  
+  
 
   
 
   const cancelAppointment = async () => {
-    const testAppointmentId = '1204234320';
+    const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
     
     if (window.confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')) {
       try {
-        await axios.put(`http://localhost:4000/api/appointments/${testAppointmentId}/cancel`);
+        await axios.put(`https://api.freesession.net/api/appointments/${acuityUserId}/cancel`);
         alert('Rendez-vous annulé avec succès.');
-  
-        
-        setAppointments(appointments.filter(appointment => appointment.id !== testAppointmentId));
+        setNewDate('');
+        setNewTime('');
+        setAppointments(appointments.filter(appointment => appointment.id !== acuityUserId));
+        window.location.reload(); // Actualiser la page
       } catch (error) {
         console.error('Erreur lors de l’annulation du rendez-vous:', error);
         alert('Erreur lors de l’annulation du rendez-vous.');
       }
     }
   };
+  
   
   const formatDate = (dateString) => {
      const date = new Date(dateString);

@@ -1,6 +1,6 @@
 const config = {
-  port: 8080,
-  baseUrl: "http://localhost",
+  port: 4000,
+  baseUrl: "https://api.freesession.net",
 };
 
 export default config;
