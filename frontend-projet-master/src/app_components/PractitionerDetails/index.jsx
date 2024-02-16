@@ -16,7 +16,7 @@ import { Heart, Home, Phone, Users } from 'react-feather';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
-import PaiementComponent from './components/PaiementComponent';
+
 
 
 
@@ -38,7 +38,7 @@ const PraticionerDetails = () => {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [appointmentTaken, setAppointmentTaken] = useState(false); // Etat pour suivre si le rendez-vous a été pris avec succès
-  const [showPaymentModal, setShowPaymentModal] = useState(false); // Nouvel état pour la modale de paiement de la caution
+
 
   const { id } = useParams();
 
