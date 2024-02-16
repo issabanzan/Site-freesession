@@ -1,4 +1,4 @@
-import logo from '../../../assets/Blue_Blob_Health_Care_Logo_5_-removebg-preview.png';
+import logo from '../../../assets/Blue_Blob_Health_Care_Logo_4_-removebg-preview.png';
 import { LogIn, Home, Phone, Users } from 'react-feather';
 
 const navigationLinks = [
@@ -25,11 +25,12 @@ function Header() {
 
                 <a className="navbar-brand flex items-center mt-6">
                    
-                    <img src={logo} alt="logo" className="h-auto w-53 sm:w-60 md:w-70 lg:w-75 object-contain mt-8" />
+                <img src={logo} alt="logo" className="h-auto w-38 sm:w-47 md:w-36 lg:w-43 object-contain mt-1" />
+
 
 
                 </a>
-                <ul className="navbar-nav text-white sm:flex sm:flex-row gap-3 items-center mt-6">
+                <ul className="navbar-nav text-white sm:flex sm:flex-row gap-3 items-center mt-5">
                     {
                         navigationLinks.map((link, index) => (
                             <li className="nav-item px-3 py-1 bg-slate-700 flex items-center rounded-lg" key={index}>
