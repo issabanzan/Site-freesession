@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const loginUser = async (username) => {
-  const backendBaseUrl = "http://localhost:8080";
+  const backendBaseUrl = "https://api.freesession.net";
 
   const payload = { username, payload };
 
