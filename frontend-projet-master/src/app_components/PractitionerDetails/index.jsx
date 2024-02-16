@@ -16,7 +16,7 @@ import { Heart, Home, Phone, Users } from 'react-feather';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
-
+import PaiementComponent from './components/PaiementComponent';
 
 
 
@@ -37,8 +37,6 @@ const PraticionerDetails = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [appointmentTaken, setAppointmentTaken] = useState(false); // Etat pour suivre si le rendez-vous a été pris avec succès
-
 
   const { id } = useParams();
 
@@ -109,19 +107,6 @@ const PraticionerDetails = () => {
     }
   };
 
-  const handlePayCautionClick = () => {
-    
-    setShowPaymentModal(true);
-  };
-
-  const handlePaymentSubmit = async () => {
-    // Logique pour traiter le paiement avec les informations existantes
-    console.log("Traitement du paiement pour:", firstName, lastName, email, phone);
-    // Intégrez ici votre logique pour initier le paiement
-
-    // Ferme la modale après le paiement
-    setShowPaymentModal(false);
-  };
 
   const handleDateChange = (date) => {
     
@@ -455,7 +440,7 @@ useEffect(() => {
                       />
                     </div>
 
-          
+                    
                     <button
                       type="submit"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 w-full"
