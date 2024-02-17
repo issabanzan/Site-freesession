@@ -9,5 +9,10 @@ jobs:
     steps:
       - run:
           name: Déploiement au serveur de production
-          command:
-            ssh root@85.31.239.109"su debian && cd && cd freesession && git pull origin master && sudo docker compose up"
+          command: |
+            ssh root@85.31.239.109 "\
+            su - debian -c '\
+              cd ~/frac && \
+              git pull origin master && \
+              sudo docker-compose up -d\
+            '"
