@@ -1,0 +1,13 @@
+version: 2.1
+executors:
+  default:
+    machine: true
+
+jobs:
+  build:
+    executor: default
+    steps:
+      - run:
+          name: Déploiement au serveur de production
+          command:
+            ssh root@85.31.239.109"su debian && cd && cd freesession && git pull origin master && sudo docker compose up"
