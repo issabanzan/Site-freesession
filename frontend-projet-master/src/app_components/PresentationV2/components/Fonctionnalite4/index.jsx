@@ -21,7 +21,12 @@ const testimonials = [
     imageUrl: "https://picsum.photos/seed/picsum/200/300",
     videoUrl: 'path-to-video'
   },
-
+  {
+    name: 'Nathalie Conté',
+    role: 'Freesession',
+    imageUrl: "https://picsum.photos/200",
+    videoUrl: 'path-to-video'
+  },
   {
     name: 'Muriel Dangremont',
     role: 'Freesession',
