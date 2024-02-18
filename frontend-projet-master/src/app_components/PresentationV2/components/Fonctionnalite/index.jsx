@@ -16,7 +16,7 @@ const Fonctionnalite = () => {
           All specialties
           </button>
         </div>
-        {/* Galerie pour mes images */}
+       
         <div className="flex overflow-x-auto space-x-1">
           
         <a href="" className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
