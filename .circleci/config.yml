@@ -1,0 +1,14 @@
+version: 2.1
+executors:
+  default:
+    machine: true
+
+jobs:
+  build:
+    executor: default
+    steps:
+      - run:
+          name: Déploiement au serveur de production
+          command: |
+            ssh debian@85.31.239.109 "cd freesession && git pull origin master git@bitbucket.org:bilidjo/freesession.git"
+            ssh debian@85.31.239.109 "cd freesession && sudo docker compose up"
