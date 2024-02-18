@@ -16,7 +16,6 @@ import { Heart, Home, Phone, Users } from 'react-feather';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
-import PaiementComponent from './components/PaiementComponent';
 
 
 
