@@ -1,6 +1,6 @@
-# Projet Master - Backend
+# Projet Master - Backend .
 
-## Configuration requise
+## Configuration requise.
 
 Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
