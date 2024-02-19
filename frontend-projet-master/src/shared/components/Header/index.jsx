@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import logo from '../../../assets/Blue_Blob_Health_Care_Logo_4_-removebg-preview.png';
-import { LogIn, Home, Phone, Menu } from 'react-feather'; // Assurez-vous d'importer l'icône Menu ou une icône similaire pour le bouton
+import { LogIn, Home, Phone, Menu } from 'react-feather'; 
+import { Menu } from 'react-feather';
+
 
 const navigationLinks = [
     {
