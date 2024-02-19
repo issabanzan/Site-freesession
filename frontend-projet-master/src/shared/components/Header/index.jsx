@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../../../assets/Blue_Blob_Health_Care_Logo_4_-removebg-preview.png';
-import { LogIn, Home, Phone, Menu, X } from 'react-feather'; // Assurez-vous d'importer Menu et X pour le bouton de menu
+import { LogIn, Home, Phone, Menu, X } from 'react-feather'; 
 
 const navigationLinks = [
     {
@@ -38,13 +38,13 @@ function Header() {
                     </button>
 
                 {/* Liens de navigation */}
-<div className={`${isMenuOpen ? 'block' : 'hidden'} sm:block`}>
-    <ul className="flex flex-col sm:flex-row text-white gap-2 sm:gap-4 items-center mt-5">
+                <div className={`${isMenuOpen ? 'block' : 'hidden'} sm:block`}>
+    <ul className="flex flex-row text-white gap-4 items-center justify-start mt-5">
         {navigationLinks.map((link, index) => (
             <li key={index} className="nav-item">
-                <a href={link.url} className="nav-link flex items-center gap-2 px-4 py-2 bg-[#225886] rounded-md transition duration-200 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-lg">
+                <a href={link.url} className="nav-link flex items-center gap-2 px-1 py-2 bg-[#225886] rounded-full transition duration-200 ease-in-out transform hover:scale-105 shadow-md text-sm sm:text-md">
                     {link.icon}
-                    <span className="text-sm sm:text-base">{link.label}</span>
+                    <span>{link.label}</span>
                 </a>
             </li>
         ))}
