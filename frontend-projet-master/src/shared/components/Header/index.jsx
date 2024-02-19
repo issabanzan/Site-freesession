@@ -30,9 +30,13 @@ function Header() {
                 </a>
                 
                 {/* Bouton du menu pour les petits écrans */}
-                <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white sm:hidden">
+                <button
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    className="sm:hidden p-2 bg-blue-500 border-2 border-white"
+                    >
                     {isMenuOpen ? <X /> : <Menu />}
-                </button>
+                    </button>
+
                 
                 {/* Liens de navigation */}
                 <div className={`${isMenuOpen ? 'block' : 'hidden'} sm:block`}>
