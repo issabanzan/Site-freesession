@@ -8,7 +8,7 @@ const Footer = () => {
           <div>
             <h5 className="text-lg font-semibold mb-2">Call Freesession</h5>
             <ul>
-              <li className="mb-1">CallFreesession at <br /> 01 82 88 75 89</li>
+              <li className="mb-1">Call Freesession at <br /> 01 82 88 75 89</li>
               <li>Send a message to <br /> contact@freesession.com</li>
             </ul>
           </div>
