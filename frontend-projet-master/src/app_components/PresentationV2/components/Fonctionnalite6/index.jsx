@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// Dummy data for the FAQ. Replace with your actual data.
+
 const faqData = [
     {
       question: "How to find the right complementary practice practitioner for you?",
@@ -49,15 +49,15 @@ const FAQItem = ({ faq }) => {
 
 const HelpSection = () => {
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-[#3BAFBC] mt-10">
+    <div className="max-w-7xl mx-auto p-6 bg-[#3BAFBC] mt-10">
       <div className="flex flex-wrap md:flex-nowrap">
         
-        {/* Contact information */}
+      
         <div className="flex-1 md:ml-20 lg:ml-20">
 
           <div className="mb-4">
             <img
-              src="/src/assets/plm.png" 
+              src="/src/assets/plm.PNG" 
               alt="Contact Icon"
               className="w-40 h-30 rounded-full" 
             />
@@ -69,7 +69,7 @@ const HelpSection = () => {
         </div>
 
         
-        <div className="flex-1 ml-8 mt-3"> 
+        <div style={{ marginRight: '5rem' }} className="flex-1 ml-8 mt-3"> 
           <h3 className="text-white text-xl font-semibold mb-4">a question? need help?</h3>
           <dl className="space-y-3">
             {faqData.map(faq => (

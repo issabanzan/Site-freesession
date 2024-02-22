@@ -7,7 +7,7 @@ import Logo3 from '../../../../assets/reassurance-avis-removebg-preview.png';
 const FeatureSection = () => {
   return (
     <div className="relative">
-      <div className="bg-[#3BAFBC] flex flex-col sm:flex-row mt-4 p-4 rounded-md pt-12 max-w-5xl mx-auto"> 
+      <div className="bg-[#3BAFBC] flex flex-col sm:flex-row mt-4 p-4 rounded-md pt-12 max-w-7xl mx-auto"> 
         <div className="rounded-lg max-w-6xl mx-auto mb-8 sm:mb-0 sm:mr-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-white">
           Act for your well-being
