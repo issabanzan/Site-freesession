@@ -49,7 +49,7 @@ function Header() {
       </div>
 
       
-      <div style={{ marginLeft: '10rem' }} className="hidden lg:flex items-center space-x-4">
+      <div style={{ marginLeft: '15rem' }} className="hidden lg:flex items-center space-x-4">
         <a href="/contact-us" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">
           Contact us
         </a>
