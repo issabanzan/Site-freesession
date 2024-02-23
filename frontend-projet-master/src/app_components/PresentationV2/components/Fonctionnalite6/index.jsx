@@ -63,7 +63,7 @@ const HelpSection = () => {
             />
           </div>
           <div className="text-black">
-            <p className="mb-2 font-medium ml-9 text-white font-semibold">01 82 88 75 89</p>
+            <p className="mb-2 font-medium ml-9 text-white font-semibold">01 88 88 75 89</p>
             <p className='ml-4 text-white font-semibold'>contact@freesession.net</p>
           </div>
         </div>
