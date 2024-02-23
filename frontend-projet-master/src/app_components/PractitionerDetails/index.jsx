@@ -418,7 +418,7 @@ useEffect(() => {
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">Mail *</label>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email *</label>
                       <input
                         type="email"
                         value={email}
@@ -428,7 +428,7 @@ useEffect(() => {
 
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone umber*</label>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Téléphone *</label>
                       <input
                         type="tel"
                         value={phone}
@@ -452,7 +452,7 @@ useEffect(() => {
                       className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mb-2"
                       onClick={handlePayCautionClick}
                     >
-                      Pay the deposit
+                      Payer la caution
                     </button>
 
                     {showPaymentModal && (
