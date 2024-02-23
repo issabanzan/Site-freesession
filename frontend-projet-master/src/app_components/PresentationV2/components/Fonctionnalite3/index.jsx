@@ -9,11 +9,11 @@ const FeatureSection = () => {
     <div className="relative">
       <div className="bg-[#3BAFBC] flex flex-col sm:flex-row mt-4 p-4 rounded-md pt-12 max-w-7xl mx-auto"> 
         <div className="rounded-lg max-w-6xl mx-auto mb-8 sm:mb-0 sm:mr-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-white">
+          <h1 className="sm:text-4xl font-bold text-white leading-tight tracking-tighter inter text-2xl">
           Act for your well-being
           </h1>
 
-          <p className="mt-5 text-white text-left mb-8">
+          <p className="mt-5 text-white text-left mb-8 leading-tight tracking-tighter inter text-1xl">
             Freesession allows everyone to become an actor in their health<br /> and well-being by facilitating access to complementary practices.<br /> Freesession wishes to inform, to provide honest keys to understanding to allow everyone to choose freely, in full awareness of the risks and benefits.
             <a href="#" className="text-white-500 hover:underline">
               Learn more about our purpose and mission

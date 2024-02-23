@@ -1,49 +1,46 @@
 import React from 'react';
 
-const Footer = () => {
+const Fonctionnalite = () => {
   return (
-    <footer className="bg-[#225886] text-white p-4">
-      <div style={{ marginRight: '20rem' }} className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-          <div>
-            <h5 className="text-lg font-semibold mb-2">Call Free session</h5>
-            <ul>
-              <li className="mb-1">Call Institutadios at <br /> 01 82 88 75 89</li>
-              <li>Send a message to <br /> contact@freesession.com</li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="text-lg font-semibold mb-2">Discover Free session</h5>
-            <ul>
-              <li className="mb-1"><a href="/who-we-are" className="hover:underline">Who are we?</a></li>
-              <li className="mb-1"><a href="/our-partners" className="hover:underline">Our partners</a></li>
-              <li className="mb-1"><a href="/media" className="hover:underline">Free session in the media</a></li>
-              <li className="mb-1"><a href="/practitioners" className="hover:underline">Our practitioners by city</a></li>
-              <li className="mb-1"><a href="/videos" className="hover:underline">Videos</a></li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="text-lg font-semibold mb-2">Institutadios commits</h5>
-            <ul>
-              <li className="mb-1"><a href="?" className="hover:underline">How do we collect our reviews?</a></li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="text-lg font-semibold mb-2">Rejoin us</h5>
-            <ul>
-              <li className="mb-1"><a href="/We are hiring" className="hover:underline">We are hiring</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="text-sm mt-4">
-          <p className='text-white'>
-          Warning: If you feel unwell or sick, first consult a doctor or healthcare professional who can make a diagnosis and suggest appropriate treatment. This site presents general information on unconventional medicines, it is in no way personalized advice and consultations. The practitioners listed on this site are not doctors and in no way replace the role of your doctor. By using this site you acknowledge that it does not offer the diagnosis or treatment of any disease. Results are not guaranteed, they depend on many elements and in particular on people and context.
+    <div className="max-w-7xl mx-auto my-5">
+      <div className="flex items-start justify-between">
+       
+        <div className="space-y-4">
+          <h2  className="text-4xl font-bold text-black leading-tight tracking-tighter">
+          Discover <br/>the complementary<br/> practice specialties
+          </h2>
+          <p className="text-black font-bold leading-tight tracking-tighter">
+          Practices selected to meet all your expectations and help you get better
           </p>
+          <button className="bg-[#225886] hover:bg-[#3BAFBC] text-white font-bold py-2 px-4 rounded-full leading-tight tracking-tighter inter text-2xl">
+          All specialties
+          </button>
+        </div>
+        
+        <div className="flex overflow-x-auto space-x-1">
+          
+        <a href="" className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
+    <img src="/src/assets/ayurveda.png" alt="alcools" className="w-60 h-40 object-cover rounded-md" />
+    <p className="font-bold mt-2 text-black leading-tight tracking-tighter inter text-2xl">ayurveda</p>
+    <p className="mt-1">recommended by 81%<br /> of our users</p>
+  </a>
+          
+  <a href="" className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
+            <img src="/src/assets/hypnose.png" alt="mego" className="w-60 h-40 object-cover rounded-md" />
+            <p className="font-bold mt-2 leading-tight tracking-tighter inter text-2xl text-black">Hypnose</p>
+            <p className="mt-1">recommended by 81% <br /> of our users</p>
+            </a>
+          
+            <a href="" className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
+            <img src="/src/assets/traditionelle.PNG" alt="traditionelle" className="w-50 h-40 object-cover rounded-md" />
+            <p className="font-bold mt-2 leading-tight tracking-tighter inter text-2xl text-black">traditional</p>
+            <p className="mt-1">recommended by 81% <br /> of our users</p>
+            </a>
+            
         </div>
       </div>
-    </footer>
+    </div>
   );
 };
 
-export default Footer;
+export default Fonctionnalite;

@@ -6,14 +6,14 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header style={{ marginRight: '25rem' }} className="px-3 py-1 h-20 flex flex-row justify-between items-center max-w-8xl mx-auto">
+    <header style={{ marginRight: '27rem' }} className="px-3 py-1 h-20 flex flex-row justify-between items-center max-w-8xl mx-auto">
      
      <a className="flex items-center">
         <img src={logo} alt="logo" className="h-auto w-20 sm:w-47 md:w-36 lg:w-43 object-contain mt-7" />
       </a>
         
       
-      <h1  className="text-xl font-bold text-[#333C4E] hidden lg:block mt-7">
+      <h1  className="text-xl font-bold text-[#333C4E] hidden lg:block mt-7 leading-tight tracking-tighter inter text-2xl">
         Freesession
       </h1>
 
@@ -42,18 +42,18 @@ function Header() {
       </nav>
       
       <div className="hidden lg:flex items-center space-x-8">
-        <a href="/specialites" className="text-[#333C4E] font-bold mt-7">Specialies</a>
-        <a href="/troubles" className="text-[#333C4E] font-bold mt-7">Troubles</a>
-        <a href="/blogs" className="text-[#333C4E] font-bold mt-7">Blogs</a>
-        <a href="/entreprise" className="text-[#333C4E] font-bold mt-7">company offers</a>
+        <a href="/specialites" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Specialies</a>
+        <a href="/troubles" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Troubles</a>
+        <a href="/blogs" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Blogs</a>
+        <a href="/entreprise" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">company offers</a>
       </div>
 
       
       <div style={{ marginLeft: '10rem' }} className="hidden lg:flex items-center space-x-4">
-        <a href="/contact-us" className="text-[#333C4E] font-bold mt-7">
+        <a href="/contact-us" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">
           Contact us
         </a>
-        <a href="/login" className="text-[#333C4E] flex items-center font-bold mt-7">
+        <a href="/login" className="text-[#333C4E] flex items-center font-bold mt-7 leading-tight tracking-tighter inter text-1xl">
           <LogIn className="mr-2" />
           Log in
         </a>

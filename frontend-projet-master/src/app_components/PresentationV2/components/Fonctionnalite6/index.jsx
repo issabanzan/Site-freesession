@@ -52,25 +52,25 @@ const HelpSection = () => {
     <div className="max-w-7xl mx-auto p-6 bg-[#3BAFBC] mt-10">
       <div className="flex flex-wrap md:flex-nowrap">
         
-      
+        {/* Contact information */}
         <div className="flex-1 md:ml-20 lg:ml-20">
 
           <div className="mb-4">
             <img
-              src="/src/assets/plm.png" 
+              src="/src/assets/plm.PNG" 
               alt="Contact Icon"
               className="w-40 h-30 rounded-full" 
             />
           </div>
           <div className="text-black">
-            <p className="mb-2 font-medium ml-5 text-white font-semibold">01 82 88 75 89</p>
-            <p className='text-white font-semibold'>contact@freesession.net</p>
+            <p className="mb-2 font-medium ml-9 text-white font-semibold">01 82 88 75 89</p>
+            <p className='ml-4 text-white font-semibold'>contact@freesession.net</p>
           </div>
         </div>
 
         
         <div style={{ marginRight: '5rem' }} className="flex-1 ml-8 mt-3"> 
-          <h3 className="text-white text-xl font-semibold mb-4">a question? need help?</h3>
+          <h3 className="text-white text-xl font-semibold mb-4 leading-tight tracking-tighter inter text-2xl">a question? need help?</h3>
           <dl className="space-y-3">
             {faqData.map(faq => (
               <FAQItem key={faq.question} faq={faq} />
