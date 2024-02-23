@@ -16,6 +16,7 @@ import { Heart, Home, Phone, Users } from 'react-feather';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
+import PaiementComponent from './components/PaiementComponent';
 
 
 
@@ -36,6 +37,9 @@ const PraticionerDetails = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [appointmentTaken, setAppointmentTaken] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [isCautionPaid, setIsCautionPaid] = useState(false);
 
   const { id } = useParams();
 
@@ -104,6 +108,18 @@ const PraticionerDetails = () => {
     } catch (error) {
       console.error(error);
     }
+  };
+  const handlePayCautionClick = () => {
+
+    setShowPaymentModal(true);
+  };
+
+  const handlePaymentSubmit = async () => {
+
+    console.log("Traitement du paiement pour:", firstName, lastName, email, phone);
+
+    setIsCautionPaid(true);
+    setShowPaymentModal(false);
   };
 
 
@@ -438,6 +454,20 @@ useEffect(() => {
 
                       />
                     </div>
+
+                    <button
+                      className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mb-2"
+                      onClick={handlePayCautionClick}
+                    >
+                      Payer la caution
+                    </button>
+
+                    {showPaymentModal && (
+
+                      <div className="App">
+                        <PaiementComponent />
+                      </div>
+                    )}
 
                     
                     <button

@@ -6,7 +6,13 @@ import PractitionerService from "./services/Practitioner";
 import { ContactService } from "./services/Contact/contact.service";
 import Database from "./services/Database";
 import axios from 'axios';
-// import { smtpConfig } from "./services/Contact/contact.config";
+import multer from 'multer';
+
+const upload = multer();
+
+import { swiklyConfig } from './services/Swikly/swikly.config';
+
+
 
 import cors from 'cors';
 
@@ -21,6 +27,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/calendars/all", async (req, res) => {
   const booking = new Booking();
@@ -88,12 +95,14 @@ app.post('/login', async (req, res) => {
 });
 
 
+
 //app.get('/api/clients', async (req, res) => {
 // const booking = new Booking();
 // await booking.getAllClients(req, res);
 //});
 
 app.get('/api/user/:acuityUserId', async (req, res) => {
+  
   try {
     const { acuityUserId } = req.params;
     const db = new Database();
@@ -216,6 +225,31 @@ app.post("/api/contact", async (req, res) => {
     res.status(500).send("Erreur lors de l'envoi du message.");
   }
 });
+
+app.post('/api/v1_0/newSwik', upload.none(), async (req, res) => {
+  try {
+    
+
+    const response = await axios.post('https://api.swikly.com/v1_0/newSwik', req.body, {
+      headers: {
+        'api_key': process.env.SWIKLY_API_KEY,
+        'api_secret': process.env.SWIKLY_API_SECRET,
+        'Content-Type': 'multipart/form-data',
+        'Access-Control-Allow-Origin' : '*'
+      }
+    });
+    console.log('response', response.data);
+    res.status(200).json(response.data);
+
+  } catch (error) {
+    console.error('Error during Swikly payment creation via proxy:', error);
+    res.status(500).send('Server error');
+  }
+});
+
+
+
+
 
 app.post('/api/create-client', async (req, res) => {
   const booking = new Booking();
