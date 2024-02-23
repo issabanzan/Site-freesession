@@ -52,7 +52,7 @@ const HelpSection = () => {
     <div className="max-w-7xl mx-auto p-6 bg-[#3BAFBC] mt-10">
       <div className="flex flex-wrap md:flex-nowrap">
         
-        {/* Contact information */}
+        
         <div className="flex-1 md:ml-20 lg:ml-20">
 
           <div className="mb-4">
