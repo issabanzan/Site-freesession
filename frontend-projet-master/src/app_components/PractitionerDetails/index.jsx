@@ -409,7 +409,7 @@ useEffect(() => {
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email *</label>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">Mail *</label>
                       <input
                         type="email"
                         value={email}
@@ -419,7 +419,7 @@ useEffect(() => {
 
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Téléphone *</label>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone number *</label>
                       <input
                         type="tel"
                         value={phone}
@@ -440,13 +440,7 @@ useEffect(() => {
                     </div>
 
                     
-                    <button
-                      type="submit"
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 w-full"
-                      onClick={handleSubmit}
-                    >
-                      Take Appointment
-                    </button>
+                    
 
                           
                     
