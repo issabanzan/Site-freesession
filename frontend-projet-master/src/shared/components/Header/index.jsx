@@ -6,42 +6,42 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header style={{ marginRight: '18rem' }} className="flex items-center justify-between px-3 py-1 h-20 max-w-8xl mx-auto">
+    <header className="flex items-center justify-between px-3 py-1 h-20 max-w-8xl mx-auto">
      
-      <a className="navbar-brand flex items-center">
-                   <img src={logo} alt="logo" className="h-auto w-20 sm:w-47 md:w-36 lg:w-43 object-contain mt-10" />
-               </a>
+     <a className="flex items-center">
+        <img src={logo} alt="logo" className="h-auto w-20 sm:w-47 md:w-36 lg:w-43 object-contain mt-7" />
+      </a>
         
       
-      <h1 style={{ marginRight: '5rem' }} className="text-xl font-bold text-[#333C4E] hidden lg:block mt-7">
+      <h1 style={{ marginRight: '7rem' }} className="text-xl font-bold text-[#333C4E] hidden lg:block mt-7">
         Freesession
       </h1>
 
       
-      {/* Menu Mobile */}
-      <div className="sm:flex items-center justify-end sm:hidden">
       
-       <button
+      <div className="flex items-center lg:hidden">
+        <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="p-2 text-gray-700 hover:text-gray-900 focus:outline-none lg:hidden"
+          className="p-2 text-gray-700 hover:text-gray-900 focus:outline-none"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-
-        <nav className={`${isMenuOpen ? 'flex' : 'hidden'} fixed inset-0 h-full w-full bg-[#225886] z-10 flex-col items-center justify-center`}>
-          <a href="/specialites" className="text-white px-3 py-2 rounded-md text-base font-medium">Specialties</a>
-          <a href="/troubles" className="text-white px-3 py-2 rounded-md text-base font-medium">Troubles</a>
-          <a href="/blogs" className="text-white px-3 py-2 rounded-md text-base font-medium">Blogs</a>
-          <a href="/entreprise" className="text-white px-3 py-2 rounded-md text-base font-medium">Company Offers</a>
-          <a href="/contact-us" className="text-white px-3 py-2 rounded-md text-base font-medium">Contact Us</a>
-          <a href="/login" className="text-white px-3 py-2 rounded-md text-base font-medium flex items-center">
-            <LogIn className="mr-2" />
-            Log In
-          </a>
-        </nav>
       </div>
+
+     
+      <nav className={`${isMenuOpen ? 'flex' : 'hidden'} fixed inset-0 bg-[#225886] z-20 flex-col items-center justify-center`}>
+        <a href="/specialites" className="text-white px-3 py-2 rounded-md text-base font-medium">Specialties</a>
+        <a href="/troubles" className="text-white px-3 py-2 rounded-md text-base font-medium">Troubles</a>
+        <a href="/blogs" className="text-white px-3 py-2 rounded-md text-base font-medium">Blogs</a>
+        <a href="/entreprise" className="text-white px-3 py-2 rounded-md text-base font-medium">Company Offers</a>
+        <a href="/contact-us" className="text-white px-3 py-2 rounded-md text-base font-medium">Contact Us</a>
+        <a href="/login" className="text-white px-3 py-2 rounded-md text-base font-medium flex items-center">
+          <LogIn className="mr-2" />
+          Log In
+        </a>
+      </nav>
       
-      <div style={{ marginRight: '7rem' }} className="hidden lg:flex items-center space-x-8">
+      <div className="hidden lg:flex items-center space-x-8">
         <a href="/specialites" className="text-[#333C4E] font-bold mt-7">Specialies</a>
         <a href="/troubles" className="text-[#333C4E] font-bold mt-7">Troubles</a>
         <a href="/blogs" className="text-[#333C4E] font-bold mt-7">Blogs</a>
@@ -49,7 +49,7 @@ function Header() {
       </div>
 
       
-      <div style={{ marginRight: '5rem' }} className="hidden lg:flex items-center space-x-4">
+      <div className="hidden lg:flex items-center space-x-4">
         <a href="/contact-us" className="text-[#333C4E] font-bold mt-7">
           Contact us
         </a>
