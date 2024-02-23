@@ -36,7 +36,6 @@ const PraticionerDetails = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   const { id } = useParams();
 
@@ -106,20 +105,6 @@ const PraticionerDetails = () => {
       console.error(error);
     }
   };
-
-  const handlePayCautionClick = () => {
-
-    setShowPaymentModal(true);
-  };
-
-  const handlePaymentSubmit = async () => {
-
-    console.log("Traitement du paiement pour:", firstName, lastName, email, phone);
-
-    setIsCautionPaid(true);
-    setShowPaymentModal(false);
-  };
-
 
 
   const handleDateChange = (date) => {
@@ -454,31 +439,14 @@ useEffect(() => {
                       />
                     </div>
 
-
+                    
                     <button
-                      className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mb-2"
-                      onClick={handlePayCautionClick}
-                    >
-                      Payer la caution
-                    </button>
-
-                    {showPaymentModal && (
-
-                      <div className="App">
-                        <PaiementComponent />
-                      </div>
-                    )}
-
-<button
                       type="submit"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 w-full"
                       onClick={handleSubmit}
                     >
                       Take Appointment
                     </button>
-
-                    
-                    
 
                           
                     
