@@ -452,7 +452,7 @@ useEffect(() => {
                       className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mb-2"
                       onClick={handlePayCautionClick}
                     >
-                      Payer la caution
+                      Pay the deposit
                     </button>
 
                     {showPaymentModal && (
