@@ -6,7 +6,7 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="flex items-center justify-between px-3 py-1 h-20 max-w-8xl mx-auto">
+    <header className="flex items-center justify-between px-3 py-1 h-20 w-full">
      
      <a className="flex items-center">
         <img src={logo} alt="logo" className="h-auto w-20 sm:w-47 md:w-36 lg:w-43 object-contain mt-7" />
@@ -19,7 +19,7 @@ function Header() {
 
       
       
-      <div className="flex items-center lg:hidden">
+      <div className="flex items-center lg:hidden mt-7">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="p-2 text-gray-700 hover:text-gray-900 focus:outline-none"
