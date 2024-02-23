@@ -1,7 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useParams } from 'react-router-dom';
-// import logo from '../../assets/logo.png';
-// import profilePicture from '../../assets/thumbnail.jpeg';
 import { useEffect } from 'react';
 import PresentationHeader from './components/PresentationHeader';
 import { useState } from 'react';
