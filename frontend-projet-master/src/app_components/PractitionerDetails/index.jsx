@@ -37,9 +37,9 @@ const PraticionerDetails = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [appointmentTaken, setAppointmentTaken] = useState(false);
+
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [isCautionPaid, setIsCautionPaid] = useState(false);
+  
 
   const { id } = useParams();
 
@@ -114,14 +114,7 @@ const PraticionerDetails = () => {
     setShowPaymentModal(true);
   };
 
-  const handlePaymentSubmit = async () => {
-
-    console.log("Traitement du paiement pour:", firstName, lastName, email, phone);
-
-    setIsCautionPaid(true);
-    setShowPaymentModal(false);
-  };
-
+ 
 
   const handleDateChange = (date) => {
     
