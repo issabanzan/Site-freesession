@@ -9,10 +9,12 @@ const Fonctionnalite2 = () => {
           <h2 className="inter text-3xl font-bold text-black mt-3 leading-tight tracking-tighter">
           Our practitioners <br />support you to act <br />for your well-being.
           </h2>
-          
-          <button className="bg-[#225886] hover:bg-[#3BAFBC] text-white font-bold py-2 px-4 rounded-full leading-tight tracking-tighter inter text-2xl" >
-            All disorders
-          </button>
+          <button
+  onClick={() => window.location.href='/AllDisorders'}
+  className="bg-[#225886] hover:bg-[#3BAFBC] text-white font-bold py-2 px-4 rounded-full leading-tight tracking-tighter text-2xl"
+>
+All disorders
+</button>
         </div>
        
         <div className="flex overflow-x-auto space-x-1">
