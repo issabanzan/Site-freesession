@@ -7,7 +7,7 @@ const BlogSection = () => {
         
         <div className="flex -space-x-4">
           <img
-            src="/src/assets/plat.jpg"
+            src="/src/assets/fruits.jpg"
             alt="Healthy breakfast bowl"
             className="w-60 h-40 lg:w-50 lg:h-40 object-cover shadow-lg ring-2 ring-white"
           />

@@ -29,8 +29,8 @@ const Fonctionnalite = () => {
   </a>
           
   <a href="" className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
-            <img src="/src/assets/hypnose.PNG" alt="mego" className="w-60 h-40 object-cover rounded-md" />
-            <p className="font-bold mt-2 leading-tight tracking-tighter inter text-2xl text-black">Hypnose</p>
+            <img src="/src/assets/hypnose-i.jpg" alt="mego" className="w-60 h-40 object-cover rounded-md" />
+            <p className="font-bold mt-2 leading-tight tracking-tighter inter text-2xl text-black">Hypnosis</p>
             <p className="mt-1">recommended by 81% <br /> of our users</p>
             </a>
           

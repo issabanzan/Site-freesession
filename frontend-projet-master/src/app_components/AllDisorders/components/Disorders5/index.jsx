@@ -11,7 +11,7 @@ const Disorders5 = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/douleur.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/douleur.jpg" alt="Ostéopathie" className="w-full h-30 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">Pain</h3>
           <p>
           Pain is a public health issue. In France, studies carried out by Inserm estimate that pain is the cause of two thirds of medical consultations.....
@@ -26,7 +26,7 @@ const Disorders5 = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/articulaire.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/articulaire.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">Joint pain</h3>
           <p>
           the Joint pain affects millions of French people. This name brings together a set of disorders linked to the dysfunction of muscles, joints, bones and tendons. Joint pain is common and can be disabling (osteoarthritis, osteoporosis, lower back pain, etc.).....
@@ -40,7 +40,7 @@ const Disorders5 = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/mam.png" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/mam.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">Become a mother</h3>
           <p>
           In 2018, nearly 760,000 children were born in France. In vitro fertilization (IVF) allows parents to carry out assisted reproduction. Alternative medicine can support pregnant women during their pregnancy and help them prepare for childbirth....

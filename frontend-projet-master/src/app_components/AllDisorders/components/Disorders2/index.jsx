@@ -11,7 +11,7 @@ const Disorders2 = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/allergie.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/allergie.jpg" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">Allergies/intolerance</h3>
            <p>
            The human body is continually confronted with external disruptors (microbes, bacteria, viruses, etc.). We are talking about allergic disorders....
@@ -24,7 +24,7 @@ const Disorders2 = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/dos.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/dos.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">back pain</h3>
           <p>
           Sciatica, herniated disc, low back pain, back pain… Back pain is an extremely common public health problem all over the world....
@@ -40,7 +40,7 @@ const Disorders2 = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/fatigues.png" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/fatigue-i.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">fatigue and sleep</h3>
           <p>
           Sleep disorders are defined as difficulty sleeping restoratively. A person is insomniac when their daily life is affected by lack of sleep, this results in disabling phenomena such as drowsiness or attention problems....

@@ -21,20 +21,20 @@ All disorders
           
           <div className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
           
-            <img src="/src/assets/images.jpg" alt="peau" className="w-51 h-40 object-cover rounded-md" />
+            <img src="/src/assets/skin-i.jpg" alt="peau" className="w-51 h-40 object-cover rounded-md" />
             <p className="font-bold mt-2 leading-tight tracking-tighter inter text-2xl text-black">skin problem</p>
            
           </div>
           
           <div className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
-            <img src="/src/assets/fatigue.PNG" alt="fatigue" className="w-50 h-40 object-cover rounded-md" />
+            <img src="/src/assets/fatigue-i.jpg" alt="fatigue" className="w-50 h-40 object-cover rounded-md" />
             <p className="font-bold mt-2 leading-tight tracking-tighter inter text-2xl text-black">fatigue and sleep</p>
            
           </div>
           
           <div className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
             <img src="/src/assets/medically.PNG" alt="Énergétique Traditionnelle Chinoise" className="w-50 h-40 object-cover rounded-md" />
-            <p className="font-bold mt-2 leading-tight tracking-tighter inter text-2xl text-black">medically</p>
+            <p className="font-bold mt-2 leading-tight tracking-tighter inter text-2xl text-black">PMA</p>
             
           </div>
           

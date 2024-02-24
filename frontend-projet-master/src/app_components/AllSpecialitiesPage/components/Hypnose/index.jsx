@@ -5,7 +5,7 @@ const Hypnose = () => {
   return (
     <div style={{ marginRight: '23rem' }} className="max-w-6xl mx-auto my-5 mt-12">
       <h2 className="text-2xl font-semibold mb-6 text-black">
-      Osteopathy, hypnosis, sophrology ...
+      Osteopathy, Chiropraxie, Hypnosis ...
       </h2>
       <p className="mb-4">
       Alternative medicines are diverse and varied and can be useful in many situations. We have summarized here the characteristics of the best known and recognized practices. To you to discover them! If you would like to know more about the principles of alternative medicine
@@ -18,7 +18,7 @@ const Hypnose = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/osteopathie.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/osteopathie-i.jpg" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">Osteopathy</h3>
           <p>
           Osteopathy is a manual practice which aims to restore movement to tissues, organs and joints....
@@ -27,8 +27,8 @@ const Hypnose = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/chiropraxie.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
-          <h3 className="text-lg font-semibold mb-2 text-black">hypnosis</h3>
+          <img src="/src/assets/chiropraxie-i.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <h3 className="text-lg font-semibold mb-2 text-black">Chiropraxie</h3>
           <p>
           Chiropractic is based on a global conception of the functioning of the body and the relationships existing between the spinal column...
           </p>
@@ -36,8 +36,8 @@ const Hypnose = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/hypnosepicture.png" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
-          <h3 className="text-lg font-semibold mb-2 text-black">sophrology</h3>
+          <img src="/src/assets/hypnose.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <h3 className="text-lg font-semibold mb-2 text-black">Hypnosis</h3>
           <p>
           The principle of hypnosis is to access an altered state of consciousness to revisit reality and the way you perceive it....
           </p>

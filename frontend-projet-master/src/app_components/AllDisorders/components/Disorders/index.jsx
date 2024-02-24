@@ -18,7 +18,7 @@ const disorders = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/tete.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/tete.jpg" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">Headache</h3>
           <p>
           Headache is a feeling of pain or discomfort felt in the head. There are several types of headaches, with various causes.....
@@ -27,7 +27,7 @@ const disorders = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/stress.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/stress.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">stress, anxiety, and phobia</h3>
           <p>
           More than half of medical consultations in Western societies are due to stress, which is the cause of significant consumption of medications, but also of alcohol or psychotropic drugs....

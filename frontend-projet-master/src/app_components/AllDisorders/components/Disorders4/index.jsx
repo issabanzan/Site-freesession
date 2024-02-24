@@ -12,7 +12,7 @@ const Disorders4 = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/trouble.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/comportement.jpg" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">behavioral problems</h3>
           <p>
           The term disorder comes from the Greek “tủrbê” which means “disorder” as for the term behavior, it comes from the Latin “comporto” which means “to behave”. Behavioral disorder is therefore a disorder in an individual's way of being and acting....
@@ -28,7 +28,7 @@ const Disorders4 = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/tabacco.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/fume.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">Stop smoking</h3>
           <p>
           Tobacco dependence is a real public health problem: it kills 5 million people per year....
@@ -37,7 +37,7 @@ const Disorders4 = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/bien.png" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/bien.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">Well-being and personal development</h3>
           <p>
           32% of French people are in the dark about their well-being and do not know what to do to get better....
