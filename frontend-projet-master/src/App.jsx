@@ -12,7 +12,8 @@ const Calendar = lazy(() => import('./app_components/Calendar'));
 const Contact = lazy(() => import('./app_components/Contact'));
 const HypnosePage = lazy(() => import('./app_components/HypnosePage'));
 const TraditionalPage = lazy(() => import('./app_components/TraditionalPage'));
-const AllSpecialitiesPage = lazy(() => import('./app_components/AllSpecialitiesPage'))
+const AllSpecialitiesPage = lazy(() => import('./app_components/AllSpecialitiesPage'));
+const AllDisorders = lazy(() => import('./app_components/AllDisorders'))
 
 // eslint-disable-next-line react/prop-types
 const LazyLoader = ({ children }) => {
@@ -72,6 +73,11 @@ export default function App() {
         <Route path="/allspecialities" element={
           <LazyLoader>
             <AllSpecialitiesPage />
+          </LazyLoader>
+        } />
+         <Route path="/alldisorders" element={
+          <LazyLoader>
+            <AllDisorders />
           </LazyLoader>
         } />
          <Route path="/propos" element={

@@ -13,7 +13,7 @@ const Hypnose4 = () => {
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <img src="/src/assets/sophroloie.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Sophrology</h3>
+          <h3 className="text-lg font-semibold mb-2 text-black">Sophrology</h3>
           <p>
           Sophrology is a psycho-corporal practice that promotes a good balance between body, mind and emotions. It combines relaxation, breathing and positive visualization techniques...
           </p>
@@ -26,7 +26,7 @@ const Hypnose4 = () => {
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <img src="/src/assets/Meditation.jpeg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Meditation</h3>
+          <h3 className="text-lg font-semibold mb-2 text-black">Meditation</h3>
           <p>
           Meditation is a psycho-corporeal practice accessible to everyone which consists of focusing attention on one's thoughts and sensations. It also represents an effective ally in the field...
           </p>
@@ -35,7 +35,7 @@ const Hypnose4 = () => {
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <img src="/src/assets/ayurvedaimage.png" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Ayurveda</h3>
+          <h3 className="text-lg font-semibold mb-2 text-black">Ayurveda</h3>
           <p>
           Ayurveda is a traditional Indian medicine whose fundamental notions are those of a permanent balance to be maintained in order to be in full health and the development of our abilities....
           </p>

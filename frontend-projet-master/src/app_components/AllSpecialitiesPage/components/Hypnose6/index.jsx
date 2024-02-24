@@ -13,7 +13,7 @@ const Hypnose6 = () => {
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <img src="/src/assets/breve.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Brief therapies</h3>
+          <h3 className="text-lg font-semibold mb-2 text-black">Brief therapies</h3>
           <p>
           The goal of brief therapies is to manage suffering and eliminate symptoms quickly and effectively. Brief therapies focus more on how a problem will be resolved rather than on the causes of the problem....
           </p>
@@ -31,7 +31,7 @@ const Hypnose6 = () => {
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <img src="/src/assets/auriculo.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
-          <h3 className="text-lg font-semibold mb-2">auriculotherapy</h3>
+          <h3 className="text-lg font-semibold mb-2 text-black">auriculotherapy</h3>
           <p>
           Auriculotherapy stimulates energy points on different locations in the outer ear. This stimulation can be carried out by different means...
           </p>
@@ -40,7 +40,7 @@ const Hypnose6 = () => {
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <img src="/src/assets/yoga.png" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Yoga</h3>
+          <h3 className="text-lg font-semibold mb-2 text-black">Yoga</h3>
           <p>
           These practices combine gymnastics techniques that are both gentle and energetic. Yoga, Tai Chi and Qi Gong have almost similar effects, it is their practices and their movements that differ....
           </p>
