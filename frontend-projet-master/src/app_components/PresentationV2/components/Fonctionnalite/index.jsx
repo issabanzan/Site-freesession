@@ -2,7 +2,7 @@ import React from 'react';
 
 const Fonctionnalite = () => {
   return (
-    <div className="max-w-7xl mx-auto my-5">
+    <div className="max-w-7xl mx-auto my-10">
       <div className="flex items-start justify-between">
        
         <div className="space-y-4">

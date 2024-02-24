@@ -36,7 +36,7 @@ const Hypnose = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/hypnose.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/hypnose-i.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">Hypnosis</h3>
           <p>
           The principle of hypnosis is to access an altered state of consciousness to revisit reality and the way you perceive it....
