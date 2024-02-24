@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Loading from './app_components/Loading/Loading';
-
 const Dashboard = lazy(() => import('./app_components/Dashboard/Dashboard'));
 const Login = lazy(() => import('./app_components/Auth/Login'));
 const PresentationV2 = lazy(() => import('./app_components/PresentationV2'));
@@ -11,6 +10,9 @@ const Nous = lazy(() => import('./app_components/Nous'));
 const Propos = lazy(() => import('./app_components/Propos'));
 const Calendar = lazy(() => import('./app_components/Calendar'));
 const Contact = lazy(() => import('./app_components/Contact'));
+const HypnosePage = lazy(() => import('./app_components/HypnosePage'));
+const TraditionalPage = lazy(() => import('./app_components/TraditionalPage'));
+const AllSpecialitiesPage = lazy(() => import('./app_components/AllSpecialitiesPage'))
 
 // eslint-disable-next-line react/prop-types
 const LazyLoader = ({ children }) => {
@@ -54,6 +56,24 @@ export default function App() {
             <Nous />
           </LazyLoader>
         } />
+
+        <Route path="/hypnose" element={
+          <LazyLoader>
+            <HypnosePage />
+          </LazyLoader>
+        } />
+
+        <Route path="/traditional" element={
+          <LazyLoader>
+            <TraditionalPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/allspecialities" element={
+          <LazyLoader>
+            <AllSpecialitiesPage />
+          </LazyLoader>
+        } />
          <Route path="/propos" element={
           <LazyLoader>
             <Propos />
@@ -70,6 +90,7 @@ export default function App() {
             <Contact />
           </LazyLoader>
         } />
+        
       </Routes>
     </Router>
   );

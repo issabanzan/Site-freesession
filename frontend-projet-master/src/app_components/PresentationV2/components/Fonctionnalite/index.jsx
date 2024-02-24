@@ -12,9 +12,12 @@ const Fonctionnalite = () => {
           <p className="text-black font-bold leading-tight tracking-tighter">
           Practices selected to meet all your expectations and help you get better
           </p>
-          <button className="bg-[#225886] hover:bg-[#3BAFBC] text-white font-bold py-2 px-4 rounded-full leading-tight tracking-tighter inter text-2xl">
-          All specialties
-          </button>
+          <button
+  onClick={() => window.location.href='/AllSpecialities'}
+  className="bg-[#225886] hover:bg-[#3BAFBC] text-white font-bold py-2 px-4 rounded-full leading-tight tracking-tighter text-2xl"
+>
+  All specialties
+</button>
         </div>
         
         <div className="flex overflow-x-auto space-x-1">
