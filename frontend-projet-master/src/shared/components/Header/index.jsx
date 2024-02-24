@@ -42,18 +42,18 @@ function Header() {
       </nav>
       
       <div className="hidden lg:flex items-center space-x-8">
-        <a href="/AllSpecialities" className="text-[#3BAFBC] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Specialies</a>
-        <a href="/AllDisorders" className="text-[#3BAFBC] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Troubles</a>
-        <a href="/blogs" className="text-[#3BAFBC] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Blogs</a>
-        <a href="/entreprise" className="text-[#3BAFBC] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">company offers</a>
+        <a href="/AllSpecialities" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Specialies</a>
+        <a href="/AllDisorders" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Troubles</a>
+        <a href="/blogs" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Blogs</a>
+        <a href="/entreprise" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">company offers</a>
       </div>
 
       
       <div style={{ marginLeft: '15rem' }} className="hidden lg:flex items-center space-x-4">
-        <a href="/contact-us" className="text-[#3BAFBC] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">
+        <a href="/contact-us" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">
           Contact us
         </a>
-        <a href="/login" className="text-[#3BAFBC] flex items-center font-bold mt-7 leading-tight tracking-tighter inter text-1xl">
+        <a href="/login" className="text-[#333C4E] flex items-center font-bold mt-7 leading-tight tracking-tighter inter text-1xl">
           <LogIn className="mr-2" />
           Log in
         </a>
