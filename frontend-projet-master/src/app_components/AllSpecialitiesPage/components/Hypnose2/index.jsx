@@ -3,7 +3,7 @@ import React from 'react';
 
 const Hypnose2 = () => {
   return (
-    <div style={{ marginRight: '28rem' }} className="max-w-6xl mx-auto my-5">
+    <div style={{ marginRight: '23rem' }} className="max-w-6xl mx-auto my-5">
       <h2 className="text-2xl font-semibold mb-6 text-black">
       Naturopathy, Traditional Chinese energetics, Massage...
       </h2>
