@@ -15,12 +15,12 @@ function Header() {
       
       {/* Titre pour les grands écrans */}
       <h1 style={{ marginRight: '0rem' }}  className="hidden lg:block lg:text-xl font-bold text-[#333C4E] mt-7 leading-tight tracking-tighter inter text-2xl">
-        GOOGO
+        Freesession
       </h1>
 
       {/* Titre pour les petits écrans */}
-      <h1 style={{ marginRight: '18rem' }} className="text-xl font-bold text-[#333C4E] mt-7 leading-tight tracking-tighter inter text-2xl lg:hidden max-w-8xl mx-auto">
-        GOOGO
+      <h1 style={{ marginRight: '17rem' }} className="text-xl font-bold text-[#333C4E] mt-7 leading-tight tracking-tighter inter text-2xl lg:hidden max-w-8xl mx-auto">
+        Freesession
       </h1>
 
       
@@ -47,7 +47,7 @@ function Header() {
         </a>
       </nav>
       
-      <div style={{ marginRight: '15rem' }}   className="hidden lg:flex items-center space-x-8">
+      <div style={{ marginRight: '17rem' }}   className="hidden lg:flex items-center space-x-8">
         <a href="/specialites" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Specialies</a>
         <a href="/troubles" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Troubles</a>
         <a href="/blogs" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Blogs</a>
