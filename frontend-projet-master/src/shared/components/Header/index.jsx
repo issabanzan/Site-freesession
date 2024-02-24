@@ -19,7 +19,7 @@ function Header() {
       </h1>
 
       {/* Titre pour les petits écrans */}
-      <h1 style={{ marginRight: '15rem' }} className="text-xl font-bold text-[#333C4E] mt-7 leading-tight tracking-tighter inter text-2xl lg:hidden max-w-8xl mx-auto">
+      <h1 style={{ marginRight: '14rem' }} className="text-xl font-bold text-[#333C4E] mt-7 leading-tight tracking-tighter inter text-2xl lg:hidden max-w-8xl mx-auto">
         Freesession
       </h1>
 
