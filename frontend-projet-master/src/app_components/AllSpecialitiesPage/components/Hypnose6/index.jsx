@@ -12,7 +12,7 @@ const Hypnose6 = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/breve.PNG" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/breve.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">Brief therapies</h3>
           <p>
           The goal of brief therapies is to manage suffering and eliminate symptoms quickly and effectively. Brief therapies focus more on how a problem will be resolved rather than on the causes of the problem....
@@ -30,7 +30,7 @@ const Hypnose6 = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/auriculo.PNG" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/auriculo.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">auriculotherapy</h3>
           <p>
           Auriculotherapy stimulates energy points on different locations in the outer ear. This stimulation can be carried out by different means...

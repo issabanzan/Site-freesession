@@ -12,7 +12,7 @@ const Hypnose7 = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/medecine.PNG" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/medecine.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">Traditional Japanese medicine</h3>
           <p>
           Traditional Japanese Medicine (TMJ), called Shinkyu and little known to Westerners, comes from Traditional Chinese Medicine....
@@ -30,7 +30,7 @@ const Hypnose7 = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/pratiques eergiques.PNG" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/pratiques eergiques.png" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">Energetic practices</h3>
           <p>
           Energy practices bring together a set of techniques that aim to influence, balance or harmonize an individual's vital energy.....

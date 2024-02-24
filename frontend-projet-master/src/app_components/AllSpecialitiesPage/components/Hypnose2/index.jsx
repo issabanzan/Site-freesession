@@ -11,7 +11,7 @@ const Hypnose2 = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/Naturopathie.PNG" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/Naturopathie.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">Naturopathy</h3>
            <p>
            Naturopathy's mission is to prevent and maintain the body's balance through the use of natural techniques and the establishment of a lifestyle....
@@ -28,7 +28,7 @@ const Hypnose2 = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/energique.PNG" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/energique.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">Traditional Chinese energetics</h3>
           <p>
           L'Energétique Traditionnelle Chinoise (ETC) ou médecine traditionnelle chinoise (MTC) est une pratique complète et éprouvée depuis des millénaires, basé sur l’énergie vitale - le « Qi » - omniprésent...
@@ -44,7 +44,7 @@ const Hypnose2 = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/Massage.PNG" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/Massage.png" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">Massage</h3>
           <p>
           Used for a millennium as a method of healthy and attractive body care, massage is recognized worldwide for its benefits and has been integrated into many health systems...

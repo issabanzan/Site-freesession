@@ -18,7 +18,7 @@ const Hypnose = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/osteopathie.PNG" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/osteopathie.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">Osteopathy</h3>
           <p>
           Osteopathy is a manual practice which aims to restore movement to tissues, organs and joints....
@@ -27,7 +27,7 @@ const Hypnose = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/chiropraxie.PNG" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/chiropraxie.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">hypnosis</h3>
           <p>
           Chiropractic is based on a global conception of the functioning of the body and the relationships existing between the spinal column...
@@ -36,7 +36,7 @@ const Hypnose = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/hypnosepicture.PNG" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/hypnosepicture.png" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">sophrology</h3>
           <p>
           The principle of hypnosis is to access an altered state of consciousness to revisit reality and the way you perceive it....

@@ -12,7 +12,7 @@ const Hypnose3 = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/shiatsu.PNG" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/shiatsu.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">Shiatsu</h3>
           <p>
           Shiatsu is a manual practice from Japan which aims to maintain health and the proper internal functioning of the body.....
@@ -21,7 +21,7 @@ const Hypnose3 = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/Réflexologie.PNG" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/Réflexologie.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">Reflexology</h3>
           <p>
           Chiropractic is based on a global conception of the functioning of the body and the relationships existing between the spinal column...
@@ -30,7 +30,7 @@ const Hypnose3 = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/Psycho.JPEG" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/Psycho.jpeg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2">Psychotherapy</h3>
           <p>
           Psychotherapy is support intended to help individuals overcome emotional, psychological or behavioral difficulties....
