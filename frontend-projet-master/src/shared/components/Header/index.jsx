@@ -6,19 +6,26 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header style={{ marginRight: '27rem' }} className="px-3 py-1 h-20 flex flex-row justify-between items-center max-w-8xl mx-auto">
+    <header className="px-3 py-1 h-20 flex flex-row justify-between items-center max-w-8xl mx-auto">
      
      <a className="flex items-center">
-        <img src={logo} alt="logo" className="h-auto w-20 sm:w-47 md:w-36 lg:w-43 object-contain mt-7" />
+        <img src={logo} alt="logo" className="h-auto w-20 sm:w-47 md:w-36 lg:w-43 object-contain mt-7 hidden sm:block" />
       </a>
         
       
-      <h1  className="text-xl font-bold text-[#333C4E] hidden lg:block mt-7 leading-tight tracking-tighter inter text-2xl">
-        Freesession
+      {/* Titre pour les grands écrans */}
+      <h1 style={{ marginRight: '0rem' }}  className="hidden lg:block lg:text-xl font-bold text-[#333C4E] mt-7 leading-tight tracking-tighter inter text-2xl">
+        GOOGO
+      </h1>
+
+      {/* Titre pour les petits écrans */}
+      <h1 style={{ marginRight: '18rem' }} className="text-xl font-bold text-[#333C4E] mt-7 leading-tight tracking-tighter inter text-2xl lg:hidden max-w-8xl mx-auto">
+        GOOGO
       </h1>
 
       
       
+      {/* Bouton menu à droite pour les petits écrans */}
       <div className="flex items-center lg:hidden mt-7">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -28,10 +35,9 @@ function Header() {
         </button>
       </div>
 
-     
       <nav className={`${isMenuOpen ? 'flex' : 'hidden'} fixed inset-0 bg-[#225886] z-20 flex-col items-center justify-center`}>
-        <a href="/AllSpecialities" className="text-white px-3 py-2 rounded-md text-base font-medium">Specialties</a>
-        <a href="/AllDisorders" className="text-white px-3 py-2 rounded-md text-base font-medium">Troubles</a>
+        <a href="/specialites" className="text-white px-3 py-2 rounded-md text-base font-medium">Specialties</a>
+        <a href="/troubles" className="text-white px-3 py-2 rounded-md text-base font-medium">Troubles</a>
         <a href="/blogs" className="text-white px-3 py-2 rounded-md text-base font-medium">Blogs</a>
         <a href="/entreprise" className="text-white px-3 py-2 rounded-md text-base font-medium">Company Offers</a>
         <a href="/contact-us" className="text-white px-3 py-2 rounded-md text-base font-medium">Contact Us</a>
@@ -41,15 +47,15 @@ function Header() {
         </a>
       </nav>
       
-      <div className="hidden lg:flex items-center space-x-8">
-        <a href="/AllSpecialities" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Specialies</a>
-        <a href="/AllDisorders" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Troubles</a>
+      <div style={{ marginRight: '15rem' }}   className="hidden lg:flex items-center space-x-8">
+        <a href="/specialites" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Specialies</a>
+        <a href="/troubles" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Troubles</a>
         <a href="/blogs" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Blogs</a>
         <a href="/entreprise" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">company offers</a>
       </div>
 
       
-      <div style={{ marginLeft: '15rem' }} className="hidden lg:flex items-center space-x-4">
+      <div style={{ marginRight: '25rem' }} className="hidden lg:flex items-center space-x-4">
         <a href="/contact-us" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">
           Contact us
         </a>
