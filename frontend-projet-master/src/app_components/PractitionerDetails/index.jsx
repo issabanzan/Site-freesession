@@ -74,8 +74,7 @@ const PraticionerDetails = () => {
 
 
 
-      const response = await axios.post(
-        'http://localhost:4000/api/book-appointment',
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/book-appointment`,
         {
           firstName,
           lastName,
@@ -125,10 +124,11 @@ const PraticionerDetails = () => {
 
   const fetchAppointmentTypes = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/appointment-types/all');
-      const specificAppointmentType = response.data.filter(appointmentType => appointmentType.id === 58939154);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/appointment-types/all`);
+      
+      const specificAppointmentType = response.data.filter(appointmentType => appointmentType.id === parseInt(import.meta.env.VITE_FREE_RDV_BOOKING_APPOINTMENT_TYPE_ID));
       setAppointmentTypes(specificAppointmentType);
-
+  
       if (specificAppointmentType.length > 0) {
         setSelectedAppointmentType(specificAppointmentType[0].id);
       }
@@ -153,7 +153,7 @@ const PraticionerDetails = () => {
 
   const fetchCalendars = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/calendars/all');
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/calendars/all`);
       const filteredData = response.data.calendars.map(calendar => ({
         id: calendar.id,
         name: calendar.name,
@@ -168,7 +168,7 @@ const PraticionerDetails = () => {
 
 
   const fetchAvailableDates = async () => {
-    const appointmentTypeID = 58939154;
+    const appointmentTypeID = `${import.meta.env.VITE_FREE_RDV_BOOKING_APPOINTMENT_TYPE_ID}`;
     const selectedCalendarID = selectedCalendar;
     let allAvailableSlots = [];
 
@@ -178,7 +178,7 @@ const PraticionerDetails = () => {
       for (let month = 1; month <= 12; month++) {
         const monthFormatted = `${currentYear}-${month.toString().padStart(2, '0')}`;
 
-        const response = await axios.get('http://localhost:4000/fetch_appointment_dates', {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/fetch_appointment_dates`, {
           params: {
             appointmentTypeID: appointmentTypeID,
             month: monthFormatted,
@@ -222,7 +222,7 @@ const PraticionerDetails = () => {
     console.log('parisDate', parisDate)
 
     try {
-      const response = await axios.get('http://localhost:4000/fetch_appointment_times', {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/fetch_appointment_times`, {
         params: {
           appointmentTypeID: selectedAppointmentType,
           calendarID: selectedCalendar,

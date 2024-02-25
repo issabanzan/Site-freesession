@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const login = async (email, password) => {
   try {
-    const response = await axios.post('https://api.freesession.net/login', { email, password });
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, { email, password });
     console.log("login response");
     console.log(response.data);
 

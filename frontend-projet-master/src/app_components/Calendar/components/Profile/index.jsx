@@ -18,7 +18,7 @@ const Profile = () => {
     useEffect(() => {
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         if (acuityUserId) {
-            axios.get(`https://api.freesession.net/api/user/${acuityUserId}`)
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/user/${acuityUserId}`)
             .then(response => {
                 setUserData({ 
                     Lastname: response.data.last_name || '',
@@ -36,7 +36,7 @@ const Profile = () => {
     useEffect(() => {
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         if (acuityUserId) {
-            axios.get(`https://api.freesession.net/api/appointments/user/${acuityUserId}`)
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/user/${acuityUserId}`)
             .then(response => {
                 setAppointments(response.data);
             })
@@ -107,7 +107,7 @@ const ProfilePage = ({ userData, setUserData }) => {
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         
         try {
-            const response = await axios.put(`https://api.freesession.net/api/user/${acuityUserId}`, {
+            const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/user/${acuityUserId}`, {
                 Lastname: userData.Lastname,
                 Firstname: userData.Firstname,
                 Mail: userData.Mail,
@@ -195,7 +195,7 @@ const Appointments = ({ appointments }) => {
     const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
     if (selectedAppointment) {
       try {
-        const response = await axios.put(`https://api.freesession.net/api/appointments/${acuityUserId}/reschedule`, {
+        const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/${acuityUserId}/reschedule`, {
           newDate,
           newTime
         });
@@ -218,7 +218,7 @@ const Appointments = ({ appointments }) => {
     
     if (window.confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')) {
       try {
-        await axios.put(`https://api.freesession.net/api/appointments/${acuityUserId}/cancel`);
+        await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/${acuityUserId}/cancel`);
         alert('Rendez-vous annulé avec succès.');
         setNewDate('');
         setNewTime('');
