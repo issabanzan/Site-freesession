@@ -8,7 +8,7 @@ export interface DatabaseConfiguration {
 const db_config: DatabaseConfiguration = {
   user: "root",
   password: "Banzan9771",
-  server: "localhost",
+  server: "projet_mysql",
   database: "clients",
 };
 
