@@ -36,11 +36,11 @@ function Header() {
       </div>
 
       <nav className={`${isMenuOpen ? 'flex' : 'hidden'} fixed inset-0 bg-[#225886] z-20 flex-col items-center justify-center`}>
-        <a href="/specialites" className="text-white px-3 py-2 rounded-md text-base font-medium">Specialties</a>
-        <a href="/troubles" className="text-white px-3 py-2 rounded-md text-base font-medium">Troubles</a>
+        <a href="/AllSpecialities" className="text-white px-3 py-2 rounded-md text-base font-medium">Specialties</a>
+        <a href="/AllDisorders" className="text-white px-3 py-2 rounded-md text-base font-medium">Troubles</a>
         <a href="/blogs" className="text-white px-3 py-2 rounded-md text-base font-medium">Blogs</a>
         <a href="/entreprise" className="text-white px-3 py-2 rounded-md text-base font-medium">Company Offers</a>
-        <a href="/contact-us" className="text-white px-3 py-2 rounded-md text-base font-medium">Contact Us</a>
+        <a href="/Contact" className="text-white px-3 py-2 rounded-md text-base font-medium">Contact Us</a>
         <a href="/login" className="text-white px-3 py-2 rounded-md text-base font-medium flex items-center">
           <LogIn className="mr-2" />
           Log In
@@ -48,15 +48,15 @@ function Header() {
       </nav>
       
       <div style={{ marginRight: '17rem' }}   className="hidden lg:flex items-center space-x-8">
-        <a href="/specialites" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Specialies</a>
-        <a href="/troubles" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Troubles</a>
+        <a href="/AllSpecialities" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Specialies</a>
+        <a href="/AllDisorders" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Troubles</a>
         <a href="/blogs" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Blogs</a>
         <a href="/entreprise" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">company offers</a>
       </div>
 
       
       <div style={{ marginRight: '25rem' }} className="hidden lg:flex items-center space-x-4">
-        <a href="/contact-us" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">
+        <a href="/Contact" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">
           Contact us
         </a>
         <a href="/login" className="text-[#333C4E] flex items-center font-bold mt-7 leading-tight tracking-tighter inter text-1xl">
