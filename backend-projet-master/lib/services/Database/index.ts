@@ -34,8 +34,7 @@ class Database {
   }
 
   private validatePhoneNumber(phone: string): boolean {
-
-    return /^(\+\d{1,3}\d{6,12}|\d{2}(-\d{2}){4})$/.test(phone);
+    return /^\+?(\d{1,3}[ -]?)?(\(?\d+\)?[ -]?)*\d+$/.test(phone);
   }
 
   public async createUser(acuityUserId: number, firstName: string, lastName: string, email: string, phone: string, password: string): Promise<number> {
