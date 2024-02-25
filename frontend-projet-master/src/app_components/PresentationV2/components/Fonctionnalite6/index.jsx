@@ -69,7 +69,7 @@ const HelpSection = () => {
 
           <div className="mb-4">
             <img
-              src="/src/assets/plm.PNG" 
+              src="/src/assets/plm.png" 
               alt="Contact Icon"
               className="w-40 h-30 rounded-full" 
             />
