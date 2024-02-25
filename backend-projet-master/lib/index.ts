@@ -235,7 +235,7 @@ app.post('/api/v1_0/newSwik', upload.none(), async (req, res) => {
         'api_key': process.env.SWIKLY_API_KEY,
         'api_secret': process.env.SWIKLY_API_SECRET,
         'Content-Type': 'multipart/form-data',
-        'Access-Control-Allow-Origin' : '*'
+        
       }
     });
     console.log('response', response.data);
