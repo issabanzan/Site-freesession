@@ -9,10 +9,10 @@ import axios from 'axios';
 import multer from 'multer';
 
 const upload = multer();
-
+// Assurez-vous que le chemin correspond à l'emplacement de votre fichier swikly.config.ts
 import { swiklyConfig } from './services/Swikly/swikly.config';
 
-
+// import { smtpConfig } from "./services/Contact/contact.config";
 
 import cors from 'cors';
 
@@ -101,6 +101,38 @@ app.post('/login', async (req, res) => {
 // await booking.getAllClients(req, res);
 //});
 
+
+app.put('/api/user/:acuityUserId', async (req, res) => {
+  const { acuityUserId } = req.params;
+  const { Lastname: lastName, Firstname: firstName, Mail: email, Mobile: phone } = req.body;
+
+  try {
+    const db = new Database();
+    await db.updateUser(Number(acuityUserId), firstName, lastName, email, phone);
+
+    const booking = new Booking();
+    const acuityResponse = await booking.updateClientInAcuity(Number(acuityUserId), firstName, lastName, email, phone);
+
+    res.json({ message: 'Les informations du client ont été mises à jour avec succès.', data: acuityResponse });
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du client :', error);
+    
+    if (axios.isAxiosError(error) && error.response) {
+      res.status(error.response.status).json({ message: 'Erreur lors de la mise à jour avec l\'API Acuity', details: error.response.data });
+    } else {
+      res.status(500).json({ message: 'Erreur interne du serveur' });
+    }
+  }
+});
+
+
+
+
+
+
+
+
+
 app.get('/api/user/:acuityUserId', async (req, res) => {
   
   try {
@@ -119,20 +151,7 @@ app.get('/api/user/:acuityUserId', async (req, res) => {
 });
 
 
-app.put('/api/user/:acuityUserId', async (req, res) => {
-  try {
-    const { acuityUserId } = req.params;
-    const { Lastname, Firstname, Mail, Mobile } = req.body;
 
-    const db = new Database();
-    await db.updateUser(Number(acuityUserId), Firstname, Lastname, Mail, Mobile);
-
-    res.json({ message: 'Informations de l’utilisateur mises à jour avec succès.' });
-  } catch (error) {
-    console.error('Erreur lors de la mise à jour de l’utilisateur:', error);
-    res.status(500).json({ message: 'Erreur interne du serveur' });
-  }
-});
 app.get('/api/appointments/user/:acuityUserId', async (req, res) => {
   try {
     const { acuityUserId } = req.params;

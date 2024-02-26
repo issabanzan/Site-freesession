@@ -146,6 +146,31 @@ class Booking extends Core {
     }
   };
 
+
+  public updateClientInAcuity = async (acuityUserId: number, firstName: string, lastName: string, email: string, phone: string): Promise<void> => {
+    try {
+      const postData = {
+        firstName,
+        lastName,
+        email,
+        phone,
+      };
+  
+      const header = this.getBookingAuthorizationHeader();
+  
+      const url = `${process.env.ACUITY_BASE_URL}/appointments/${acuityUserId}`;
+  
+      const response = await axios.put(url, postData, { headers: header });
+  
+      console.log('Client updated in Acuity:', response.data);
+      return response.data; 
+    } catch (error) {
+      console.error('Error updating client in Acuity:', error);
+      throw error; 
+    }
+  };
+  
+
   public rescheduleAppointment = async (req: Request, res: Response): Promise<void> => {
     const { id, newDate, newTime } = req.body;
 

@@ -34,6 +34,7 @@ class Database {
   }
 
   private validatePhoneNumber(phone: string): boolean {
+
     return /^\+?(\d{1,3}[ -]?)?(\(?\d+\)?[ -]?)*\d+$/.test(phone);
   }
 
@@ -80,11 +81,17 @@ class Database {
   }
 
 
+  private validatePhoneNumbers(phone: string): boolean {
+    return /^\+?(\d{1,3}[ -]?)?(\(?\d+\)?[ -]?)*\d+$/.test(phone);
+  }
+
   public async updateUser(acuityUserId: number, firstName: string, lastName: string, email: string, phone: string): Promise<void> {
-    if (!this.validatePhoneNumber(phone)) {
+    // Here you call the private method internally
+    if (!this.validatePhoneNumbers(phone)) {
       throw new Error("Numéro de téléphone invalide.");
     }
 
+    
     const sql = `UPDATE users SET first_name = ?, last_name = ?, email = ?, phone = ? WHERE user_id = ?`;
     const params = [firstName, lastName, email, phone, acuityUserId];
     await this.query(sql, params);
