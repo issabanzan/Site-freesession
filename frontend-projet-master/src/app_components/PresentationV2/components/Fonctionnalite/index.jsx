@@ -9,9 +9,6 @@ const Fonctionnalite = () => {
           <h2  className="text-4xl font-bold text-black leading-tight tracking-tighter">
           Discover <br/>the complementary<br/> practice specialties
           </h2>
-          <p className="text-black font-bold leading-tight tracking-tighter">
-          Practices selected to meet all your expectations and help you get better
-          </p>
           <button
   onClick={() => window.location.href='/AllSpecialities'}
   className="bg-[#225886] hover:bg-[#3BAFBC] text-white font-bold py-2 px-4 rounded-full leading-tight tracking-tighter text-2xl"
