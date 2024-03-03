@@ -2,7 +2,7 @@ import React from 'react';
 
 const Shiatsu = () => {
   return (
-    <div style={{ marginRight: '21rem' }}  className="max-w-7xl mx-auto p-5">
+    <div style={{ marginRight: '16rem' }}  className="max-w-7xl mx-auto p-5">
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Shiatsu</h1>
       <p className="mb-4 font-semibold font-serif">
           Shiatsu is a manual practice from Japan which aims to maintain health and the proper internal functioning of the body.
