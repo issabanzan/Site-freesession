@@ -43,6 +43,7 @@ const Disorders4 = () => {
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="wellbeing">
           <img src="/src/assets/bien.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Well-being and personal development</h3>
           <p>
           32% of French people are in the dark about their well-being and do not know what to do to get better....
