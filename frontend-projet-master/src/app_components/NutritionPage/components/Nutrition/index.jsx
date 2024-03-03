@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Naturopathy = () => {
+const Nutrition = () => {
   return (
     <div style={{ marginRight: '16rem' }}  className="max-w-7xl mx-auto p-5">
-      <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Naturopathy</h1>
+      <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Nutrition</h1>
       <p className="mb-4 font-semibold font-serif">
         Nutrition is the set of processes that our body puts in place to nourish itself.
         These are mechanical and chemical processes, but also psycho-emotional and even energetic.
@@ -56,4 +56,4 @@ const Naturopathy = () => {
   );
 };
 
-export default Naturopathy;
+export default Nutrition;

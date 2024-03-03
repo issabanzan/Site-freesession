@@ -1,11 +1,11 @@
 import Layout from "../Layout";
-import Naturopathy from "./components/Naturopathy";
+import Nutrition from "./components/Nutrition";
 
 
-const NaturopathyPage = () => {
+const NutritionPage = () => {
     return ( 
         <Layout>
-            <Naturopathy />
+            <Nutrition />
           
             
             
@@ -14,4 +14,4 @@ const NaturopathyPage = () => {
 };
 
 
-export default NaturopathyPage;
+export default NutritionPage;
