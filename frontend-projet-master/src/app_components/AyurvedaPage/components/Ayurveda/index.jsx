@@ -2,8 +2,8 @@ import React from 'react';
 
 const Ayurveda = () => {
   return (
-    <div style={{ marginRight: '21rem' }}  className="max-w-7xl mx-auto p-5">
-      <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Auriculotherapy</h1>
+    <div style={{ marginRight: '16rem' }}  className="max-w-7xl mx-auto p-5">
+      <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Ayurveda</h1>
       <p className="mb-4 font-semibold font-serif">
          Ayurveda is a traditional Indian medicine whose fundamental notions are those of a permanent balance to be maintained in order
          to be in full health and the development of our self-healing capacities, in harmony with our environment.
