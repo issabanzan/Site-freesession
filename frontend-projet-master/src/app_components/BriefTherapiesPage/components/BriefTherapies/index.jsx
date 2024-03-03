@@ -9,8 +9,8 @@ const BriefTherapies = () => {
        Brief therapies are more interested in the way in which a problem will be resolved rather than in the causes of this problem: the search for meaning is not the primary goal of psychotherapy or brief therapy, priority is given to abolition of suffering.
       </p>
       <img
-        src="/src/assets/breve.PNG" 
-        alt="auriculo"
+        src="/src/assets/breve.png" 
+        alt="breve"
         className="mb-4 w-full"
       />
       <h2 className="text-2xl text-black font-serif font-semibold mb-3">Brief therapies: how it works?</h2>
