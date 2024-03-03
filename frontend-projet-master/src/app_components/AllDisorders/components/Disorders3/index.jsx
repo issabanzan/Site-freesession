@@ -12,7 +12,9 @@ const Disorders3 = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
+          <a href="parentandchild">
           <img src="/src/assets/famille.jpg" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Parent and child</h3>
           <p className="mb-4 font-semibold font-serif">
           Alternative medicines are particularly recommended for pregnant women, babies and children since they help relieve certain disorders naturally and avoid the use of medications, which are often discouraged or even prohibited in the event of pregnancy......
@@ -21,6 +23,7 @@ const Disorders3 = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
+          <a href="losingweight">
           <img src="/src/assets/lose.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Losing weight</h3>
           <p className="mb-4 font-semibold font-serif">

@@ -18,7 +18,9 @@ const disorders = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
+          <a href="headache">
           <img src="/src/assets/tete.jpg" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Headache</h3>
           <p className="mb-4 font-semibold font-serif">
           Headache is a feeling of pain or discomfort felt in the head. There are several types of headaches, with various causes.....
@@ -27,7 +29,9 @@ const disorders = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
+          <a href="stress">
           <img src="/src/assets/stress.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">stress, anxiety, and phobia</h3>
           <p className="mb-4 font-semibold font-serif">
           More than half of medical consultations in Western societies are due to stress, which is the cause of significant consumption of medications, but also of alcohol or psychotropic drugs....
@@ -36,7 +40,9 @@ const disorders = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
+          <a href="stomachaches">
           <img src="/src/assets/ventre.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">stomach aches</h3>
           <p className="mb-4 font-semibold font-serif">
           Constipation, diarrhea, gastroesophageal disorders... The variety of stomach ache makes it a rather complex disorder. It can be caused by multiple reasons and is characterized by pain in the abdomen....
