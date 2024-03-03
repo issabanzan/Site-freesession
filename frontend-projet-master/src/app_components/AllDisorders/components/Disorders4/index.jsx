@@ -12,7 +12,7 @@ const Disorders4 = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <a href="behavioralproblems">
+          <a href="behavior">
           <img src="/src/assets/comportement.jpg" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">behavioral problems</h3>
