@@ -8,8 +8,8 @@ const Energeticpractices = () => {
         Energy practices bring together a set of techniques that aim to influence, balance or harmonize an individual's vital energy.
       </p>
       <img
-        src="/src/assets/pratiques eergiques.PNG" 
-        alt="auriculo"
+        src="/src/assets/pratiques eergiques.png" 
+        alt="pratiques eergiques"
         className="mb-4 w-full"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">How to define energy practices?</h2>
