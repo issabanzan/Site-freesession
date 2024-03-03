@@ -30,7 +30,7 @@ const Hypnose2 = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <a href="energetique">
+          <a href="Energeticpractices">
           <img src="/src/assets/energique.png" alt="energetique" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black">Traditional Chinese energetics</h3>
