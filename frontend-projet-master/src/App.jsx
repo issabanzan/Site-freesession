@@ -11,11 +11,30 @@ const Propos = lazy(() => import('./app_components/Propos'));
 const Calendar = lazy(() => import('./app_components/Calendar'));
 const Contact = lazy(() => import('./app_components/Contact'));
 const HypnosePage = lazy(() => import('./app_components/HypnosePage'));
-const TraditionalPage = lazy(() => import('./app_components/TraditionalPage'));
 const AllSpecialitiesPage = lazy(() => import('./app_components/AllSpecialitiesPage'));
-const AllDisorders = lazy(() => import('./app_components/AllDisorders'))
+const AuriculotherapyPage = lazy(() => import('./app_components/AuriculotherapyPage'));
+const AllDisorders = lazy(() => import('./app_components/AllDisorders'));
+const BriefTherapiesPage = lazy(() => import('./app_components/BriefTherapiesPage'));
+const ChiporaxiePage = lazy(() => import('./app_components/ChiporaxiePage'));
+const EnergeticpracticesPage = lazy(() => import('./app_components/EnergeticpracticesPage'));
+const HypnosisPage = lazy(() => import('./app_components/HypnosisPage'));
+const KinesiologyPage = lazy(() => import('./app_components/KinesiologyPage'));
+const LifeCoachingPage = lazy(() => import('./app_components/LifeCoachingPage'));
+const MassagePage = lazy(() => import('./app_components/MassagePage'));
+const MeditationPage = lazy(() => import('./app_components/MeditationPage'));
+const NaturopathyPage = lazy(() => import('./app_components/NaturopathyPage'));
+const NutritionPage = lazy(() => import('./app_components/NutritionPage'));
+const OsteopathyPage = lazy(() => import('./app_components/OsteopathyPage'));
+const PsychologistPage = lazy(() => import('./app_components/PsychologistPage'));
+const PsychotherapyPage = lazy(() => import('./app_components/PsychotherapyPage'));
+const ReflexologyPage = lazy(() => import('./app_components/ReflexologyPage'));
+const ShiatsuPage = lazy(() => import('./app_components/ShiatsuPage'));
+const SophrologyPage = lazy(() => import('./app_components/SophrologyPage'));
+const TraditionalChineseenergeticsPage = lazy(() => import('./app_components/TraditionalChineseenergeticsPage'));
+const TraditionalJapaneseMedicinePage = lazy(() => import('./app_components/TraditionalJapaneseMedicinePage'));
+const YogaPage = lazy(() => import('./app_components/YogaPage'));
 
-// eslint-disable-next-line react/prop-types
+
 const LazyLoader = ({ children }) => {
   return <Suspense fallback={<Loading />}>{children}</Suspense>;
 };
@@ -64,11 +83,7 @@ export default function App() {
           </LazyLoader>
         } />
 
-        <Route path="/traditional" element={
-          <LazyLoader>
-            <TraditionalPage />
-          </LazyLoader>
-        } />
+     
 
         <Route path="/allspecialities" element={
           <LazyLoader>
@@ -96,6 +111,134 @@ export default function App() {
             <Contact />
           </LazyLoader>
         } />
+
+        <Route path="/auriculotherapy" element={
+          <LazyLoader>
+            <AuriculotherapyPage />
+          </LazyLoader>
+        } /> 
+
+        <Route path="/briefTherapies" element={
+          <LazyLoader>
+            <BriefTherapiesPage />
+          </LazyLoader>
+        } /> 
+
+        <Route path="/briefTherapies" element={
+          <LazyLoader>
+            <BriefTherapiesPage />
+          </LazyLoader>
+        } /> 
+        
+        <Route path="/chiporaxie" element={
+          <LazyLoader>
+            <ChiporaxiePage />
+          </LazyLoader>
+        } />
+
+        <Route path="/energeticpractices" element={
+          <LazyLoader>
+            <EnergeticpracticesPage />
+          </LazyLoader>
+        } /> 
+
+
+        <Route path="/hypnosis" element={
+          <LazyLoader>
+            <HypnosisPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/kinesiology" element={
+          <LazyLoader>
+            <KinesiologyPage />
+          </LazyLoader>
+        } />  
+
+        <Route path="/lifeCoaching" element={
+          <LazyLoader>
+            <LifeCoachingPage />
+          </LazyLoader>
+        } /> 
+
+        <Route path="/massage" element={
+          <LazyLoader>
+            <MassagePage />
+          </LazyLoader>
+        } /> 
+
+        <Route path="/meditation" element={
+          <LazyLoader>
+            <MeditationPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/naturopathy" element={
+          <LazyLoader>
+            <NaturopathyPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/nutrition" element={
+          <LazyLoader>
+            <NutritionPage />
+          </LazyLoader>
+        } />
+
+
+        <Route path="/osteopathy" element={
+          <LazyLoader>
+            <OsteopathyPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/psychologist" element={
+          <LazyLoader>
+            <PsychologistPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/psychotherapy" element={
+          <LazyLoader>
+            <PsychotherapyPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/reflexology" element={
+          <LazyLoader>
+            <ReflexologyPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/shiatsu" element={
+          <LazyLoader>
+            <ShiatsuPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/sophrology" element={
+          <LazyLoader>
+            <SophrologyPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/traditionalChineseenergetics" element={
+          <LazyLoader>
+            <TraditionalChineseenergeticsPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/traditionalJapaneseMedicine" element={
+          <LazyLoader>
+            <TraditionalJapaneseMedicinePage />
+          </LazyLoader>
+        } />
+
+        <Route path="/yoga" element={
+          <LazyLoader>
+            <YogaPage />
+          </LazyLoader>
+        } />        
         
       </Routes>
     </Router>

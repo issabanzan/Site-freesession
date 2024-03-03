@@ -18,7 +18,9 @@ const Hypnose = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
+        <a href="Osteopathy">
           <img src="/src/assets/osteopathie-i.jpg" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black">Osteopathy</h3>
           <p>
           Osteopathy is a manual practice which aims to restore movement to tissues, organs and joints....
@@ -27,7 +29,9 @@ const Hypnose = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
+        <a href="chiropraxie">
           <img src="/src/assets/chiropraxie-i.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black">Chiropraxie</h3>
           <p>
           Chiropractic is based on a global conception of the functioning of the body and the relationships existing between the spinal column...
@@ -36,7 +40,9 @@ const Hypnose = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
+        <a href="hypnosis">
           <img src="/src/assets/hypnose-i.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black">Hypnosis</h3>
           <p>
           The principle of hypnosis is to access an altered state of consciousness to revisit reality and the way you perceive it....

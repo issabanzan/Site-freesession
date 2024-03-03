@@ -11,7 +11,9 @@ const Hypnose5 = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/Nutrition.jpg" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <a href="nutrition">
+          <img src="/src/assets/Nutrition.jpg" alt="nutrition" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black">Nutrition</h3>
           <p>
           Nutrition is the set of processes that our body puts in place to nourish itself. These are mechanical and chemical processes, but also psycho-emotional and even energetic...
@@ -27,7 +29,9 @@ const Hypnose5 = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
+          <a href="lifeCoaching">
           <img src="/src/assets/coaching.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black">Life Coaching</h3>
           <p>
           Today, the term coaching is used in different ways. Very popular in recent years, life coaching offers personalized and global support to individuals wishing to make changes in their lives....
@@ -41,7 +45,9 @@ const Hypnose5 = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
+          <a href="psychologist">
           <img src="/src/assets/psychologue.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black">Psychologist</h3>
           <p>
           Psychology is the study of ideas about psychological cases, behaviors and intellectual processes. It is a science which aims to distinguish and understand the organization...

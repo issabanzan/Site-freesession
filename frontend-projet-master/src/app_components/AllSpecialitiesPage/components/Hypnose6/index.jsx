@@ -12,7 +12,9 @@ const Hypnose6 = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/breve.png" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <a href="briefTherapies">
+          <img src="/src/assets/breve.png" alt="briefTherapies" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black">Brief therapies</h3>
           <p>
           The goal of brief therapies is to manage suffering and eliminate symptoms quickly and effectively. Brief therapies focus more on how a problem will be resolved rather than on the causes of the problem....
@@ -30,7 +32,9 @@ const Hypnose6 = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/auriculo.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <a href="auriculotherapy">
+          <img src="/src/assets/auriculo.png" alt="auriculotherapy" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black">auriculotherapy</h3>
           <p>
           Auriculotherapy stimulates energy points on different locations in the outer ear. This stimulation can be carried out by different means...
@@ -39,7 +43,9 @@ const Hypnose6 = () => {
 
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
-          <img src="/src/assets/yoga.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <a href="yoga">
+          <img src="/src/assets/yoga.jpg" alt="yoga" className="w-full h-48 object-cover rounded-md mb-4" />
+          </a>
           <h3 className="text-lg font-semibold mb-2 text-black">Yoga</h3>
           <p>
           These practices combine gymnastics techniques that are both gentle and energetic. Yoga, Tai Chi and Qi Gong have almost similar effects, it is their practices and their movements that differ....
