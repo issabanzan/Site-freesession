@@ -19,20 +19,20 @@ const Fonctionnalite = () => {
         
         <div className="flex overflow-x-auto space-x-1">
           
-        <a href="" className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
+        <a href="/chiropraxie" className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
     <img src="/src/assets/chiropraxie-i.jpg" alt="alcools" className="w-60 h-40 object-cover rounded-md" />
     <p className="font-bold mt-2 text-black leading-tight tracking-tighter inter text-2xl">Chiropraxie</p>
     <p className="mt-1">recommended by 81%<br /> of our users</p>
   </a>
           
-  <a href="" className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
+  <a href="/hypnosis" className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
             <img src="/src/assets/hypnose-i.jpg" alt="mego" className="w-60 h-40 object-cover rounded-md" />
             <p className="font-bold mt-2 leading-tight tracking-tighter inter text-2xl text-black">Hypnosis</p>
             <p className="mt-1">recommended by 81% <br /> of our users</p>
             </a>
           
-            <a href="" className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
-            <img src="/src/assets/Meditation.jpg" alt="traditionelle" className="w-50 h-40 object-cover rounded-md" />
+            <a href="/meditation" className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
+            <img src="/src/assets/Meditation.jpg" alt="Meditation" className="w-50 h-40 object-cover rounded-md" />
             <p className="font-bold mt-2 leading-tight tracking-tighter inter text-2xl text-black">Meditation</p>
             <p className="mt-1">recommended by 81% <br /> of our users</p>
             </a>
