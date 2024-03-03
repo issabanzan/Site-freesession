@@ -4,13 +4,13 @@ import React from 'react';
 const Hypnose = () => {
   return (
     <div style={{ marginRight: '23rem' }} className="max-w-6xl mx-auto my-5 mt-12">
-      <h2 className="text-2xl font-semibold mb-6 text-black">
+      <h2 className="text-2xl font-semibold font-serif mb-6 text-black">
       Osteopathy, Chiropraxie, Hypnosis ...
       </h2>
-      <p className="mb-4">
+      <p className="mb-4 font-serif">
       Alternative medicines are diverse and varied and can be useful in many situations. We have summarized here the characteristics of the best known and recognized practices. To you to discover them! If you would like to know more about the principles of alternative medicine
       </p>
-      <p className="mb-10 flex items-center">
+      <p className="mb-4 font-semibold font-serif">
       
       Consult your doctor first before using complementary practices.
       </p>
@@ -21,8 +21,8 @@ const Hypnose = () => {
         <a href="Osteopathy">
           <img src="/src/assets/osteopathie-i.jpg" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
-          <h3 className="text-lg font-semibold mb-2 text-black">Osteopathy</h3>
-          <p>
+          <h3 className="text-lg font-semibold mb-2 text-black font-serif">Osteopathy</h3>
+          <p className="mb-4 font-semibold font-serif">
           Osteopathy is a manual practice which aims to restore movement to tissues, organs and joints....
           </p>
         </div>
@@ -32,8 +32,8 @@ const Hypnose = () => {
         <a href="chiporaxie">
           <img src="/src/assets/chiropraxie-i.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
-          <h3 className="text-lg font-semibold mb-2 text-black">Chiropraxie</h3>
-          <p>
+          <h3 className="text-lg font-semibold mb-2 text-black font-serif">Chiropraxie</h3>
+          <p className="mb-4 font-semibold font-serif">
           Chiropractic is based on a global conception of the functioning of the body and the relationships existing between the spinal column...
           </p>
         </div>
@@ -43,11 +43,11 @@ const Hypnose = () => {
         <a href="hypnosis">
           <img src="/src/assets/hypnose-i.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
-          <h3 className="text-lg font-semibold mb-2 text-black">Hypnosis</h3>
-          <p>
+          <h3 className="text-lg font-semibold mb-2 text-black font-serif">Hypnosis</h3>
+          <p className="mb-4 font-semibold font-serif">
           The principle of hypnosis is to access an altered state of consciousness to revisit reality and the way you perceive it....
-          </p>
-          <ul className="list-disc list-inside mt-4">
+          </p >
+          <ul className="list-disc list-inside mt-4 text-black">
             <li>Humanist Hypnosis</li>
             <li>Ericksonian Hypnosis</li>
             <li>Spiritual Hypnosis</li>

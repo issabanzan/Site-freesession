@@ -4,7 +4,7 @@ import React from 'react';
 const Hypnose3 = () => {
   return (
     <div style={{ marginRight: '23rem' }} className="max-w-6xl mx-auto my-5">
-      <h2 className="text-2xl font-semibold mb-6 text-black">
+      <h2 className="text-2xl font-semibold mb-6 text-black font-serif">
       Shiatsu, Reflexology, Psychotherapy ...
       </h2>
      
@@ -15,8 +15,8 @@ const Hypnose3 = () => {
           <a href="shiatsu">
           <img src="/src/assets/shiatsu.jpg" alt="Ostéopathie" className="w-full h-50 object-cover rounded-md mb-4" />
           </a>
-          <h3 className="text-lg font-semibold mb-2 text-black">Shiatsu</h3>
-          <p>
+          <h3 className="text-lg font-semibold mb-2 text-black font-serif">Shiatsu</h3>
+          <p className="mb-4 font-semibold font-serif">
           Shiatsu is a manual practice from Japan which aims to maintain health and the proper internal functioning of the body.....
           </p>
         </div>
@@ -25,9 +25,9 @@ const Hypnose3 = () => {
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="reflexology">
           <img src="/src/assets/Réflexologie.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
-          <h3 className="text-lg font-semibold mb-2 text-black">Reflexology</h3>
+          <h3 className="text-lg font-semibold mb-2 text-black font-serif">Reflexology</h3>
           </a>
-          <p>
+          <p className="mb-4 font-semibold font-serif">
           Chiropractic is based on a global conception of the functioning of the body and the relationships existing between the spinal column...
           </p>
         </div>
@@ -37,8 +37,8 @@ const Hypnose3 = () => {
           <a href="psychotherapy">
           <img src="/src/assets/Psycho.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
-          <h3 className="text-lg font-semibold mb-2 text-black">Psychotherapy</h3>
-          <p>
+          <h3 className="text-lg font-semibold mb-2 text-black font-serif">Psychotherapy</h3>
+          <p className="mb-4 font-semibold font-serif">
           Psychotherapy is support intended to help individuals overcome emotional, psychological or behavioral difficulties....
           </p>
           <ul className="list-disc list-inside mt-4 text-black">
