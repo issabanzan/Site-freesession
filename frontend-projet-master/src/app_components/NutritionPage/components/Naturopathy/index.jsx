@@ -11,7 +11,7 @@ const Naturopathy = () => {
         intellectually, and spiritually. Therefore, nutrition advice must take all these aspects into consideration..
       </p>
       <img
-        src="/src/assets/nutrition.jpg" 
+        src="/src/assets/Nutrition.jpg" 
         alt="auriculo"
         className="mb-4 w-full h-[460px]"
       />
