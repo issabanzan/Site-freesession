@@ -11,8 +11,8 @@ const Chiporaxie = () => {
         Chiropractic thus relies on the recovery faculties of the human body.
       </p>
       <img
-        src="/src/assets/chiropraxie-i.jpg" 
-        alt="auriculo"
+        src="/src/assets/chiropraxie-i.JPG" 
+        alt="chiropraxie"
         className="mb-4 w-full h-80"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Why have a chiropractic session?</h2>
