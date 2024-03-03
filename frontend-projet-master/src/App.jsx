@@ -6,7 +6,7 @@ const Login = lazy(() => import('./app_components/Auth/Login'));
 const PresentationV2 = lazy(() => import('./app_components/PresentationV2'));
 const PractitionerDetails = lazy(() => import('./app_components/PractitionerDetails'));
 const BecomePractitioner = lazy(() => import('./app_components/BecomePractitioner'));
-const AyurvedaPage = lazy(() => import('./app_components/AyurvedaPage'));
+const Nous = lazy(() => import('./app_components/Nous'));
 const Propos = lazy(() => import('./app_components/Propos'));
 const Calendar = lazy(() => import('./app_components/Calendar'));
 const Contact = lazy(() => import('./app_components/Contact'));
@@ -33,6 +33,21 @@ const SophrologyPage = lazy(() => import('./app_components/SophrologyPage'));
 const TraditionalChineseenergeticsPage = lazy(() => import('./app_components/TraditionalChineseenergeticsPage'));
 const TraditionalJapaneseMedicinePage = lazy(() => import('./app_components/TraditionalJapaneseMedicinePage'));
 const YogaPage = lazy(() => import('./app_components/YogaPage'));
+const AddictionPage = lazy(() => import('./app_components/AddictionPage'));
+const AllergiesintolerancePage = lazy(() => import('./app_components/AllergiesintolerancePage'));
+const BackpainPage = lazy(() => import('./app_components/BackpainPage'));
+const BecomeamotherPage = lazy(() => import('./app_components/BecomeamotherPage'));
+const BehavioralproblemsPage = lazy(() => import('./app_components/BehavioralproblemsPage'));
+const FatigueandsleepPage = lazy(() => import('./app_components/FatigueandsleepPage'));
+const HeadachePages = lazy(() => import('./app_components/HeadachePages'));
+const JointpainPage = lazy(() => import('./app_components/JointpainPage'));
+const LosingweightPage = lazy(() => import('./app_components/LosingweightPage'));
+const PainPage = lazy(() => import('./app_components/PainPage'));
+const ParentandchildPage = lazy(() => import('./app_components/ParentandchildPage'));
+const StomachachesPage = lazy(() => import('./app_components/StomachachesPage'));
+const StopsmokingPage = lazy(() => import('./app_components/StopsmokingPage'));
+const StressPage = lazy(() => import('./app_components/StressPage'));
+const WellbeingPage = lazy(() => import('./app_components/WellbeingPage'));
 
 
 const LazyLoader = ({ children }) => {
@@ -71,9 +86,9 @@ export default function App() {
             <BecomePractitioner />
           </LazyLoader>
         } />
-        <Route path="/ayurveda" element={
+        <Route path="/nous" element={
           <LazyLoader>
-            <AyurvedaPage />
+            <Nous />
           </LazyLoader>
         } />
 
@@ -238,7 +253,97 @@ export default function App() {
           <LazyLoader>
             <YogaPage />
           </LazyLoader>
-        } />        
+        } /> 
+
+        <Route path="/addiction" element={
+          <LazyLoader>
+            <AddictionPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/allergie" element={
+          <LazyLoader>
+            <AllergiesintolerancePage />
+          </LazyLoader>
+        } />
+
+        <Route path="/backpain" element={
+          <LazyLoader>
+            <BackpainPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/becomeamother" element={
+          <LazyLoader>
+            <BecomeamotherPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/behavior" element={
+          <LazyLoader>
+            <BehavioralproblemsPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/fatigueandsleep" element={
+          <LazyLoader>
+            <FatigueandsleepPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/headache" element={
+          <LazyLoader>
+            <HeadachePages />
+          </LazyLoader>
+        } />
+
+        <Route path="/jointpain" element={
+          <LazyLoader>
+            <JointpainPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/losingweight" element={
+          <LazyLoader>
+            <LosingweightPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/pain" element={
+          <LazyLoader>
+            <PainPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/parentandchild" element={
+          <LazyLoader>
+            <ParentandchildPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/stomachaches" element={
+          <LazyLoader>
+            <StomachachesPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/stopsmoking" element={
+          <LazyLoader>
+            <StopsmokingPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/stress" element={
+          <LazyLoader>
+            <StressPage />
+          </LazyLoader>
+        } />
+
+        <Route path="/wellbeing" element={
+          <LazyLoader>
+            <WellbeingPage />
+          </LazyLoader>
+        } />                
         
       </Routes>
     </Router>

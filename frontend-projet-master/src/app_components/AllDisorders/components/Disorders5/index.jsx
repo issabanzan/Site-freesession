@@ -4,7 +4,7 @@ import React from 'react';
 const Disorders5 = () => {
   return (
     <div style={{ marginRight: '23rem' }} className="max-w-6xl mx-auto my-5">
-      <h2 className="text-2xl font-semibold mb-6 text-black">
+      <h2 className="text-2xl font-semibold mb-6 text-black font-serif">
       Pain, Joint pain, Become a mother
       </h2>
      
@@ -13,7 +13,7 @@ const Disorders5 = () => {
         <div className="bg-white shadow-md rounded-md p-4">
           <img src="/src/assets/douleur.jpg" alt="Ostéopathie" className="w-full h-30 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black">Pain</h3>
-          <p>
+          <p className="mb-4 font-semibold font-serif">
           Pain is a public health issue. In France, studies carried out by Inserm estimate that pain is the cause of two thirds of medical consultations.....
           </p>
           <ul className="list-disc list-inside mt-4 text-black">
@@ -27,8 +27,8 @@ const Disorders5 = () => {
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <img src="/src/assets/articulaire.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
-          <h3 className="text-lg font-semibold mb-2 text-black">Joint pain</h3>
-          <p>
+          <h3 className="text-lg font-semibold mb-2 text-black font-serif">Joint pain</h3>
+          <p className="mb-4 font-semibold font-serif">
           the Joint pain affects millions of French people. This name brings together a set of disorders linked to the dysfunction of muscles, joints, bones and tendons. Joint pain is common and can be disabling (osteoarthritis, osteoporosis, lower back pain, etc.).....
           </p>
           <ul className="list-disc list-inside mt-4 text-black">
@@ -41,8 +41,8 @@ const Disorders5 = () => {
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <img src="/src/assets/mam.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
-          <h3 className="text-lg font-semibold mb-2 text-black">Become a mother</h3>
-          <p>
+          <h3 className="text-lg font-semibold mb-2 text-black font-serif">Become a mother</h3>
+          <p className="mb-4 font-semibold font-serif">
           In 2018, nearly 760,000 children were born in France. In vitro fertilization (IVF) allows parents to carry out assisted reproduction. Alternative medicine can support pregnant women during their pregnancy and help them prepare for childbirth....
           </p>
           <ul className="list-disc list-inside mt-4 text-black">
