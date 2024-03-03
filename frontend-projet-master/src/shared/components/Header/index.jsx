@@ -47,7 +47,7 @@ function Header() {
         </a>
       </nav>
       
-      <div style={{ marginRight: '24rem' }}   className="hidden lg:flex items-center space-x-8">
+      <div style={{ marginRight: '25rem' }}   className="hidden lg:flex items-center space-x-8">
         <a href="/AllSpecialities" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Specialies</a>
         <a href="/AllDisorders" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Disorders</a>
         <a href="/blogs" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Blogs</a>
@@ -55,7 +55,7 @@ function Header() {
       </div>
 
       
-      <div style={{ marginRight: '18rem' }} className="hidden lg:flex items-center space-x-4">
+      <div style={{ marginRight: '17rem' }} className="hidden lg:flex items-center space-x-4">
         <a href="/Contact" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">
           Contact us
         </a>
