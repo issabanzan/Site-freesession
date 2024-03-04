@@ -6,7 +6,6 @@ const Login = lazy(() => import('./app_components/Auth/Login'));
 const PresentationV2 = lazy(() => import('./app_components/PresentationV2'));
 const PractitionerDetails = lazy(() => import('./app_components/PractitionerDetails'));
 const BecomePractitioner = lazy(() => import('./app_components/BecomePractitioner'));
-const Nous = lazy(() => import('./app_components/Nous'));
 
 const Calendar = lazy(() => import('./app_components/Calendar'));
 const Contact = lazy(() => import('./app_components/Contact'));
@@ -49,6 +48,7 @@ const StopsmokingPage = lazy(() => import('./app_components/StopsmokingPage'));
 const StressPage = lazy(() => import('./app_components/StressPage'));
 const WellbeingPage = lazy(() => import('./app_components/WellbeingPage'));
 const WhoarewePage = lazy(() => import('./app_components/WhoarewePage'));
+const AyurvedaPage = lazy(() => import('./app_components/AyurvedaPage'));
 
 
 const LazyLoader = ({ children }) => {
@@ -87,11 +87,7 @@ export default function App() {
             <BecomePractitioner />
           </LazyLoader>
         } />
-        <Route path="/nous" element={
-          <LazyLoader>
-            <Nous />
-          </LazyLoader>
-        } />
+        
 
         <Route path="/hypnose" element={
           <LazyLoader>
@@ -345,6 +341,12 @@ export default function App() {
          <Route path="/whoarewe" element={
           <LazyLoader>
             <WhoarewePage />
+          </LazyLoader>
+        } />
+
+        <Route path="/ayurveda" element={
+          <LazyLoader>
+            <AyurvedaPage />
           </LazyLoader>
         } />                
         
