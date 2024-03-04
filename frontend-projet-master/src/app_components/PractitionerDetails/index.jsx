@@ -35,6 +35,7 @@ const PraticionerDetails = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const [showPaymentModal, setShowPaymentModal] = useState(false);
  
@@ -43,57 +44,82 @@ const PraticionerDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Selected Appointment Type ID:", selectedAppointmentType);
-    console.log("Selected calendar:", selectedCalendar);
-    console.log("Selected date:", selectedDate);
-    console.log("Selected time:", selectedTime);
-    console.log("Submitting form");
+  
+  
+    let isValid = true;
+  
+  
+    setFirstNameError('');
+    setLastNameError('');
+    setEmailError('');
+    setPhoneError('');
+    setPasswordError('');
+  
+    
+  if (!firstName || firstName.length < 2) {
+    setFirstNameError('The firstName must contain at least 2 characters');
+    isValid = false;
+  }
+
+  
+  if (!lastName || lastName.length < 2) {
+    setLastNameError('The name must contain at least 2 characters');
+    isValid = false;
+  }
+
+
+  if (!email || !validateEmail(email)) {
+    setEmailError('Please enter a valid email');
+    isValid = false;
+  }
+    if (!phone) {
+      setPhoneError('This field is required');
+      isValid = false;
+    }
+    if (!password || !validatePassword(password)) {
+      setPasswordError('The password must be at least 8 characters long, include letters, numbers and special characters.');
+      isValid = false;
+    }
+  
+    if (!isValid) {
+      
+      return;
+    }
+
+    const formatDate = (date) => {
+      if (!(date instanceof Date)) return '';
+
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+
+      return `${year}-${month}-${day}`;
+    };
+    const formattedDate = formatDate(selectedDate);
+    console.log('Formatdate', formattedDate);
+
+  
+    // Si tout est valide, procéder avec la logique de soumission
     try {
-      if (!selectedDate || !selectedTime || !selectedAppointmentType) {
-        console.error('Veuillez sélectionner une date, une heure et un type de rendez-vous pour le rendez-vous.');
-        return;
-      }
-
-      if (!(selectedDate instanceof Date)) {
-        console.error('La date sélectionnée est invalide.');
-        return;
-      }
-
-
-      const formatDate = (date) => {
-        if (!(date instanceof Date)) return '';
-
-        const year = date.getFullYear();
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-
-        return `${year}-${month}-${day}`;
-      };
-      const formattedDate = formatDate(selectedDate);
-      console.log('Formatdate', formattedDate);
-
-
-
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/book-appointment`,
-        {
-          firstName,
-          lastName,
-          email,
-          phone,
-          password,
-          appointmentTypeID: selectedAppointmentType,
-          calendar: selectedCalendar,
-          date: formattedDate,
-          time: selectedTime,
+      const formattedDate = selectedDate ? formatDate(selectedDate) : '';
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/book-appointment`, {
+        firstName,
+        lastName,
+        email,
+        phone,
+        password,
+        appointmentTypeID: selectedAppointmentType,
+        calendar: selectedCalendar,
+        date: formattedDate,
+        time: selectedTime,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
         },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      });
+  
       console.log(response.data);
-
+      // Réinitialiser les champs et fermer le formulaire après la soumission réussie
       setFirstName('');
       setLastName('');
       setEmail('');
@@ -148,7 +174,30 @@ const PraticionerDetails = () => {
     console.log(`Le type de rendez-vous sélectionné est: ${selectedAppointmentType}`);
   }, [selectedAppointmentType]);
 
+  useEffect(() => {
+    console.log(`Le type de rendez-vous sélectionné est: ${selectedAppointmentType}`);
+  }, [selectedAppointmentType]);
 
+  const validatePassword = (password) => {
+    // Vérifier la longueur minimale de 8 caractères
+    const hasValidLength = password.length >= 8;
+    // Vérifier la présence de majuscules
+    const hasUpperCase = /[A-Z]/.test(password);
+    // Vérifier la présence de minuscules
+    const hasLowerCase = /[a-z]/.test(password);
+    // Vérifier la présence de chiffres
+    const hasNumbers = /\d/.test(password);
+    // Vérifier la présence de caractères spéciaux
+    const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  
+    // Le mot de passe est valide seulement si tous les critères sont respectés
+    return hasValidLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChars;
+  };
+
+  const validateEmail = (email) => {
+    // Expression régulière simple pour la validation d'email
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
 
   const fetchCalendars = async () => {
@@ -396,56 +445,61 @@ const PraticionerDetails = () => {
               {selectedTime && (
                 <div className="mt-4">
                   <div className="flex flex-col space-y-4">
-                    <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name *</label>
-                      <input
-                        type="text"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
+                  <div>
+                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name *</label>
+                    <input
+                      type="text"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      className={firstNameError ? 'input-error' : ''}
+                    />
+                    {firstNameError && <p className="text-red-500 text-xs italic">{firstNameError}</p>}
+                  </div>
 
-                      />
-                    </div>
+                  <div>
+                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name *</label>
+                    <input
+                      type="text"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      className={lastNameError ? 'input-error' : ''}
+                    />
+                    {lastNameError && <p className="text-red-500 text-xs italic">{lastNameError}</p>}
+                  </div>
 
-                    <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name *</label>
-                      <input
-                        type="text"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email *</label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={emailError ? 'input-error' : ''}
+                    />
+                    {emailError && <p className="text-red-500 text-xs italic">{emailError}</p>}
+                  </div>
 
-                      />
-                    </div>
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Téléphone *</label>
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className={phoneError ? 'input-error' : ''}
+                    />
+                    {phoneError && <p className="text-red-500 text-xs italic">{phoneError}</p>}
+                  </div>
 
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email *</label>
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-
-                      />
-
-                    </div>
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Téléphone *</label>
-                      <input
-                        type="tel"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-
-                      />
-
-                    </div>
-
-                    <div>
-                      <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password *</label>
-                      <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-
-                      />
-                    </div>
+                  <div>
+                    <label htmlFor="password" className="block text-sm font-medium text-gray-700">Mot de passe *</label>
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={passwordError ? 'input-error' : ''}
+                      required
+                    />
+                    {passwordError && <p className="text-red-500 text-xs italic">{passwordError}</p>}
+                  </div>
 
                     <button
                       className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mb-2"
