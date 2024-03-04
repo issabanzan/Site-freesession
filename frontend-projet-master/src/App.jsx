@@ -6,8 +6,8 @@ const Login = lazy(() => import('./app_components/Auth/Login'));
 const PresentationV2 = lazy(() => import('./app_components/PresentationV2'));
 const PractitionerDetails = lazy(() => import('./app_components/PractitionerDetails'));
 const BecomePractitioner = lazy(() => import('./app_components/BecomePractitioner'));
-const AyurvedaPage = lazy(() => import('./app_components/AyurvedaPage'));
-const Propos = lazy(() => import('./app_components/Propos'));
+const Nous = lazy(() => import('./app_components/Nous'));
+
 const Calendar = lazy(() => import('./app_components/Calendar'));
 const Contact = lazy(() => import('./app_components/Contact'));
 const HypnosePage = lazy(() => import('./app_components/HypnosePage'));
@@ -48,6 +48,7 @@ const StomachachesPage = lazy(() => import('./app_components/StomachachesPage'))
 const StopsmokingPage = lazy(() => import('./app_components/StopsmokingPage'));
 const StressPage = lazy(() => import('./app_components/StressPage'));
 const WellbeingPage = lazy(() => import('./app_components/WellbeingPage'));
+const WhoarewePage = lazy(() => import('./app_components/WhoarewePage'));
 
 
 const LazyLoader = ({ children }) => {
@@ -86,9 +87,9 @@ export default function App() {
             <BecomePractitioner />
           </LazyLoader>
         } />
-        <Route path="/ayurveda" element={
+        <Route path="/nous" element={
           <LazyLoader>
-            <AyurvedaPage />
+            <Nous />
           </LazyLoader>
         } />
 
@@ -110,11 +111,7 @@ export default function App() {
             <AllDisorders />
           </LazyLoader>
         } />
-         <Route path="/propos" element={
-          <LazyLoader>
-            <Propos />
-          </LazyLoader>
-        } />
+        
         <Route path="/calendar" element={
           <LazyLoader>
             <Calendar />
@@ -342,6 +339,12 @@ export default function App() {
         <Route path="/wellbeing" element={
           <LazyLoader>
             <WellbeingPage />
+          </LazyLoader>
+        } />   
+
+         <Route path="/whoarewe" element={
+          <LazyLoader>
+            <WhoarewePage />
           </LazyLoader>
         } />                
         

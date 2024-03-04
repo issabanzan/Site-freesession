@@ -15,7 +15,7 @@ const Footer = () => {
           <div>
             <h5 className="text-lg font-semibold mb-2">Discover freesession</h5>
             <ul>
-              <li className="mb-1"><a href="/who-we-are" className="hover:underline">Who are we?</a></li>
+              <li className="mb-1"><a href="/whoarewe" className="hover:underline">Who are we?</a></li>
               <li className="mb-1"><a href="/our-partners" className="hover:underline">Our partners</a></li>
               <li className="mb-1"><a href="/media" className="hover:underline">Freesesession in the media</a></li>
               <li className="mb-1"><a href="/practitioners" className="hover:underline">Our practitioners by city</a></li>
