@@ -2,7 +2,7 @@ import React from 'react';
 
 const Addiction = () => {
   return (
-    <div style={{ marginRight: '21rem' }}  className="max-w-7xl mx-auto p-5">
+    <div className="mx-auto p-5 max-w-7xl sm:p-3">
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Addiction</h1>
       <p className="mb-4 font-semibold font-serif">
       Addiction is defined as the dependence or enslavement of an individual to an object or activity. 
