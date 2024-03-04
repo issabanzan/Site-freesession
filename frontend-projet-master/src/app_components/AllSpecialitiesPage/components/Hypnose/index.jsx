@@ -29,7 +29,7 @@ const Hypnose = () => {
 
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
-        <a href="chiporaxie">
+        <a href="chiropraxie">
           <img src="/src/assets/chiropraxie-i.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Chiropraxie</h3>

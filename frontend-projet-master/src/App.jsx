@@ -6,7 +6,6 @@ const Login = lazy(() => import('./app_components/Auth/Login'));
 const PresentationV2 = lazy(() => import('./app_components/PresentationV2'));
 const PractitionerDetails = lazy(() => import('./app_components/PractitionerDetails'));
 const BecomePractitioner = lazy(() => import('./app_components/BecomePractitioner'));
-
 const Calendar = lazy(() => import('./app_components/Calendar'));
 const Contact = lazy(() => import('./app_components/Contact'));
 const HypnosePage = lazy(() => import('./app_components/HypnosePage'));
@@ -14,7 +13,7 @@ const AllSpecialitiesPage = lazy(() => import('./app_components/AllSpecialitiesP
 const AuriculotherapyPage = lazy(() => import('./app_components/AuriculotherapyPage'));
 const AllDisorders = lazy(() => import('./app_components/AllDisorders'));
 const BriefTherapiesPage = lazy(() => import('./app_components/BriefTherapiesPage'));
-const ChiporaxiePage = lazy(() => import('./app_components/ChiporaxiePage'));
+const ChiropraxiePage = lazy(() => import('./app_components/ChiropraxiePage'));
 const EnergeticpracticesPage = lazy(() => import('./app_components/EnergeticpracticesPage'));
 const HypnosisPage = lazy(() => import('./app_components/HypnosisPage'));
 const KinesiologyPage = lazy(() => import('./app_components/KinesiologyPage'));
@@ -138,9 +137,9 @@ export default function App() {
           </LazyLoader>
         } /> 
         
-        <Route path="/chiporaxie" element={
+        <Route path="/chiropraxie" element={
           <LazyLoader>
-            <ChiporaxiePage />
+            <ChiropraxiePage />
           </LazyLoader>
         } />
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Chiporaxie = () => {
+const Chiropraxie = () => {
   return (
     <div style={{ marginRight: '16rem' }}  className="max-w-7xl mx-auto p-5">
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Chiporaxie</h1>
@@ -67,4 +67,4 @@ const Chiporaxie = () => {
   );
 };
 
-export default Chiporaxie;
+export default Chiropraxie;

@@ -21,7 +21,7 @@ All disorders
           
           <div className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
           <a href="/stopsmoking" className="min-w-max p-4 rounded-md text-center flex flex-col justify-center items-center flex-shrink-0">
-            <img src="/src/assets/ventre.jpg" alt="peau" className="w-51 h-40 object-cover rounded-md" />
+            <img src="/src/assets/fume.jpg" alt="peau" className="w-51 h-40 object-cover rounded-md" />
             </a>
             <p className="font-bold mt-2 leading-tight tracking-tighter inter text-2xl text-black">Stop smoking</p>
            

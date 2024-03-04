@@ -31,7 +31,7 @@ const Disorders4 = () => {
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="stopsmoking">
-          <img src="/src/assets/fume.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/fume.jpg" alt="fume" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Stop smoking</h3>
           <p className="mb-4 font-semibold font-serif">
