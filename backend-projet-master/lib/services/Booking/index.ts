@@ -4,6 +4,7 @@ import { acuityConfiguration } from "./booking.config";
 import { AcuityAppointmentDate, AcuityAppointmentTime, AcuityAppointmentType, AcuityCalendar } from "./interfaces"; 
 import axios, { AxiosError } from "axios"; 
 import Database from "../Database"; //pour pouvoir utiliser les méthodes de la classe Database
+import bcrypt from 'bcrypt';
 
 
 class Booking extends Core { // la classe Booking étend la classe Core ça veut dire que la classe Booking hérite de la classe Core
@@ -281,41 +282,42 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
 
 
 
-  public loginUser = async (req: Request, res: Response): Promise<void> => {
-    const { email, password } = req.body;
-    if (!email || !password) {
-      res.status(400).json({ message: 'Email and password are required.' });
+public loginUser = async (req: Request, res: Response): Promise<void> => {
+  const { email, password } = req.body; // Le mot de passe fourni par l'utilisateur lors de la connexion.
+  if (!email || !password) {
+    res.status(400).json({ message: 'Email and password are required.' });
+    return;
+  }
+  
+  try {
+    const db = new Database();
+    const user = await db.findUserByEmail(email);
+    if (!user) {
+      res.status(401).json({ message: 'Invalid login credentials.' });
+      return;
+    }
+
+    // Afficher le mot de passe fourni (en clair) et le préfixe du hash du mot de passe stocké pour débogage
+    console.log("Mot de passe fourni (en clair):", password);
+    console.log("Préfixe du hash du mot de passe stocké:", user.password_hash.substring(0, 7));
+
+    const isMatch = await bcrypt.compare(password, user.password_hash);
+    console.log("Résultat de la comparaison:", isMatch ? "Correspondance" : "Pas de correspondance");
+
+    if (!isMatch) {
+      console.log("Les mots de passe ne correspondent pas.");
+      res.status(401).json({ message: 'Invalid login credentials.' });
       return;
     }
     
+    console.log("Les mots de passe correspondent.");
+    res.status(200).json({ message: 'Authentication successful', acuityUserId: user.user_id });
+  } catch (error) {
+    console.error('Error during the login process:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
 
-    try {
-      const db = new Database();
-      const user = await db.findUserByEmail(email);
-      const user_id = user.user_id;
-      console.log("user_id: ", user_id);
-      if (!user) {
-        res.status(401).json({ message: 'Invalid login credentials.' });
-        return;
-      }
-      
-
-      const isMatch = (user.password_hash === password);
-
-
-      if (!isMatch) {
-        res.status(401).json({ message: 'Invalid login credentials.' });
-        return;
-      }
-      
-
-      // Si les mots de passe correspondent, procédez avec la connexion.
-      res.status(200).json({ message: 'Authentication successful', acuityUserId: user_id });
-    } catch (error) {
-      console.error('Error during the login process:', error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  };
 
 
 
