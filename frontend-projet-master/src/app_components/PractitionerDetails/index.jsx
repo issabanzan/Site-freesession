@@ -262,13 +262,7 @@ const PraticionerDetails = () => {
       fetchAvailableDates();
     }
   }, [selectedAppointmentType, selectedCalendar]);
-
-
-
-
-
-
-
+  
   const fetchAvailableTimes = async (date) => {
     const parisDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
       .toISOString()
