@@ -1,5 +1,5 @@
 import Layout from "../Layout";
-import Chiropraxie from "./components/Chiropraxie";
+import Chiporaxie from "./components/Chiporaxie";
 
 
 const ChiropraxiePage = () => {
