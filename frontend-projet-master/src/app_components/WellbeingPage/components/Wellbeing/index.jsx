@@ -2,7 +2,7 @@ import React from 'react';
 
 const Wellbeing = () => {
   return (
-    <div style={{ marginRight: '16rem' }}  className="max-w-7xl mx-auto p-5">
+    <div className="mt-8 mx-auto max-w-7xl sm:pl-0 lg:mr-[240px]">
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Well-being and personal development</h1>
       <p className="mb-4 font-semibold font-serif">
       32% of French people are in the dark about their well-being and don't know what to do to get better. 

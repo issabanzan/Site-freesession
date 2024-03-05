@@ -2,7 +2,7 @@ import React from 'react';
 
 const Whoarewe = () => {
   return (
-    <div style={{ marginRight: '16rem' }}  className="max-w-7xl mx-auto p-5">
+    <div className="mt-8 mx-auto max-w-7xl sm:pl-0 lg:mr-[240px]">
       <h1 className="text-2xl text-black font-semibold font-serif mt-6 mb-4">
         Who are we ?
       </h1>
