@@ -8,7 +8,7 @@ const ResetPassword = lazy(()=> import('./app_components/Auth/components/ResetPa
 const PresentationV2 = lazy(() => import('./app_components/PresentationV2'));
 const PractitionerDetails = lazy(() => import('./app_components/PractitionerDetails'));
 const BecomePractitioner = lazy(() => import('./app_components/BecomePractitioner'));
-const Nous = lazy(() => import('./app_components/Nous'));
+const AyurvedaPage = lazy(() => import('./app_components/AyurvedaPage'));
 
 const Calendar = lazy(() => import('./app_components/Calendar'));
 const Contact = lazy(() => import('./app_components/Contact'));
@@ -103,9 +103,9 @@ export default function App() {
             <BecomePractitioner />
           </LazyLoader>
         } />
-        <Route path="/nous" element={
+        <Route path="/ayurveda" element={
           <LazyLoader>
-            <Nous />
+            <AyurvedaPage />
           </LazyLoader>
         } />
 
