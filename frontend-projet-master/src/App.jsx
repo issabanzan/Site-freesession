@@ -152,11 +152,7 @@ export default function App() {
           </LazyLoader>
         } /> 
 
-        <Route path="/briefTherapies" element={
-          <LazyLoader>
-            <BriefTherapiesPage />
-          </LazyLoader>
-        } /> 
+      
         
         <Route path="/chiporaxie" element={
           <LazyLoader>
