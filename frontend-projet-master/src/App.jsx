@@ -17,7 +17,7 @@ const AllSpecialitiesPage = lazy(() => import('./app_components/AllSpecialitiesP
 const AuriculotherapyPage = lazy(() => import('./app_components/AuriculotherapyPage'));
 const AllDisorders = lazy(() => import('./app_components/AllDisorders'));
 const BriefTherapiesPage = lazy(() => import('./app_components/BriefTherapiesPage'));
-const ChiporaxiePage = lazy(() => import('./app_components/ChiporaxiePage'));
+const ChiporaxiePage = lazy(() => import('./app_components/ChiporaxiePage'));         
 const EnergeticpracticesPage = lazy(() => import('./app_components/EnergeticpracticesPage'));
 const HypnosisPage = lazy(() => import('./app_components/HypnosisPage'));
 const KinesiologyPage = lazy(() => import('./app_components/KinesiologyPage'));
@@ -114,8 +114,6 @@ export default function App() {
             <HypnosePage />
           </LazyLoader>
         } />
-
-     
 
         <Route path="/allspecialities" element={
           <LazyLoader>
