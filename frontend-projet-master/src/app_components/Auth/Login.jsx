@@ -1,17 +1,17 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Key, Mail } from 'react-feather';
 import Layout from "../Layout";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+// Les autres importations restent inchangées
 
 
 const login = async (email, password) => {
   try {
-    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, { email, password });
+    const response = await axios.post("http://localhost:4000/login", { email, password });
     console.log("login response");
     console.log(response.data);
-
 
     if (response.data && response.data.acuityUserId) {
       localStorage.setItem('acuityUserId', response.data.acuityUserId.toString());
@@ -24,9 +24,6 @@ const login = async (email, password) => {
     throw error;
   }
 };
-
-
-
 
 const Login = () => {
   const [error, setError] = useState(null);
@@ -48,7 +45,6 @@ const Login = () => {
     }
   };
 
-
   return (
     <Layout>
       <section className='flex justify-center items-center h-screen bg-[#225886]'>
@@ -59,18 +55,18 @@ const Login = () => {
                 Erreur : {error}
               </div>
             )}
-
             <div className="flex items-center border-b border-black mb-4">
               <Mail className='mx-3 text-black' />
               <input ref={emailRef} className="w-full border-none focus:outline-none text-black" type="email" placeholder="Mail" required />
             </div>
-            <div className="flex items-center border-b border-black mb-6">
+            <div className="flex items-center border-b border-black mb-4">
               <Key className='mx-3 text-black' />
               <input ref={passwordRef} className="w-full border-none focus:outline-none text-black" type="password" placeholder="Password" required />
+              <Link to="/forgot-password" className='text-blue-500 hover:text-blue-600 transition duration-300 text-sm mt-2'>Forgot your password?</Link>
             </div>
             <input className="bg-[#225886] text-white rounded py-2 cursor-pointer hover:bg-[#225886] transition-colors duration-300" type='submit' value="Log in" />
             <p className='text-center mt-4'>
-              <a href="/register" className='text-blue-500 hover:text-blue-600 transition-colors duration-300'>Register</a>
+              <a href="/https://freesession.net/details/1" className='text-blue-500 hover:text-blue-600 transition-colors duration-300'>Register</a>
             </p>
           </form>
         </div>

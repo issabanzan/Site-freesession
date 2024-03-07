@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import WorkingRemotelyImage from '../../assets/bog.png';
 import WorkingRemotelyImage2 from '../../assets/but.png';
-import WorkingRemotelyImage3 from '../../assets/borgue.png';
+
 
 const Contact = () => {
   const [name, setName] = useState('');
@@ -19,7 +19,7 @@ const Contact = () => {
     console.log('Submitting form', contactData); 
 
     try {
-      const response = await axios.post('http://localhost:8080/api/contact', contactData);
+      const response = await axios.post('https://api.freesession.net/api/contact', contactData);
       if (response.status === 200) {
         setName('');
         setEmail('');

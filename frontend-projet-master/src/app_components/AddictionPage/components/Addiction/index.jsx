@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const Addiction = () => {
   return (
@@ -65,10 +65,6 @@ const Addiction = () => {
           Thanks to suggestion and imprinting, the hypnotherapist will be able to act on harmful behavior and facilitate change.
       </p>
 
-      <p className="mb-4 font-semibold font-serif">
-         L’Energétique Traditionnelle Chinoise : Grâce à la stimulation de points spécifiques, le praticien peut aider à réduire le stress et la sensation de manque. 
-         Cette pratique peut aiussi aider les personnes souhaitant arrêter de fumer.
-      </p>
       
     </div>
   );

@@ -19,7 +19,7 @@ const Ayurveda = () => {
       Ayurveda is a complete process, still used mainly in India and Sri Lanka. 
       It draws its sources from founding concepts, very divergent from those of Western medicine. 
       He considers that Man is linked to his environment.
-      Indeed, as in Traditional Chinese Medicine, Ayurveda takes into account the five "fundamental elements": ether, air, fire, earth and water.
+      Indeed, as in Traditional Chinese Medicine, Ayurveda takes into account the five fundamental elements : ether, air, fire, earth and water.
       These elements represent the concept of space, movement, flow, heat or even solidity. 
       The combination of these five states of matter constitutes three “doshas” (humors or vital energies): dosha vata (air), dosha pitta (fire) and dosha kapha (water). 
       These doshas are responsible for psychic and physical functioning. Each individual is made up of a combination of these three doshas. 

@@ -3,9 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Loading from './app_components/Loading/Loading';
 const Dashboard = lazy(() => import('./app_components/Dashboard/Dashboard'));
 const Login = lazy(() => import('./app_components/Auth/Login'));
+const ForgotPassword = lazy(()=> import('./app_components/Auth/components/ForgotPassword'));
+const ResetPassword = lazy(()=> import('./app_components/Auth/components/ResetPassword'));
 const PresentationV2 = lazy(() => import('./app_components/PresentationV2'));
 const PractitionerDetails = lazy(() => import('./app_components/PractitionerDetails'));
 const BecomePractitioner = lazy(() => import('./app_components/BecomePractitioner'));
+const Nous = lazy(() => import('./app_components/Nous'));
+
 const Calendar = lazy(() => import('./app_components/Calendar'));
 const Contact = lazy(() => import('./app_components/Contact'));
 const HypnosePage = lazy(() => import('./app_components/HypnosePage'));
@@ -13,7 +17,7 @@ const AllSpecialitiesPage = lazy(() => import('./app_components/AllSpecialitiesP
 const AuriculotherapyPage = lazy(() => import('./app_components/AuriculotherapyPage'));
 const AllDisorders = lazy(() => import('./app_components/AllDisorders'));
 const BriefTherapiesPage = lazy(() => import('./app_components/BriefTherapiesPage'));
-const ChiropraxiePage = lazy(() => import('./app_components/ChiropraxiePage'));
+const ChiporaxiePage = lazy(() => import('./app_components/ChiporaxiePage'));
 const EnergeticpracticesPage = lazy(() => import('./app_components/EnergeticpracticesPage'));
 const HypnosisPage = lazy(() => import('./app_components/HypnosisPage'));
 const KinesiologyPage = lazy(() => import('./app_components/KinesiologyPage'));
@@ -47,7 +51,6 @@ const StopsmokingPage = lazy(() => import('./app_components/StopsmokingPage'));
 const StressPage = lazy(() => import('./app_components/StressPage'));
 const WellbeingPage = lazy(() => import('./app_components/WellbeingPage'));
 const WhoarewePage = lazy(() => import('./app_components/WhoarewePage'));
-const AyurvedaPage = lazy(() => import('./app_components/AyurvedaPage'));
 
 
 const LazyLoader = ({ children }) => {
@@ -68,6 +71,20 @@ export default function App() {
             <Login />
           </LazyLoader>
         } />
+
+
+
+        <Route path="/forgot-password" element={
+          <LazyLoader>
+            <ForgotPassword />
+          </LazyLoader>
+        } />
+
+        <Route path="/reset-password" element={
+          <LazyLoader>
+            <ResetPassword />
+          </LazyLoader>
+        } />
         
         <Route path="/dashboard" element={
           <LazyLoader>
@@ -86,7 +103,11 @@ export default function App() {
             <BecomePractitioner />
           </LazyLoader>
         } />
-        
+        <Route path="/nous" element={
+          <LazyLoader>
+            <Nous />
+          </LazyLoader>
+        } />
 
         <Route path="/hypnose" element={
           <LazyLoader>
@@ -137,9 +158,9 @@ export default function App() {
           </LazyLoader>
         } /> 
         
-        <Route path="/chiropraxie" element={
+        <Route path="/chiporaxie" element={
           <LazyLoader>
-            <ChiropraxiePage />
+            <ChiporaxiePage />
           </LazyLoader>
         } />
 
@@ -340,12 +361,6 @@ export default function App() {
          <Route path="/whoarewe" element={
           <LazyLoader>
             <WhoarewePage />
-          </LazyLoader>
-        } />
-
-        <Route path="/ayurveda" element={
-          <LazyLoader>
-            <AyurvedaPage />
           </LazyLoader>
         } />                
         
