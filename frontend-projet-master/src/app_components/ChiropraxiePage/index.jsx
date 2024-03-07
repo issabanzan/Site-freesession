@@ -1,11 +1,11 @@
 import Layout from "../Layout";
-import Chiporaxie from "./components/Chiporaxie";
+import Chiropraxie from "./components/Chiropraxie";
 
 
-const ChiropraxiePage = () => {
+const ChiporaxiePage = () => {
     return ( 
         <Layout>
-            <Chiporaxie />
+            <Chiropraxie />
           
             
             
@@ -14,4 +14,4 @@ const ChiropraxiePage = () => {
 };
 
 
-export default ChiropraxiePage;
+export default ChiporaxiePage;
