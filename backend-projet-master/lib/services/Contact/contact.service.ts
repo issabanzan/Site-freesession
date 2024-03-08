@@ -32,8 +32,10 @@ export class ContactService {
 }
 
 async sendResetEmail(email: string, token: string): Promise<void> {
-  const resetLink = `https://freesession.net/reset-password?token=${token}`;
-  const mailOptions = {
+  
+const resetLink = `https://freesession.net/reset-password?token=${token}`;
+
+  const mail = {
     from: 'support@institutadios.com',
     to: email,
     subject: 'Resetting your password',
