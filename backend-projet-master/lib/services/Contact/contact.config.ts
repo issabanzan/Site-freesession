@@ -6,7 +6,7 @@ export const smtpConfig: TransportOptions = {
   host: process.env.BREVOHOST , // l'adresse du serveur SMTP de l'envoi de mail
   port: process.env.BREVOPORT, // le port du serveur SMTP
   secure: false, // si le serveur SMTP utilise SSL ou non
-  auth: { // les informations d'authentification pour le serveur SMTP
+  auth: { // les informations d'authentification pour le serveur 
     user: process.env.BREVOUSER,
     pass: process.env.BREVOPASSWORD, 
   },
