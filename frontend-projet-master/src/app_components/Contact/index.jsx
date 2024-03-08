@@ -59,7 +59,7 @@ const Contact = () => {
                 id="name"
                 name="name"
                 value={name}
-                className="mt-1 p-3 w-full border rounded-md text-white placeholder-gray-500"
+                className="mt-1 p-3 w-full border rounded-md text-black"
                 placeholder="lastname and firstname"
                 onChange={(e) => setName(e.target.value)}
               />
@@ -73,7 +73,7 @@ const Contact = () => {
                 id="email"
                 name="email"
                 value={email}
-                className="mt-1 p-3 w-full border rounded-md text-white placeholder-gray-500"
+                className="mt-1 p-3 w-full border rounded-md text-black"
                 placeholder="mail"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -87,7 +87,7 @@ const Contact = () => {
                 name="message"
                 rows="4"
                 value={message}
-                className="mt-1 p-3 w-full border rounded-md text-white placeholder-gray-500"
+                className="mt-1 p-3 w-full border rounded-md text-black"
                 placeholder="messages"
                 onChange={(e) => setMessage(e.target.value)}
               ></textarea>
