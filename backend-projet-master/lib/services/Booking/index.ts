@@ -274,9 +274,8 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
 };
 
 
-
 public loginUser = async (req: Request, res: Response): Promise<void> => {
-  const { email, password } = req.body; // Le mot de passe fourni par l'utilisateur lors de la connexion.
+  const { email, password } = req.body; 
   if (!email || !password) {
     res.status(400).json({ message: 'Email and password are required.' });
     return;
@@ -290,7 +289,7 @@ public loginUser = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // Afficher le mot de passe fourni (en clair) et le préfixe du hash du mot de passe stocké pour débogage
+    
     console.log("Mot de passe fourni (en clair):", password);
     console.log("Préfixe du hash du mot de passe stocké:", user.password_hash.substring(0, 7));
 
