@@ -55,17 +55,17 @@ class Database {// class database qui contient les methodes pour la connexion à
   }
   
 
-  public findUserByEmail(email: string): Promise<any> { // methode pour rechercher un utilisateur par email dans ma base de données pour se connecter
+  public findUserByEmail(email: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      const sql = 'SELECT user_id, password_hash FROM users WHERE email = ?'; // selectionner l'id de l'utilisateur et le mot de passe haché de la table users où l'email est égal à l'email fourni
-      this.connection.query(sql, [email], (err, results) => { // executer la requete sql et traiter les résultats
-        if (err) { // si une erreur est survenue lors de la recherche de l'utilisateur
-          console.error('Erreur lors de la recherche de l’utilisateur:', err); // affiche un message d'erreur dans la console
-          reject(err); // rejeter la promesse avec l'erreur
-        } else if (results.length > 0) { 
+      const sql = 'SELECT user_id, password_hash FROM users WHERE email = ?';
+      this.connection.query(sql, [email], (err, results) => {
+        if (err) {
+          console.error('Erreur lors de la recherche de l’utilisateur:', err);
+          reject(err);
+        } else if (results.length > 0) {
           console.log('Utilisateur trouvé:', results[0]);
           resolve(results[0]);
-          const user_id = results[0].user_id; 
+          const user_id = results[0].user_id;
           console.log('user id : ', user_id);
           return user_id;
         } else {
@@ -144,7 +144,7 @@ class Database {// class database qui contient les methodes pour la connexion à
   public async updateUser(acuityUserId: number, firstName: string, lastName: string, email: string, phone: string): Promise<void> {
     
     if (!this.PhoneNumbers(phone)) {
-      throw new Error("Numéro de téléphone invalide.");
+      throw new Error("Numéro de téléphone invalide."); 
     }
 
     

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const login = async (email, password) => {
   try {
-    const response = await axios.post("http://localhost:4000/login", { email, password });
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, { email, password });
     console.log("login response");
     console.log(response.data);
 

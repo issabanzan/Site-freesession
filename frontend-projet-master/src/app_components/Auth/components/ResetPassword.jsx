@@ -14,7 +14,7 @@ function ResetPassword() {
     const token = params.get('token'); // Extract the token from URL
 
     try {
-      await axios.post('https://api.freesession.netapi/request-password-reset', { token, newPassword });
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}api/request-password-reset`, { token, newPassword });
       setMessage('Votre mot de passe a été réinitialisé avec succès.');
     } catch (error) {
       console.error('Erreur lors de la réinitialisation du mot de passe:', error);
