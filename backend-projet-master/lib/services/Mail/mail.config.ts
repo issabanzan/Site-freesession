@@ -1,3 +1,4 @@
+
 import type { MailServiceConfig } from "./mail.interfaces";
 
 const apiKey: string = process.env.SG_API_KEY;

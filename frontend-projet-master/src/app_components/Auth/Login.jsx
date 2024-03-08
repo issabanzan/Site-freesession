@@ -66,7 +66,7 @@ const Login = () => {
             </div>
             <input className="bg-[#225886] text-white rounded py-2 cursor-pointer hover:bg-[#225886] transition-colors duration-300" type='submit' value="Log in" />
             <p className='text-center mt-4'>
-              <a href="/https://freesession.net/details/1" className='text-blue-500 hover:text-blue-600 transition-colors duration-300'>Register</a>
+              <a href="/details/1" className='text-blue-500 hover:text-blue-600 transition-colors duration-300'>Register</a>
             </p>
           </form>
         </div>

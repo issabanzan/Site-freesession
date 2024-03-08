@@ -21,7 +21,7 @@ function ForgotPassword() {
     <Layout>
       <div className="flex justify-center items-center min-h-screen bg-[#225886] px-2 sm:px-4 md:px-8">
         <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-4 text-center text-black">Réinitialiser le mot de passe</h2>
+          <h2 className="text-2xl font-bold mb-4 text-center text-black">Reset password</h2>
           <form onSubmit={handleSubmit} className="text-center">
             <input 
               className="w-full text-black px-3 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -29,7 +29,7 @@ function ForgotPassword() {
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
               required 
-              placeholder="Entrez votre email"
+              placeholder="Enter your e-mail"
             />
             <button 
               className="w-full px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"

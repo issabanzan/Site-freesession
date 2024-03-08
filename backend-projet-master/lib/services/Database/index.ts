@@ -3,7 +3,7 @@ import db_config from "./database.config"; // import les informations de connexi
 import bcrypt from 'bcrypt'; // importe le module bcrypt pour hacher les mots de passe
 
 class Database {// class database qui contient les methodes pour la connexion à la base de données et les requetes sql
-  private connection: mysql.Connection; // créer une connexion à la base de données avec les informations de connexion
+  private connection: mysql.Connection; // créer une connexion à la base de données avec les informations de connexion 
 
   constructor() { // constructeur de la classe Database un constructeur est une méthode qui est appelée automatiquement lors de la création d'une instance de classe 
     this.connection = mysql.createConnection({ // createConnection est une méthode de la classe mysql qui permet de créer une connexion à la base de données
@@ -33,22 +33,22 @@ class Database {// class database qui contient les methodes pour la connexion à
     });
   }
 
-  private validatePhoneNumber(phone: string): boolean { // methode pour valider le numéro de téléphone
+  private PhoneNumber(phone: string): boolean { // methode pour valider le numéro de téléphone
 
     return /^\+?(\d{1,3}[ -]?)?(\(?\d+\)?[ -]?)*\d+$/.test(phone); // expression régulière pour valider le numéro de téléphone
   }
 
   public async createUser(acuityUserId: number, firstName: string, lastName: string, email: string, phone: string, password: string): Promise<number> { // methode pour créer un utilisateur dans ma base de données avec les informations suivantes : id de l'utilisateur, prénom, nom, email, numéro de téléphone, mot de passe
-    if (!this.validatePhoneNumber(phone)) { // Vérifier si le numéro de téléphone est valide en utilisant une expression régulière
+    if (!this.PhoneNumber(phone)) { // Vérifier si le numéro de téléphone est valide en utilisant une expression régulière
       throw new Error("Numéro de téléphone invalide. Seuls les chiffres sont autorisés.");
     }
    
     // Hacher le mot de passe
     const saltRounds = 10; // Le nombre de tours de hachage
-    const hashedPassword = await bcrypt.hash(password, saltRounds); // hacher le mot de passe avec bcrypt et le nombre de tours de hachage
+    const encryptedPassword = await bcrypt.hash(password, saltRounds); // hacher le mot de passe avec bcrypt et le nombre de tours de hachage
   
-    const sql = `INSERT INTO users (user_id, first_name, last_name, email, phone, password_hash) VALUES (?, ?, ?, ?, ?, ?)`; // isertion des données dans la table users contenant les colonnes user_id, first_name, last_name, email, phone, password_hash
-    const params = [acuityUserId, firstName, lastName, email, phone, hashedPassword]; // Utiliser hashedPassword au lieu de password
+    const sql = `INSERT INTO users (user_id, first_name, last_name, email, phone, password_hash) VALUES (?, ?, ?, ?, ?, ?)`; 
+    const params = [acuityUserId, firstName, lastName, email, phone, encryptedPassword]; // Utiliser encryptedPassword au lieu de password
   
     const result = await this.query(sql, params);
     return result.insertId;
@@ -75,35 +75,38 @@ class Database {// class database qui contient les methodes pour la connexion à
     });
   }
 
+  /*methode pour mettre à jour le mot de passe de l'utilisateur dans ma base de données
+   au cas où il a oublié son mot de passe pour se connecter*/
 
-
-  public async updateUserPassword(email: string, newPassword: string): Promise<void> {
-    // Hacher le nouveau mot de passe avant de le stocker
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+  public async updateUserPassword(email: string, newPassword: string): Promise<void> { 
+  
+    const saltRounds = 10; // Le nombre de tours de hachage pour le mot de passe 10 est une valeur recommandée par bcrypt
+    const encryptedPassword = await bcrypt.hash(newPassword, saltRounds); 
   
     const sql = `UPDATE users SET password_hash = ? WHERE email = ?`;
-    await this.query(sql, [hashedPassword, email]);
+    await this.query(sql, [encryptedPassword, email]);
   }
   
+  /*methode pour enregistrer le token de réinitialisation du mot de passe dans ma base de données*/
   public async savePasswordResetToken(email: string, token: string, expirationDate: Date): Promise<void> {
-    const user = await this.findUserByEmail(email);
-    if (!user) throw new Error("Utilisateur non trouvé");
+    const user = await this.findUserByEmail(email); // Recherchez l'utilisateur par email pour obtenir l'ID de l'utilisateur
+    if (!user) throw new Error("Utilisateur non trouvé"); // Si l'utilisateur n'est pas trouvé, lancez une erreur
   
     const sql = `INSERT INTO password_reset_tokens (user_id, token, expires_at) VALUES (?, ?, ?)`;
     await this.query(sql, [user.user_id, token, expirationDate]);
   }
-  
+
+  /*methode pour vérifier si le token de réinitialisation du mot de passe  est valide*/
   public async verifyPasswordResetToken(email: string, token: string): Promise<boolean> {
     const sql = `SELECT * FROM password_reset_tokens WHERE token = ? AND expires_at > NOW()`;
-    const results = await this.query(sql, [token]);
+    const results = await this.query(sql, [token]); // Exécutez la requete SQL et récupérez les résultats
     
     // Vérifiez que des résultats ont été retournés
     if (results.length === 0) {
       return false; // Aucun token valide trouvé
     }
     
-    // Maintenant, nous avons au moins un résultat, vérifiez que le token correspond à l'utilisateur
+    // vérification de l'existance de l'utilisateur par email
     const user = await this.findUserByEmail(email);
     
     // Vérifiez que l'utilisateur existe et que le user_id correspond
@@ -120,7 +123,8 @@ class Database {// class database qui contient les methodes pour la connexion à
     await this.query(sql, [token]);
   }
   
-
+  /* / methode pour rechercher un utilisateur par id dans ma base de données
+   pour afficher les informations de l'utilisateur*/
   async findUserById(acuityUserId) {
     const sql = 'SELECT * FROM users WHERE user_id = ?';
     const results = await this.query(sql, [acuityUserId]);
@@ -132,13 +136,14 @@ class Database {// class database qui contient les methodes pour la connexion à
   }
 
 
-  private validatePhoneNumbers(phone: string): boolean {
+  private PhoneNumbers(phone: string): boolean {
     return /^\+?(\d{1,3}[ -]?)?(\(?\d+\)?[ -]?)*\d+$/.test(phone);
   }
 
+  // methode pour mettre à jour les informations de l'utilisateur dans ma base de données
   public async updateUser(acuityUserId: number, firstName: string, lastName: string, email: string, phone: string): Promise<void> {
-    // Here you call the private method internally
-    if (!this.validatePhoneNumbers(phone)) {
+    
+    if (!this.PhoneNumbers(phone)) {
       throw new Error("Numéro de téléphone invalide.");
     }
 
@@ -148,18 +153,25 @@ class Database {// class database qui contient les methodes pour la connexion à
     await this.query(sql, params);
   }
 
-  public async getAppointmentsByUserId(acuityUserId: number): Promise<any[]> {
+
+  /*methode pour obtenir les rendez-vous de l'utilisateur par id de l'utilisateur
+   pour afficher les rendez-vous dans le tableau de bord de l'utilisateur*/
+  public async getAppointmentsByUserId(acuityUserId: number): Promise<any[]> { 
     const sql = 'SELECT * FROM appointments WHERE user_id = ? ORDER BY date ASC, time ASC';
     const results = await this.query(sql, [acuityUserId]);
     return results; 
   }
 
-  public updateAppointment(newDate: string, newTime: string, acuityUserId: string): Promise<void> {
+
+  // methode pour mettre à jour le rendez-vous de l'utilisateur dans ma base de données
+  public updateAppointment(newDate: string, newTime: string, acuityUserId: string): Promise<void> { 
     const formattedTime = newTime.length === 5 ? `${newTime}:00` : newTime;
     const sql = `UPDATE appointments SET date = ?, time = ? WHERE user_id = ?`;
     return this.query(sql, [newDate, formattedTime, acuityUserId]);
 }
 
+
+// methode pour annuler le rendez-vous de l'utilisateur dans ma base de données
 async cancelAppointment(id) {
   try {
     const sql = 'DELETE FROM appointments WHERE user_id = ?';

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";// pour pouvoir utiliser les types Request et Response
+import { Request, Response} from "express"; // pour pouvoir utiliser les types Request et Response
 import Core from "../Core";// pour pouvoir utiliser les méthodes de la classe Core
 import { acuityConfiguration } from "./booking.config";
 import { AcuityAppointmentDate, AcuityAppointmentTime, AcuityAppointmentType, AcuityCalendar } from "./interfaces"; 
@@ -117,11 +117,6 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
     );
   }; // getCalendarFromIds() retourne un tableau qui contient les calendriers trouvés à partir de leurs IDs
 
-
-
-
-
-
   public createClient = async (req: Request, res: Response): Promise<void> => {
     try {
       const { firstName, lastName, email, phone } = req.body;
@@ -161,8 +156,6 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
 
 
       const dateTime = new Date(`${date}T${time}`).toISOString(); // je convertis la date et l'heure en format ISO 8601
-
-
       const postData = { // je stocke les données du rendez-vous dans la variable postData
         firstName,
         lastName,
@@ -281,49 +274,40 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
 };
 
 
-
-public loginUser = async (req: Request, res: Response): Promise<void> => {
-  const { email, password } = req.body; // Le mot de passe fourni par l'utilisateur lors de la connexion.
-  if (!email || !password) {
-    res.status(400).json({ message: 'Email and password are required.' });
+// Méthode qui permet à un utilisateur de se connecter
+public loginUser = async (req: Request, res: Response): Promise<void> => { 
+  const { email, password } = req.body;
+  if (!email || !password) { // si un ou plusieurs champs manquent on retourne un message d'erreur
+    res.status(400).json({ message: 'Email et mot de passe sont requis.' });
     return;
   }
   
-  try {
-    const db = new Database();
-    const user = await db.findUserByEmail(email);
-    if (!user) {
-      res.status(401).json({ message: 'Invalid login credentials.' });
+  try { 
+    const db = new Database(); // je crée une instance de la classe Database
+    const user = await db.findUserByEmail(email); // je récupère l'utilisateur à partir de son email dans la base de données
+    if (!user) { // si l'utilisateur n'est pas trouvé on retourne un message d'erreur
+      res.status(401).json({ message: 'Authentification invalide.' });
       return;
     }
-
-    // Afficher le mot de passe fourni (en clair) et le préfixe du hash du mot de passe stocké pour débogage
-    console.log("Mot de passe fourni (en clair):", password);
-    console.log("Préfixe du hash du mot de passe stocké:", user.password_hash.substring(0, 7));
-
+    // je compare le mot de passe de l'utilisateur avec le mot de passe hashé dans la base de données 
     const isMatch = await bcrypt.compare(password, user.password_hash);
-    console.log("Résultat de la comparaison:", isMatch ? "Correspondance" : "Pas de correspondance");
+    
 
-    if (!isMatch) {
+    if (!isMatch) { // si les mots de passe ne correspondent pas on retourne un message d'erreur
       console.log("Les mots de passe ne correspondent pas.");
-      res.status(401).json({ message: 'Invalid login credentials.' });
+      res.status(401).json({ message: 'Authentification invalide.' });
       return;
     }
-    
+    // si les mots de passe correspondent on retourne un message de succès
     console.log("Les mots de passe correspondent.");
-    res.status(200).json({ message: 'Authentication successful', acuityUserId: user.user_id });
+    res.status(200).json({ message: 'Authentification reussi', acuityUserId: user.user_id });
   } catch (error) {
-    console.error('Error during the login process:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error('Erreur lors de la connexion:', error);
+    res.status(500).json({ message: 'erreur coté serveur' });
   }
 };
 
-
-
-
-
-
-  public fetchAppointmentDates = async (req: Request, res: Response): Promise<void> => { // 
+public fetchAppointmentDates = async (req: Request, res: Response): Promise<void> => { // 
     try {
       const { appointmentTypeID, month, calendarID } = req.query;
 

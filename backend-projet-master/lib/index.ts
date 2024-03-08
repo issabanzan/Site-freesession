@@ -1,5 +1,4 @@
 import "dotenv/config";
-
 import express from "express";
 import Booking from "./services/Booking";
 import PractitionerService from "./services/Practitioner";
@@ -7,10 +6,8 @@ import { ContactService } from "./services/Contact/contact.service";
 import Database from "./services/Database";
 import axios from 'axios';
 import multer from 'multer';
-import { stripeConfig } from './services/Stripe/stripe.config';
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 import crypto from 'crypto';
-
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 
 
@@ -105,7 +102,7 @@ app.post('/login', async (req, res) => {
 //});
 
 
-app.put('/api/user/:acuityUserId', async (req, res) => {
+app.put('/api/user/:acuityUserId', async (req, res) => { // Mettre à jour les informations du client dans la base de données et dans Acuity
   const { acuityUserId } = req.params;
   const { Lastname: lastName, Firstname: firstName, Mail: email, Mobile: phone } = req.body;
 
@@ -130,13 +127,7 @@ app.put('/api/user/:acuityUserId', async (req, res) => {
 
 
 
-
-
-
-
-
-
-app.get('/api/user/:acuityUserId', async (req, res) => {
+app.get('/api/user/:acuityUserId', async (req, res) => { // Récupérer les données de l'utilisateur connecté à partir de son ID Acuity pour pré-remplir le formulaire
   
   try {
     const { acuityUserId } = req.params;
@@ -154,7 +145,7 @@ app.get('/api/user/:acuityUserId', async (req, res) => {
 });
 
 
-
+// Récupérer les rendez-vous d'un utilisateur connecté
 app.get('/api/appointments/user/:acuityUserId', async (req, res) => {
   try {
     const { acuityUserId } = req.params;
@@ -167,6 +158,7 @@ app.get('/api/appointments/user/:acuityUserId', async (req, res) => {
   }
 });
 
+// Reprogrammer un rendez-vous
 app.put('/api/appointments/:acuityUserId/reschedule', async (req, res) => {
   const { acuityUserId } = req.params;
   const { newDate, newTime } = req.body;

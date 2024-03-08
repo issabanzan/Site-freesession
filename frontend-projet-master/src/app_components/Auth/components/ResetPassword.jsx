@@ -26,10 +26,10 @@ function ResetPassword() {
     <Layout>
       <div className="flex justify-center items-center h-screen bg-[#225886]">
         <div className="bg-white p-8 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold mb-4 text-center text-black">Réinitialiser le mot de passe</h2>
+          <h2 className="text-2xl font-bold mb-4 text-center text-black">Reset password</h2>
           <form onSubmit={handleSubmit} className="text-center">
             <label className="block mb-4 text-black">
-              Nouveau mot de passe:
+            New Password:
               <input
   type="password"
   value={newPassword}
@@ -41,7 +41,7 @@ function ResetPassword() {
 
             </label>
             <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors">
-              Réinitialiser le mot de passe
+             Reset password
             </button>
           </form>
           {message && <p className="text-black mt-4">{message}</p>}
