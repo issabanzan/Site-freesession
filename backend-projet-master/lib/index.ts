@@ -1,16 +1,22 @@
 import "dotenv/config";
-
 import express from "express";
 import Booking from "./services/Booking";
 import PractitionerService from "./services/Practitioner";
 import { ContactService } from "./services/Contact/contact.service";
 import Database from "./services/Database";
 import axios from 'axios';
-// import { smtpConfig } from "./services/Contact/contact.config";
+import multer from 'multer';
+import crypto from 'crypto';
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+
+
+const upload = multer();
+
 
 import cors from 'cors';
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 if (!port) {
   console.error("La variable d'environnement PORT n'est pas définie.");
@@ -21,6 +27,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/calendars/all", async (req, res) => {
   const booking = new Booking();
@@ -88,12 +95,40 @@ app.post('/login', async (req, res) => {
 });
 
 
+
 //app.get('/api/clients', async (req, res) => {
 // const booking = new Booking();
 // await booking.getAllClients(req, res);
 //});
 
-app.get('/api/user/:acuityUserId', async (req, res) => {
+
+app.put('/api/user/:acuityUserId', async (req, res) => { // Mettre à jour les informations du client dans la base de données et dans Acuity
+  const { acuityUserId } = req.params;
+  const { Lastname: lastName, Firstname: firstName, Mail: email, Mobile: phone } = req.body;
+
+  try {
+    const db = new Database();
+    await db.updateUser(Number(acuityUserId), firstName, lastName, email, phone);
+
+    const booking = new Booking();
+    const acuityResponse = await booking.updateClientInAcuity(Number(acuityUserId), firstName, lastName, email, phone);
+
+    res.json({ message: 'Les informations du client ont été mises à jour avec succès.', data: acuityResponse });
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du client :', error);
+    
+    if (axios.isAxiosError(error) && error.response) {
+      res.status(error.response.status).json({ message: 'Erreur lors de la mise à jour avec l\'API Acuity', details: error.response.data });
+    } else {
+      res.status(500).json({ message: 'Erreur interne du serveur' });
+    }
+  }
+});
+
+
+
+app.get('/api/user/:acuityUserId', async (req, res) => { // Récupérer les données de l'utilisateur connecté à partir de son ID Acuity pour pré-remplir le formulaire
+  
   try {
     const { acuityUserId } = req.params;
     const db = new Database();
@@ -110,20 +145,7 @@ app.get('/api/user/:acuityUserId', async (req, res) => {
 });
 
 
-app.put('/api/user/:acuityUserId', async (req, res) => {
-  try {
-    const { acuityUserId } = req.params;
-    const { Lastname, Firstname, Mail, Mobile } = req.body;
-
-    const db = new Database();
-    await db.updateUser(Number(acuityUserId), Firstname, Lastname, Mail, Mobile);
-
-    res.json({ message: 'Informations de l’utilisateur mises à jour avec succès.' });
-  } catch (error) {
-    console.error('Erreur lors de la mise à jour de l’utilisateur:', error);
-    res.status(500).json({ message: 'Erreur interne du serveur' });
-  }
-});
+// Récupérer les rendez-vous d'un utilisateur connecté
 app.get('/api/appointments/user/:acuityUserId', async (req, res) => {
   try {
     const { acuityUserId } = req.params;
@@ -136,6 +158,7 @@ app.get('/api/appointments/user/:acuityUserId', async (req, res) => {
   }
 });
 
+// Reprogrammer un rendez-vous
 app.put('/api/appointments/:acuityUserId/reschedule', async (req, res) => {
   const { acuityUserId } = req.params;
   const { newDate, newTime } = req.body;
@@ -217,14 +240,115 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+app.post('/api/v1_0/newSwik', upload.none(), async (req, res) => {
+  try {
+    console.log('req.body', req.body);
+    
+    const redirectURL = encodeURIComponent('https://www.google.com');
+    
+
+    const bodyWithRedirect = {
+      ...req.body,
+      redirectURL,
+      
+    };
+
+    const response = await axios.post('https://api.swikly.com/v1_0/newSwik', bodyWithRedirect, {
+      headers: {
+        'api_key': process.env.SWIKLY_API_KEY,
+        'api_secret': process.env.SWIKLY_API_SECRET,
+        'Content-Type': 'multipart/form-data',
+        'Access-Control-Allow-Origin' : '*'
+      }
+    });
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error('Error during Swikly payment creation via proxy:', error);
+    res.status(500).send('Server error');
+  }
+});
+
+
+app.post('/api/payment', async (req, res) => {
+  const { amount, payment_method_id: id } = req.body;
+  console.log('Payment', amount, id); // Debug: Vérifiez que amount et id sont bien reçus
+  
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amount, // Utilisez l'amount extrait du corps de la requête
+      currency: 'eur',
+      payment_method: id,
+      confirm: true,
+      return_url: 'https://google.com',
+    });
+
+    console.log('Paiement réussi', paymentIntent);
+    res.json({ message: 'Payment successful', paymentIntent });
+  } catch (error) {
+    console.error('Payment error:', error);
+    res.status(400).json({ message: 'Payment failed', error: error.message });
+  }
+});
+
+
+app.post("/api/request-password-reset", async (req, res) => {
+  const db = new Database(); 
+  const { email } = req.body;
+  try {
+    const user = await db.findUserByEmail(email);
+    if (!user) {
+      return res.status(200).json({ message: 'Si un compte est associé à cet email, un lien de réinitialisation a été envoyé.' });
+    }
+
+    const token = crypto.randomBytes(20).toString('hex');
+    const expiresAt = new Date();
+    expiresAt.setHours(expiresAt.getHours() + 1);
+
+    await db.savePasswordResetToken(email, token, expiresAt);
+
+    // Utilisation du PasswordResetService pour envoyer l'email
+    const passwordResetService = new ContactService();
+    await passwordResetService.sendResetEmail(email, token);
+
+    res.status(200).json({ message: 'Si un compte est associé à cet email, un lien de réinitialisation a été envoyé.' });
+  } catch (error) {
+    console.error('Erreur lors de la demande de réinitialisation du mot de passe:', error);
+    res.status(500).json({ message: 'Erreur interne du serveur' });
+  }
+});
+
+app.post('/api/reset-password', async (req, res) => {
+  const db = new Database();
+  const { email, token, newPassword } = req.body;
+
+  try {
+    const isValidToken = await db.verifyPasswordResetToken(email, token);
+    if (!isValidToken) {
+      res.status(400).send('Token de réinitialisation invalide ou expiré.');
+      return;
+    }
+
+    await db.updateUserPassword(email, newPassword);
+    await db.deletePasswordResetToken(token);
+
+    res.send('Mot de passe réinitialisé avec succès.');
+  } catch (error) {
+    console.error('Erreur lors de la réinitialisation du mot de passe:', error);
+    res.status(500).send('Erreur serveur.');
+  }
+});
+
+
 app.post('/api/create-client', async (req, res) => {
   const booking = new Booking();
   await booking.createClient(req, res);
 });
 
 
-app.listen(port, () => {
-  console.log(`Serveur lancé sur le port : ${port} !`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`Serveur lancé sur le port : ${port}`);
+  });
+}
 export default app;
 
