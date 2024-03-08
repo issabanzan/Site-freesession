@@ -33,11 +33,11 @@ export class ContactService {
 
 async sendResetEmail(email: string, token: string): Promise<void> {
   const resetLink = `http://localhost:3000/reset-password?token=${token}`;
-  const mail = {
+  const mailOptions = {
     from: 'support@institutadios.com',
     to: email,
     subject: 'Resetting your password',
-    html: '<p>To reset your password, please click on this link: <a href="${resetLink}">${resetLink}</a></p>',
+    html: `<p>To reset your password, please click on this link: <a href="${resetLink}">${resetLink}</a></p>`,
   };
 
   await this.transporter.sendMail(mail);
