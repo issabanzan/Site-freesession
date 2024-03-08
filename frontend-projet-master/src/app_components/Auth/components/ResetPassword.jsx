@@ -11,10 +11,10 @@ function ResetPassword() {
   async function handleSubmit(e) {
     e.preventDefault();
     const params = new URLSearchParams(location.search);
-    const token = params.get('token'); // Extract the token from URL
+    const token = params.get('token');
 
     try {
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}api/request-password-reset`, { token, newPassword });
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}api/reset-password`, { token, newPassword });
       setMessage('Votre mot de passe a été réinitialisé avec succès.');
     } catch (error) {
       console.error('Erreur lors de la réinitialisation du mot de passe:', error);
@@ -30,14 +30,14 @@ function ResetPassword() {
           <form onSubmit={handleSubmit} className="text-center">
             <label className="block mb-4 text-black">
             New Password:
-              <input
-  type="password"
-  value={newPassword}
-  placeholder="Entrez votre nouveau mot de passe"
-  onChange={(e) => setNewPassword(e.target.value)}
-  className="border-black border-solid border-2 rounded-md px-3 py-2 mt-1 w-full focus:ring-0"
-  required
-/>
+                            <input
+                type="password"
+                value={newPassword}
+                placeholder="Entrez votre nouveau mot de passe"
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="border-black border-solid border-2 rounded-md px-3 py-2 mt-1 w-full focus:ring-0"
+                required
+              />
 
             </label>
             <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors">
