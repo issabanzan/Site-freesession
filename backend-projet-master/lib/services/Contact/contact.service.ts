@@ -10,25 +10,40 @@ export class ContactService {
   }
 
   async sendMail(contactForm: ContactForm): Promise<void> {
-    const mailOptions = {
+    const mail = {
       from: contactForm.email,
       to: 'support@institutadios.com',
-      subject: `Demande de session gratuite - ${contactForm.name}`,
+      subject: `Freesession request - ${contactForm.name}`,
       text: `Name: ${contactForm.name}\nEmail: ${contactForm.email}\nMessage: ${contactForm.message}`,
     };
     
-    const mailOptionsSender = {
+    const mailSender = {
       from: 'support@institutadios.com',
       to: contactForm.email,
-      subject: 'Confirmation de réception - Book free sessions with practitioners',
-      text: `Bonjour ${contactForm.name},\n\nNous avons bien reçu votre message et vous remercions de nous avoir contactés. Un membre de notre équipe va traiter votre demande et vous répondre dans les plus brefs délais.\n\nCordialement,\nL'équipe Book free sessions with practitioners`,
+      subject: 'Confirmation of receipt - Book free sessions with practitioners',
+      text: 'Hello ${contactForm.name},\n\nWe have received your message and thank you for contacting us. A member of our team will process your request and respond to you as soon as possible.\n\nSincerely,\nThe Book free sessions with practitioners',
   };
 
  
-  await this.transporter.sendMail(mailOptions);
+  await this.transporter.sendMail(mail);
 
   
-  await this.transporter.sendMail(mailOptionsSender);
+  await this.transporter.sendMail(mailSender);
 }
 
+async sendResetEmail(email: string, token: string): Promise<void> {
+  
+const resetLink = `https://freesession.net/reset-password?token=${token}`;
+
+  const mail = {
+    from: 'support@institutadios.com',
+    to: email,
+    subject: 'Resetting your password',
+    html: `<p>To reset your password, please click on this link: <a href="${resetLink}">${resetLink}</a></p>`,
+  };
+
+  await this.transporter.sendMail(mail);
 }
+}
+
+
