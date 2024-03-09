@@ -1,5 +1,10 @@
+
+
+
 /* eslint-disable react-refresh/only-export-components */
 import { useParams } from 'react-router-dom';
+// import logo from '../../assets/logo.png';
+// import profilePicture from '../../assets/thumbnail.jpeg';
 import { useEffect } from 'react';
 import PresentationHeader from './components/PresentationHeader';
 import { useState } from 'react';
@@ -10,14 +15,24 @@ import { AlignLeft, Clock } from 'react-feather';
 import usePractitionerService from '../../app_hooks/usePractitionerService';
 import { PractitionerProvider } from '../../app_contexts/Practitioner';
 import Loading from '../Loading/Loading';
-import { Heart, Home, Phone, Users } from 'react-feather';
+import { Heart, Home} from 'react-feather';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
-import PaiementComponent from './components/PaiementComponent';
+//import PaiementComponent from './components/PaiementComponent';
+//import PaymentForm from './components/PaiementComponent';
+//import CheckoutForm from './components/CheckoutForm';
+import StripeContainer from './components/StripeContainer';
+
+
+//import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 
 
+
+const PUBLIC_KEY = "pk_test_51OpWOiHlI297KVjoi6m5YmhWdpB6s5c7XQU9QU5Bpq0vkkFmXBJGdOvLaxs27IYCKJOHpQnebD3KjcWB4fQP3ICF00glcWOUck";
+const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
 const PraticionerDetails = () => {
 
@@ -43,6 +58,7 @@ const PraticionerDetails = () => {
   const [passwordError, setPasswordError] = useState('');
 
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+ 
  
 
   const { id } = useParams();
@@ -137,6 +153,7 @@ const PraticionerDetails = () => {
       console.error(error);
     }
   };
+  
 
   const handlePayCautionClick = () => {
 
@@ -144,7 +161,7 @@ const PraticionerDetails = () => {
   };
 
  
-
+  const [showPaymentForm, setShowPaymentForm] = useState(false);
   const handleDateChange = (date) => {
 
     console.log(date)
@@ -167,6 +184,7 @@ const PraticionerDetails = () => {
       console.error(error);
     }
   };
+  
 
 
   const handleAppointmentTypeChange = (e) => {
@@ -174,10 +192,6 @@ const PraticionerDetails = () => {
 
     setSelectedAppointmentType(appointmentTypeId);
   };
-
-  useEffect(() => {
-    console.log(`Le type de rendez-vous sélectionné est: ${selectedAppointmentType}`);
-  }, [selectedAppointmentType]);
 
   useEffect(() => {
     console.log(`Le type de rendez-vous sélectionné est: ${selectedAppointmentType}`);
@@ -203,6 +217,10 @@ const PraticionerDetails = () => {
     // Expression régulière simple pour la validation d'email
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
+  
+
+
+
 
 
   const fetchCalendars = async () => {
@@ -262,7 +280,13 @@ const PraticionerDetails = () => {
       fetchAvailableDates();
     }
   }, [selectedAppointmentType, selectedCalendar]);
-  
+
+
+
+
+
+
+
   const fetchAvailableTimes = async (date) => {
     const parisDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
       .toISOString()
@@ -445,95 +469,69 @@ const PraticionerDetails = () => {
                 <div className="mt-4">
                   <div className="flex flex-col space-y-4">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name *</label>
-                    <input
-                      type="text"
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                      className={firstNameError ? 'input-error' : ''}
-                    />
-                    {firstNameError && <p className="text-red-500 text-xs italic">{firstNameError}</p>}
-                  </div>
+  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name *</label>
+  <input
+    type="text"
+    value={firstName}
+    onChange={(e) => setFirstName(e.target.value)}
+    className={firstNameError ? 'input-error' : ''}
+  />
+  {firstNameError && <p className="text-red-500 text-xs italic">{firstNameError}</p>}
+</div>
 
-                  <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name *</label>
-                    <input
-                      type="text"
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                      className={lastNameError ? 'input-error' : ''}
-                    />
-                    {lastNameError && <p className="text-red-500 text-xs italic">{lastNameError}</p>}
-                  </div>
+<div>
+  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name *</label>
+  <input
+    type="text"
+    value={lastName}
+    onChange={(e) => setLastName(e.target.value)}
+    className={lastNameError ? 'input-error' : ''}
+  />
+  {lastNameError && <p className="text-red-500 text-xs italic">{lastNameError}</p>}
+</div>
 
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email *</label>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className={emailError ? 'input-error' : ''}
-                    />
-                    {emailError && <p className="text-red-500 text-xs italic">{emailError}</p>}
-                  </div>
+<div>
+  <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email *</label>
+  <input
+    type="email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    className={emailError ? 'input-error' : ''}
+  />
+  {emailError && <p className="text-red-500 text-xs italic">{emailError}</p>}
+</div>
 
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Téléphone *</label>
-                    <input
-                      type="tel"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className={phoneError ? 'input-error' : ''}
-                    />
-                    {phoneError && <p className="text-red-500 text-xs italic">{phoneError}</p>}
-                  </div>
+<div>
+  <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Téléphone *</label>
+  <input
+    type="tel"
+    value={phone}
+    onChange={(e) => setPhone(e.target.value)}
+    className={phoneError ? 'input-error' : ''}
+  />
+  {phoneError && <p className="text-red-500 text-xs italic">{phoneError}</p>}
+</div>
 
-<<<<<<< HEAD
-                  <div>
-                    <label htmlFor="password" className="block text-sm font-medium text-gray-700">Mot de passe *</label>
-                    <input
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className={passwordError ? 'input-error' : ''}
-                      required
-                    />
-                    {passwordError && <p className="text-red-500 text-xs italic">{passwordError}</p>}
-                  </div>
-=======
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">Mail *</label>
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
->>>>>>> origin/main
+<div>
+  <label htmlFor="password" className="block text-sm font-medium text-gray-700">Mot de passe *</label>
+  <input
+    type="password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    className={passwordError ? 'input-error' : ''}
+    required
+  />
+  {passwordError && <p className="text-red-500 text-xs italic">{passwordError}</p>}
+</div>
 
-                    <button
-                      className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mb-2"
-                      onClick={handlePayCautionClick}
-                    >
-                      Payer la caution
-                    </button>
 
-<<<<<<< HEAD
-                    {showPaymentModal && (
-=======
-                    </div>
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone number *</label>
-                      <input
-                        type="tel"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
->>>>>>> origin/main
+                    {/* Bouton pour afficher le formulaire de paiement */}
+      <button onClick={() => setShowPaymentForm(true)}>
+        Payer la caution
+      </button>
 
-                      <div className="App">
-                        <PaiementComponent />
-                      </div>
-                    )}
-
-<<<<<<< HEAD
+      {/* Affichage conditionnel du formulaire de paiement */}
+      {showPaymentForm && <StripeContainer />}
                     <button
                       type="submit"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 w-full"
@@ -541,22 +539,8 @@ const PraticionerDetails = () => {
                     >
                       Take Appointment
                     </button>
-=======
-                    </div>
-
-                    <div>
-                      <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password *</label>
-                      <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-
-                      />
-                    </div>
 
                     
-                    
->>>>>>> origin/main
 
 
 
