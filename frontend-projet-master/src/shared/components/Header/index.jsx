@@ -16,7 +16,7 @@ function Header() { // création du composant Header
         
       
       {/* Titre pour les grands écrans */}
-      <h1 style={{ marginRight: '0rem' }}  className="hidden lg:block lg:text-xl font-bold text-[#333C4E] mt-7 leading-tight tracking-tighter inter text-2xl">
+      <h1 style={{ marginRight: '3rem' }}  className="hidden lg:block lg:text-xl font-bold text-[#333C4E] mt-7 leading-tight tracking-tighter inter text-2xl">
         Freesession
       </h1>
 
