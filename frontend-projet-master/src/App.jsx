@@ -1,7 +1,6 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react'; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Loading from './app_components/Loading/Loading';
-const Dashboard = lazy(() => import('./app_components/Dashboard/Dashboard'));
 const Login = lazy(() => import('./app_components/Auth/Login'));
 const ForgotPassword = lazy(()=> import('./app_components/Auth/components/ForgotPassword'));
 const ResetPassword = lazy(()=> import('./app_components/Auth/components/ResetPassword'));
@@ -9,7 +8,6 @@ const PresentationV2 = lazy(() => import('./app_components/PresentationV2'));
 const PractitionerDetails = lazy(() => import('./app_components/PractitionerDetails'));
 const BecomePractitioner = lazy(() => import('./app_components/BecomePractitioner'));
 const AyurvedaPage = lazy(() => import('./app_components/AyurvedaPage'));
-
 const Calendar = lazy(() => import('./app_components/Calendar'));
 const Contact = lazy(() => import('./app_components/Contact'));
 const HypnosePage = lazy(() => import('./app_components/HypnosePage'));
@@ -66,13 +64,11 @@ export default function App() {
             <PresentationV2 />
           </LazyLoader>
         } />
-        <Route path="/login" element={
+        <Route path="/login" element={ 
           <LazyLoader>
             <Login />
           </LazyLoader>
         } />
-
-
 
         <Route path="/forgot-password" element={
           <LazyLoader>
@@ -86,11 +82,7 @@ export default function App() {
           </LazyLoader>
         } />
         
-        <Route path="/dashboard" element={
-          <LazyLoader>
-            <Dashboard />
-          </LazyLoader>
-        } />
+      
         <Route path="/details/:id" element={
           <LazyLoader>
             <PractitionerDetails />
