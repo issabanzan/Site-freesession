@@ -10,9 +10,6 @@ jobs:
       - run:
           name: Déploiement au serveur de production
           command: |
-<<<<<<< HEAD
             ssh debian@85.31.239.109"cd freesession && git pull origin master"
-=======
             ssh debian@85.31.239.109 "cd freesession && git pull origin"
->>>>>>> origin/main
             ssh debian@85.31.239.109 "cd freesession && sudo docker compose start"
