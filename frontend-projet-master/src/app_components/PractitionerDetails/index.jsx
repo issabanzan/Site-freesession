@@ -1,11 +1,8 @@
-
-
-
 /* eslint-disable react-refresh/only-export-components */
 import { useParams } from 'react-router-dom';
-// import logo from '../../assets/logo.png';
-// import profilePicture from '../../assets/thumbnail.jpeg';
+// import de useEffect depuis react useEffect est un Hook qui permet d'effectuer des effets de bord dans les composants fonctionnels
 import { useEffect } from 'react';
+// import de PresentationHeader depuis le dossier components dans le dossier PractitionerDetails 
 import PresentationHeader from './components/PresentationHeader';
 import { useState } from 'react';
 import Header from '../../shared/components/Header';
@@ -15,29 +12,17 @@ import { AlignLeft, Clock } from 'react-feather';
 import usePractitionerService from '../../app_hooks/usePractitionerService';
 import { PractitionerProvider } from '../../app_contexts/Practitioner';
 import Loading from '../Loading/Loading';
-import { Heart, Home} from 'react-feather';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import axios from 'axios';
-//import PaiementComponent from './components/PaiementComponent';
-//import PaymentForm from './components/PaiementComponent';
-//import CheckoutForm from './components/CheckoutForm';
+import { Heart, Home } from 'react-feather'; // import de Heart et Home depuis react-feather pour les icônes
+import Calendar from 'react-calendar'; // import de Calendar depuis react-calendar pour afficher un calendrier 
+import 'react-calendar/dist/Calendar.css'; // import du fichier css de react-calendar pour styliser le calendrier 
+import axios from 'axios'; // import d'axios depuis axios pour effectuer des requêtes HTTP
 import StripeContainer from './components/StripeContainer';
 
-
-//import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-
-
-
-
-const PUBLIC_KEY = "pk_test_51OpWOiHlI297KVjoi6m5YmhWdpB6s5c7XQU9QU5Bpq0vkkFmXBJGdOvLaxs27IYCKJOHpQnebD3KjcWB4fQP3ICF00glcWOUck";
-const stripeTestPromise = loadStripe(PUBLIC_KEY);
-
 const PraticionerDetails = () => {
-
-
-  const [selectedAppointmentType, setSelectedAppointmentType] = useState('');
+  /* Déclaration de selectedAppointmentType avec la fonction useState
+   qui retourne un tableau avec deux éléments, le premier élément est la valeur initiale 
+   de selectedAppointmentType, le deuxième élément est une fonction pour mettre à jour la valeur de selectedAppointmentType*/
+  const [selectedAppointmentType, setSelectedAppointmentType] = useState(''); 
   const [appointmentTypes, setAppointmentTypes] = useState([]);
   const [calendars, setCalendars] = useState([]);
   const [selectedCalendar, setSelectedCalendar] = useState('');
@@ -54,45 +39,34 @@ const PraticionerDetails = () => {
   const [lastNameError, setLastNameError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [phoneError, setPhoneError] = useState('');
- 
   const [passwordError, setPasswordError] = useState('');
-
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
- 
- 
-
-  const { id } = useParams();
+  const { id } = useParams(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-  
     let isValid = true;
-  
-  
     setFirstNameError('');
     setLastNameError('');
     setEmailError('');
     setPhoneError('');
     setPasswordError('');
-  
-    
-  if (!firstName || firstName.length < 2) {
-    setFirstNameError('The firstName must contain at least 2 characters');
-    isValid = false;
-  }
 
-  
-  if (!lastName || lastName.length < 2) {
-    setLastNameError('The name must contain at least 2 characters');
-    isValid = false;
-  }
+    if (!firstName || firstName.length < 2) {
+      setFirstNameError('The firstName must contain at least 2 characters');
+      isValid = false;
+    }
 
 
-  if (!email || !validateEmail(email)) {
-    setEmailError('Please enter a valid email');
-    isValid = false;
-  }
+    if (!lastName || lastName.length < 2) {
+      setLastNameError('The name must contain at least 2 characters');
+      isValid = false;
+    }
+
+
+    if (!email || !validateEmail(email)) {
+      setEmailError('Please enter a valid email');
+      isValid = false;
+    }
     if (!phone) {
       setPhoneError('This field is required');
       isValid = false;
@@ -101,9 +75,9 @@ const PraticionerDetails = () => {
       setPasswordError('The password must be at least 8 characters long, include letters, numbers and special characters.');
       isValid = false;
     }
-  
+
     if (!isValid) {
-      
+
       return;
     }
 
@@ -119,7 +93,7 @@ const PraticionerDetails = () => {
     const formattedDate = formatDate(selectedDate);
     console.log('Formatdate', formattedDate);
 
-  
+
     // Si tout est valide, procéder avec la logique de soumission
     try {
       const formattedDate = selectedDate ? formatDate(selectedDate) : '';
@@ -138,7 +112,7 @@ const PraticionerDetails = () => {
           'Content-Type': 'application/json',
         },
       });
-  
+
       console.log(response.data);
       // Réinitialiser les champs et fermer le formulaire après la soumission réussie
       setFirstName('');
@@ -153,14 +127,9 @@ const PraticionerDetails = () => {
       console.error(error);
     }
   };
-  
 
-  const handlePayCautionClick = () => {
 
-    setShowPaymentModal(true);
-  };
 
- 
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const handleDateChange = (date) => {
 
@@ -170,32 +139,33 @@ const PraticionerDetails = () => {
   };
 
 
-  const fetchAppointmentTypes = async () => {
-    try {
+  const fetchAppointmentTypes = async () => { // Fonction pour récupérer les types de rendez-vous
+    try { // Utilisation de try...catch pour gérer les erreurs
+
+      // Utilisation de axios pour effectuer une requête GET (/appointment-types/all)
       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/appointment-types/all`);
-      
-      const specificAppointmentType = response.data.filter(appointmentType => appointmentType.id === parseInt(import.meta.env.VITE_FREE_RDV_BOOKING_APPOINTMENT_TYPE_ID));
-      setAppointmentTypes(specificAppointmentType);
-  
-      if (specificAppointmentType.length > 0) {
-        setSelectedAppointmentType(specificAppointmentType[0].id);
+
+      const specificAppointmentType = response.data.filter(appointmentType => appointmentType.id === parseInt(import.meta.env.VITE_FREE_RDV_BOOKING_APPOINTMENT_TYPE_ID)); // Filtrer les types de rendez-vous pour obtenir le type de rendez-vous spécifique
+      setAppointmentTypes(specificAppointmentType); // Mettre à jour le state avec le type de rendez-vous spécifique
+
+      if (specificAppointmentType.length > 0) { // Si le type de rendez-vous spécifique existe
+        setSelectedAppointmentType(specificAppointmentType[0].id); // Mettre à jour le state avec l'ID du type de rendez-vous spécifique
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error) { // Gérer les erreurs avec catch en cas d'échec de la requête
+      console.error(error); // Afficher l'erreur dans la console
     }
   };
-  
 
+  const handleAppointmentTypeChange = (e) => { // Fonction pour gérer le changement de type de rendez-vous
+    const appointmentTypeId = e.target.value; // Récupérer la valeur de l'option sélectionnée
 
-  const handleAppointmentTypeChange = (e) => {
-    const appointmentTypeId = e.target.value;
-
-    setSelectedAppointmentType(appointmentTypeId);
+    setSelectedAppointmentType(appointmentTypeId); // Mettre à jour le state avec l'ID du type de rendez-vous sélectionné
   };
 
-  useEffect(() => {
+  useEffect(() => { // Utilisation de useEffect pour afficher le type de rendez-vous sélectionné 
     console.log(`Le type de rendez-vous sélectionné est: ${selectedAppointmentType}`);
-  }, [selectedAppointmentType]);
+  }, [selectedAppointmentType]); /* Utilisation de [selectedAppointmentType] comme dépendance pour exécuter le code à chaque changement
+   de selectedAppointmentType*/
 
   const validatePassword = (password) => {
     // Vérifier la longueur minimale de 8 caractères
@@ -208,7 +178,7 @@ const PraticionerDetails = () => {
     const hasNumbers = /\d/.test(password);
     // Vérifier la présence de caractères spéciaux
     const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-  
+
     // Le mot de passe est valide seulement si tous les critères sont respectés
     return hasValidLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChars;
   };
@@ -217,41 +187,47 @@ const PraticionerDetails = () => {
     // Expression régulière simple pour la validation d'email
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
-  
 
 
+  const fetchCalendars = async () => { // Fonction pour récupérer les calendriers
+    try { // Utilisation de try...catch pour gérer les erreurs
 
-
-
-  const fetchCalendars = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/calendars/all`);
-      const filteredData = response.data.calendars.map(calendar => ({
-        id: calendar.id,
-        name: calendar.name,
-        appointmentTypes: calendar.appointmentTypes
-      }));
-      setCalendars(filteredData);
-    } catch (error) {
+      // Utilisation de axios pour effectuer une requête GET (/calendars/all)
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/calendars/all`); 
+      const filteredData = response.data.calendars.map(calendar => ({ // Filtrer les données pour obtenir uniquement les propriétés nécessaires
+        id: calendar.id, // ID du calendrier
+        name: calendar.name, // Nom du calendrier
+        appointmentTypes: calendar.appointmentTypes // Types de rendez-vous disponibles pour le calendrier
+      })); 
+      setCalendars(filteredData); // Mettre à jour le state avec les calendriers filtrés
+    } catch (error) { // Gérer les erreurs avec catch en cas d'échec de la requête
       console.error(error);
     }
   };
 
+  useEffect(() => { 
+    fetchAppointmentTypes(); // Appel de la fonction fetchAppointmentTypes pour récupérer les types de rendez-vous
+    fetchCalendars(); // Appel de la fonction fetchCalendars pour récupérer les calendriers
+  }, []); // Utilisation de [] comme dépendance pour exécuter le code une seule fois au montage du composant
+  // en gros fetchcacalendars sert à récupérer les calendriers et fetchAppointmentTypes sert à récupérer les types de rendez-vous
 
 
-  const fetchAvailableDates = async () => {
+
+  // Fonction pour récupérer les dates disponibles pour le type de rendez-vous et le calendrier sélectionnés
+  const fetchAvailableDates = async () => { 
     const appointmentTypeID = `${import.meta.env.VITE_FREE_RDV_BOOKING_APPOINTMENT_TYPE_ID}`;
-    const selectedCalendarID = selectedCalendar;
-    let allAvailableSlots = [];
+    const selectedCalendarID = selectedCalendar; // Récupérer l'ID du calendrier sélectionné
+    let allAvailableSlots = []; // Initialiser un tableau vide pour stocker toutes les dates disponibles
 
-    try {
-      const currentYear = new Date().getFullYear();
+    try { // Utilisation de try...catch pour gérer les erreurs
+      const currentYear = new Date().getFullYear(); // Récupérer l'année actuelle pour obtenir les dates disponibles pour l'année en cours
 
-      for (let month = 1; month <= 12; month++) {
-        const monthFormatted = `${currentYear}-${month.toString().padStart(2, '0')}`;
-
+      for (let month = 1; month <= 12; month++) { // Boucle pour obtenir les dates disponibles pour chaque mois de l'année
+        const monthFormatted = `${currentYear}-${month.toString().padStart(2, '0')}`; // Formater le mois au format 'YYYY-MM'
+        
+        // Utilisation de axios pour effectuer une requête GET (/fetch_appointment_dates)
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/fetch_appointment_dates`, {
-          params: {
+          params: { // Paramètres de requête pour filtrer les dates disponibles
             appointmentTypeID: appointmentTypeID,
             month: monthFormatted,
             calendarID: selectedCalendarID
@@ -280,12 +256,6 @@ const PraticionerDetails = () => {
       fetchAvailableDates();
     }
   }, [selectedAppointmentType, selectedCalendar]);
-
-
-
-
-
-
 
   const fetchAvailableTimes = async (date) => {
     const parisDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
@@ -320,12 +290,6 @@ const PraticionerDetails = () => {
     }
   };
 
-
-
-  useEffect(() => {
-    fetchAppointmentTypes();
-    fetchCalendars();
-  }, []);
 
   const service = usePractitionerService();
 
@@ -468,70 +432,70 @@ const PraticionerDetails = () => {
               {selectedTime && (
                 <div className="mt-4">
                   <div className="flex flex-col space-y-4">
-                  <div>
-  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name *</label>
-  <input
-    type="text"
-    value={firstName}
-    onChange={(e) => setFirstName(e.target.value)}
-    className={firstNameError ? 'input-error' : ''}
-  />
-  {firstNameError && <p className="text-red-500 text-xs italic">{firstNameError}</p>}
-</div>
+                    <div>
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name *</label>
+                      <input
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        className={firstNameError ? 'input-error' : ''}
+                      />
+                      {firstNameError && <p className="text-red-500 text-xs italic">{firstNameError}</p>}
+                    </div>
 
-<div>
-  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name *</label>
-  <input
-    type="text"
-    value={lastName}
-    onChange={(e) => setLastName(e.target.value)}
-    className={lastNameError ? 'input-error' : ''}
-  />
-  {lastNameError && <p className="text-red-500 text-xs italic">{lastNameError}</p>}
-</div>
+                    <div>
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name *</label>
+                      <input
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        className={lastNameError ? 'input-error' : ''}
+                      />
+                      {lastNameError && <p className="text-red-500 text-xs italic">{lastNameError}</p>}
+                    </div>
 
-<div>
-  <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email *</label>
-  <input
-    type="email"
-    value={email}
-    onChange={(e) => setEmail(e.target.value)}
-    className={emailError ? 'input-error' : ''}
-  />
-  {emailError && <p className="text-red-500 text-xs italic">{emailError}</p>}
-</div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email *</label>
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className={emailError ? 'input-error' : ''}
+                      />
+                      {emailError && <p className="text-red-500 text-xs italic">{emailError}</p>}
+                    </div>
 
-<div>
-  <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Téléphone *</label>
-  <input
-    type="tel"
-    value={phone}
-    onChange={(e) => setPhone(e.target.value)}
-    className={phoneError ? 'input-error' : ''}
-  />
-  {phoneError && <p className="text-red-500 text-xs italic">{phoneError}</p>}
-</div>
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Téléphone *</label>
+                      <input
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className={phoneError ? 'input-error' : ''}
+                      />
+                      {phoneError && <p className="text-red-500 text-xs italic">{phoneError}</p>}
+                    </div>
 
-<div>
-  <label htmlFor="password" className="block text-sm font-medium text-gray-700">Mot de passe *</label>
-  <input
-    type="password"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    className={passwordError ? 'input-error' : ''}
-    required
-  />
-  {passwordError && <p className="text-red-500 text-xs italic">{passwordError}</p>}
-</div>
+                    <div>
+                      <label htmlFor="password" className="block text-sm font-medium text-gray-700">Mot de passe *</label>
+                      <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className={passwordError ? 'input-error' : ''}
+                        required
+                      />
+                      {passwordError && <p className="text-red-500 text-xs italic">{passwordError}</p>}
+                    </div>
 
 
                     {/* Bouton pour afficher le formulaire de paiement */}
-      <button onClick={() => setShowPaymentForm(true)}>
-        Payer la caution
-      </button>
+                    <button onClick={() => setShowPaymentForm(true)}>
+                      Payer la caution
+                    </button>
 
-      {/* Affichage conditionnel du formulaire de paiement */}
-      {showPaymentForm && <StripeContainer />}
+                    {/* Affichage conditionnel du formulaire de paiement */}
+                    {showPaymentForm && <StripeContainer />}
                     <button
                       type="submit"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 w-full"
@@ -540,7 +504,7 @@ const PraticionerDetails = () => {
                       Take Appointment
                     </button>
 
-                    
+
 
 
 

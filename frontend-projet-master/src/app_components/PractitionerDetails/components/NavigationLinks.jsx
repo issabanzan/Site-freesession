@@ -1,5 +1,5 @@
 
-const navigationLinks = [
+const navigationLinks = [ // pour chaque lien, on définit un objet avec un nom et un href, href est l'attribut href du lien
     {
         name: "Essential",
         href: '#about',
@@ -23,7 +23,7 @@ const NavigationLinks = () => {
         <div className="mx-auto max-w-7xl">
             <div className="flex items-center gap-6">
                 {
-                    navigationLinks.map(({ name, href }, index) => {
+                    navigationLinks.map(({ name, href }, index) => { //  map sur les liens pour retourner un lien pour chaque objet
                         return <a
                             key={index}
                             href={href}

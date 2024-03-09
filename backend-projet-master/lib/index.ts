@@ -5,7 +5,6 @@ import PractitionerService from "./services/Practitioner";
 import { ContactService } from "./services/Contact/contact.service";
 import Database from "./services/Database";
 import axios from 'axios';
-import multer from 'multer';
 import crypto from 'crypto';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -239,35 +238,6 @@ app.post("/api/contact", async (req, res) => {
     res.status(500).send("Erreur lors de l'envoi du message.");
   }
 });
-
-app.post('/api/v1_0/newSwik', upload.none(), async (req, res) => {
-  try {
-    console.log('req.body', req.body);
-    
-    const redirectURL = encodeURIComponent('https://www.google.com');
-    
-
-    const bodyWithRedirect = {
-      ...req.body,
-      redirectURL,
-      
-    };
-
-    const response = await axios.post('https://api.swikly.com/v1_0/newSwik', bodyWithRedirect, {
-      headers: {
-        'api_key': process.env.SWIKLY_API_KEY,
-        'api_secret': process.env.SWIKLY_API_SECRET,
-        'Content-Type': 'multipart/form-data',
-        'Access-Control-Allow-Origin' : '*'
-      }
-    });
-    res.status(200).json(response.data);
-  } catch (error) {
-    console.error('Error during Swikly payment creation via proxy:', error);
-    res.status(500).send('Server error');
-  }
-});
-
 
 app.post('/api/payment', async (req, res) => {
   const { amount, payment_method_id: id } = req.body;
