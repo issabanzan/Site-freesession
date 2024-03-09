@@ -488,6 +488,7 @@ const PraticionerDetails = () => {
                     {phoneError && <p className="text-red-500 text-xs italic">{phoneError}</p>}
                   </div>
 
+<<<<<<< HEAD
                   <div>
                     <label htmlFor="password" className="block text-sm font-medium text-gray-700">Mot de passe *</label>
                     <input
@@ -499,6 +500,14 @@ const PraticionerDetails = () => {
                     />
                     {passwordError && <p className="text-red-500 text-xs italic">{passwordError}</p>}
                   </div>
+=======
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">Mail *</label>
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+>>>>>>> origin/main
 
                     <button
                       className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mb-2"
@@ -507,13 +516,24 @@ const PraticionerDetails = () => {
                       Payer la caution
                     </button>
 
+<<<<<<< HEAD
                     {showPaymentModal && (
+=======
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone number *</label>
+                      <input
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+>>>>>>> origin/main
 
                       <div className="App">
                         <PaiementComponent />
                       </div>
                     )}
 
+<<<<<<< HEAD
                     <button
                       type="submit"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 w-full"
@@ -521,6 +541,22 @@ const PraticionerDetails = () => {
                     >
                       Take Appointment
                     </button>
+=======
+                    </div>
+
+                    <div>
+                      <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password *</label>
+                      <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+
+                      />
+                    </div>
+
+                    
+                    
+>>>>>>> origin/main
 
 
 
