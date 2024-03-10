@@ -10,7 +10,7 @@ const Disorders3 = () => {
      
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Card 1 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="parentandchild">
           <img src="/src/assets/famille.jpg" alt="parentandchild" className="w-full h-48 object-cover rounded-md mb-4" />
@@ -21,7 +21,7 @@ const Disorders3 = () => {
           </p>
         </div>
 
-        {/* Card 2 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="losingweight">
           <img src="/src/assets/lose.jpg" alt="losingweight" className="w-full h-48 object-cover rounded-md mb-4" />
@@ -37,7 +37,7 @@ const Disorders3 = () => {
 
         </div>
 
-        {/* Card 3 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="addiction">
           <img src="/src/assets/addiction.jpg" alt="addiction" className="w-full h-48 object-cover rounded-md mb-4" />

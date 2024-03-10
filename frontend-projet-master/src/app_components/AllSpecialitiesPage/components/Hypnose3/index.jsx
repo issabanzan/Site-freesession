@@ -13,7 +13,7 @@ const Hypnose3 = () => {
         {/* Card 1 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="shiatsu">
-          <img src="/src/assets/shiatsu.jpg" alt="Ostéopathie" className="w-full h-50 object-cover rounded-md mb-4" />
+          <img src="/src/assets/shiatsu.jpg" alt="shiatsu" className="w-full h-50 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Shiatsu</h3>
           <p className="mb-4 font-semibold font-serif">
@@ -24,7 +24,7 @@ const Hypnose3 = () => {
         {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="reflexology">
-          <img src="/src/assets/Réflexologie.png" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/Réflexologie.png" alt="Reflexology" className="w-full h-48 object-cover rounded-md mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Reflexology</h3>
           </a>
           <p className="mb-4 font-semibold font-serif">
@@ -35,7 +35,7 @@ const Hypnose3 = () => {
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="psychotherapy">
-          <img src="/src/assets/Psycho.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/Psycho.jpg" alt="psychotherapy" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Psychotherapy</h3>
           <p className="mb-4 font-semibold font-serif">

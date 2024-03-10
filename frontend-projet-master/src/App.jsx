@@ -10,7 +10,6 @@ const BecomePractitioner = lazy(() => import('./app_components/BecomePractitione
 const AyurvedaPage = lazy(() => import('./app_components/AyurvedaPage'));
 const Calendar = lazy(() => import('./app_components/Calendar'));
 const Contact = lazy(() => import('./app_components/Contact'));
-const HypnosePage = lazy(() => import('./app_components/HypnosePage'));
 const AllSpecialitiesPage = lazy(() => import('./app_components/AllSpecialitiesPage'));
 const AuriculotherapyPage = lazy(() => import('./app_components/AuriculotherapyPage'));
 const AllDisorders = lazy(() => import('./app_components/AllDisorders'));
@@ -101,11 +100,7 @@ export default function App() {
           </LazyLoader>
         } />
 
-        <Route path="/hypnose" element={
-          <LazyLoader>
-            <HypnosePage />
-          </LazyLoader>
-        } />
+        
 
         <Route path="/allspecialities" element={
           <LazyLoader>

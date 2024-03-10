@@ -10,7 +10,7 @@ const Stress = () => {
       </p>
       <img
         src="/src/assets/stress.jpg" 
-        alt="auriculo"
+        alt="Stress, anxiété, phobies"
         className="mb-4 w-full h-[460px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Stress, anxiety, depression and phobias in a nutshell</h2>

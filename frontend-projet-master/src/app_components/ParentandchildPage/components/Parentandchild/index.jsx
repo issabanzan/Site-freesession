@@ -11,7 +11,7 @@ const Parentandchild = () => {
       </p>
       <img
         src="/src/assets/famille.jpg" 
-        alt="auriculo"
+        alt="Parentandchild"
         className="mb-4 w-full h-[460px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Why use alternative medicine when you are pregnant?</h2>

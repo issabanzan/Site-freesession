@@ -11,7 +11,7 @@ const Psychotherapy = () => {
       </p>
       <img
         src="/src/assets/Psycho.jpg" 
-        alt="auriculo"
+        alt="Psychotherapy"
         className="mb-4 w-full h-[450px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">The principles of psychotherapy?</h2>

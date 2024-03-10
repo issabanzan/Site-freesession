@@ -9,7 +9,7 @@ const TraditionalChineseenergetics = () => {
       </p>
       <img
         src="/src/assets/energique.PNG" 
-        alt="auriculo"
+        alt="TraditionalChineseenergetics"
         className="mb-4 w-full"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Traditional Chinese Energy: How does it work?</h2>

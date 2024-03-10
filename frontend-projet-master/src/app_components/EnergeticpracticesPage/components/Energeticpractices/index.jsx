@@ -9,7 +9,7 @@ const Energeticpractices = () => {
       </p>
       <img
         src="/src/assets/pratiques eergiques.png" 
-        alt="energique"
+        alt="Energeticpractices"
         className="mb-4 w-full"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">How to define energy practices?</h2>

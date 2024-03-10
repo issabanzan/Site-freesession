@@ -11,7 +11,7 @@ const Fatigueandsleep = () => {
       </p>
       <img
         src="/src/assets/fatigue-i.jpg" 
-        alt="auriculo"
+        alt="Fatigueandsleep"
         className="mb-4 w-full h-[460px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Fatigue and sleep disorders in a few words</h2>

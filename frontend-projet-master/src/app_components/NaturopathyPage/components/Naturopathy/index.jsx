@@ -10,7 +10,7 @@ const Naturopathy = () => {
       </p >
       <img
         src="/src/assets/Naturopathie-i.jpg" 
-        alt="auriculo"
+        alt="Naturopathie"
         className="mb-4 w-full h-[450px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Naturopathy: How does it work?</h2>

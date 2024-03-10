@@ -9,7 +9,7 @@ const Shiatsu = () => {
       </p>
       <img
         src="/src/assets/shiatsu.jpg" 
-        alt="auriculo"
+        alt="shiatsu"
         className="mb-4 w-full h-[510px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Shiatsu: How does it work?</h2>

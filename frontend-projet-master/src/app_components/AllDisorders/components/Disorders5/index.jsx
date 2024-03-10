@@ -9,10 +9,10 @@ const Disorders5 = () => {
       </h2>
      
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Card 1 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="pain">
-          <img src="/src/assets/douleur.jpg" alt="Ostéopathie" className="w-full h-30 object-cover rounded-md mb-4" />
+          <img src="/src/assets/douleur.jpg" alt="pain" className="w-full h-30 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black">Pain</h3>
           <p className="mb-4 font-semibold font-serif">
@@ -26,10 +26,10 @@ const Disorders5 = () => {
           </ul>
         </div>
 
-        {/* Card 2 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="jointpain">
-          <img src="/src/assets/articulaire.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/articulaire.jpg" alt="Jointpain" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Joint pain</h3>
           <p className="mb-4 font-semibold font-serif">
@@ -42,10 +42,10 @@ const Disorders5 = () => {
           </ul>
         </div>
 
-        {/* Card 3 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="becomeamother">
-          <img src="/src/assets/mam.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/mam.jpg" alt="becomeamother" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Become a mother</h3>
           <p className="mb-4 font-semibold font-serif">

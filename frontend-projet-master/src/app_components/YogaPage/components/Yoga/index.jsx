@@ -12,7 +12,7 @@ const Yoga = () => {
       </p>
       <img
         src="/src/assets/yoga.jpg" 
-        alt="auriculo"
+        alt="yoga"
         className="mb-4 w-full h-[500px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Yoga, Tai chi, Qi Gong & Feldenkrais Method: how does it work?</h2>

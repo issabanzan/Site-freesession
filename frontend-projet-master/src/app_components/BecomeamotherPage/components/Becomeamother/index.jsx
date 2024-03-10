@@ -11,7 +11,7 @@ const Becomeamother = () => {
       </p>
       <img
         src="/src/assets/mam.jpg" 
-        alt="auriculo"
+        alt="Becomeamother"
         className="mb-4 w-full h-[550px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Becoming a mother: What is it?</h2>

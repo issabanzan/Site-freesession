@@ -11,7 +11,7 @@ const Sophrology = () => {
       </p>
       <img
         src="/src/assets/sophroloie.png" 
-        alt="auriculo"
+        alt="sophroloie"
         className="mb-4 w-full"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Sophrology: How does it work?</h2>

@@ -9,7 +9,7 @@ const Headache = () => {
       </p>
       <img
         src="/src/assets/tete.jpg" 
-        alt="auriculo"
+        alt="Headache"
         className="mb-4 w-full h-[450px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">The different types of headaches</h2>

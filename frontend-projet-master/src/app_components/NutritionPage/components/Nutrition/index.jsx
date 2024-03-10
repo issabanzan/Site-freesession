@@ -12,7 +12,7 @@ const Nutrition = () => {
       </p>
       <img
         src="/src/assets/Nutrition.jpg" 
-        alt="auriculo"
+        alt="Nutrition"
         className="mb-4 w-full h-[460px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Nutrition: how does it work?</h2>

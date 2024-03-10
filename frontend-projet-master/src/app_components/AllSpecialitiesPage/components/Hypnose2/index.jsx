@@ -9,7 +9,7 @@ const Hypnose2 = () => {
       </h2>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Card 1 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="naturopathy">
           <img src="/src/assets/Naturopathie-i.jpg" alt="naturopathy" className="w-full h-48 object-cover rounded-md mb-4" />
@@ -28,10 +28,10 @@ const Hypnose2 = () => {
           </ul>
         </div>
 
-        {/* Card 2 */}
+       
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="energeticpractices">
-          <img src="/src/assets/energique.png" alt="energetique" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/energique.png" alt="energeticpractices" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black">Traditional Chinese energetics</h3>
           <p className="mb-4 font-semibold font-serif">
@@ -46,7 +46,7 @@ const Hypnose2 = () => {
 
         </div>
 
-        {/* Card 3 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="massage">
           <img src="/src/assets/Massage-i.jpg" alt="massage" className="w-full h-48 object-cover rounded-md mb-4" />

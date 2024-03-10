@@ -12,7 +12,7 @@ const TraditionalJapaneseMedicine = () => {
       </p>
       <img
         src="/src/assets/medecine.png" 
-        alt="auriculo"
+        alt="TraditionalJapaneseMedicine"
         className="mb-4 w-full"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">the principles of Traditional Japanese Medicine</h2>

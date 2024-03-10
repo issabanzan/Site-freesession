@@ -10,7 +10,7 @@ const Ayurveda = () => {
       </p>
       <img
         src="/src/assets/main.png" 
-        alt="auriculo"
+        alt="Ayurveda"
         className="mb-4 w-full"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Ayurveda: How does it work?</h2>

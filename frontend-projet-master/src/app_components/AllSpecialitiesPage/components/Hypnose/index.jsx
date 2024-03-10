@@ -16,10 +16,10 @@ const Hypnose = () => {
       </p>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Card 1 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
         <a href="Osteopathy">
-          <img src="/src/assets/osteopathie-i.jpg" alt="Ostéopathie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/osteopathie-i.jpg" alt="Osteopathy" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Osteopathy</h3>
           <p className="mb-4 font-semibold font-serif">
@@ -41,7 +41,7 @@ const Hypnose = () => {
         {/* Card 3 */}
         <div className="bg-white shadow-md rounded-md p-4">
         <a href="hypnosis">
-          <img src="/src/assets/hypnose-i.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/hypnose-i.jpg" alt="hypnosis" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Hypnosis</h3>
           <p className="mb-4 font-semibold font-serif">

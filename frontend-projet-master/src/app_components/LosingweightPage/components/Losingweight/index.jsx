@@ -10,7 +10,7 @@ const Losingweight = () => {
       </p>
       <img
         src="/src/assets/lose.jpg" 
-        alt="auriculo"
+        alt="Losingweight"
         className="mb-4 w-full h-[460px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Lose weight in a few words</h2>

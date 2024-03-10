@@ -9,7 +9,7 @@ const Kinesiology = () => {
       </p>
       <img
         src="/src/assets/kine.jpg" 
-        alt="auriculo"
+        alt="Kinesiology"
         className="mb-4 w-full"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Kinesiology: What is it?</h2>

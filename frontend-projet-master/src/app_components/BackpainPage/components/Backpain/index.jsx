@@ -13,7 +13,7 @@ const Backpain = () => {
       </p>
       <img
         src="/src/assets/dos.jpg" 
-        alt="auriculo"
+        alt="Back pain"
         className="mb-4 w-full h-[480px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Why do we have back pain?</h2>

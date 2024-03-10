@@ -10,7 +10,7 @@ const BriefTherapies = () => {
       </p>
       <img
         src="/src/assets/breve.png" 
-        alt="breve"
+        alt="BriefTherapies"
         className="mb-4 w-full"
       />
       <h2 className="text-2xl text-black font-serif font-semibold mb-3">Brief therapies: how it works?</h2>

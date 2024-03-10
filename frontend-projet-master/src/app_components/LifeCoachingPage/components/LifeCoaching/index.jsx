@@ -12,7 +12,7 @@ const LifeCoaching = () => {
       </p>
       <img
         src="/src/assets/coaching.jpg" 
-        alt="auriculo"
+        alt="LifeCoaching"
         className="mb-4 w-full h-[400px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">The principles of life coaching</h2>

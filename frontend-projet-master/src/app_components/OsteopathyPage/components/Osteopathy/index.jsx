@@ -11,7 +11,7 @@ const Osteopathy = () => {
       </p>
       <img
         src="/src/assets/osteopathie-i.jpg" 
-        alt="auriculo"
+        alt="Osteopathy"
         className="mb-4 w-full h-[450px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Definitions of osteopathy</h2>

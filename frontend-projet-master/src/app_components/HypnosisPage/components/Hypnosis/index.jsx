@@ -10,7 +10,7 @@ const Hypnosis = () => {
       </p>
       <img
         src="/src/assets/hypnose-i.jpg" 
-        alt="auriculo"
+        alt="Hypnosis"
         className="mb-4 w-full h-[400px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Hypnosis: how does it work?</h2>

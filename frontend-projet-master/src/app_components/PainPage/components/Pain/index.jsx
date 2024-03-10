@@ -12,7 +12,7 @@ const Pain = () => {
       </p>
       <img
         src="/src/assets/douleur.jpg" 
-        alt="auriculo"
+        alt="Pain"
         className="mb-4 w-full h-[460px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">What is pain?</h2>

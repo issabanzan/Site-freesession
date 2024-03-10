@@ -10,7 +10,7 @@ const Meditation = () => {
       </p>
       <img
         src="/src/assets/Meditation.jpg" 
-        alt="auriculo"
+        alt="Mindfulness - Meditation"
         className="mb-4 w-full h-[500px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Meditation: How does it work?</h2>

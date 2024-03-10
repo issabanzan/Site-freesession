@@ -11,7 +11,7 @@ const Jointpain = () => {
       </p>
       <img
         src="/src/assets/articulaire.jpg" 
-        alt="auriculo"
+        alt="Jointpain"
         className="mb-4 w-full h-[460px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">What is joint pain?</h2>

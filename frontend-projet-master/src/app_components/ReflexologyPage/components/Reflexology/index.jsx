@@ -11,7 +11,7 @@ const Reflexology = () => {
       </p>
       <img
         src="/src/assets/reflexologie.jpg" 
-        alt="auriculo"
+        alt="reflexologie"
         className="mb-4 w-full h-[450px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Reflexology: How does it work?</h2>

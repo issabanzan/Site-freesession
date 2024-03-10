@@ -27,10 +27,10 @@ const Hypnose5 = () => {
           </ul>
         </div>
 
-        {/* Card 2 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="lifeCoaching">
-          <img src="/src/assets/coaching.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/coaching.jpg" alt="lifeCoaching" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Life Coaching</h3>
           <p className="mb-4 font-semibold font-serif">
@@ -41,10 +41,10 @@ const Hypnose5 = () => {
           </ul>
         </div>
 
-        {/* Card 3 */}
+       
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="psychologist">
-          <img src="/src/assets/psychologue.jpg" alt="Hypnose" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/psychologue.jpg" alt="psychologist" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Psychologist</h3>
           <p className="mb-4 font-semibold font-serif">

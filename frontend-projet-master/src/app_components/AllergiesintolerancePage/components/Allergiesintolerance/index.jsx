@@ -11,7 +11,7 @@ const Allergiesintolerance = () => {
       </p>
       <img
         src="/src/assets/allergie.jpg" 
-        alt="auriculo"
+        alt="allergie"
         className="mb-4 w-full h-[430px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">What is an allergy??</h2>
