@@ -213,44 +213,42 @@ const PraticionerDetails = () => {
 
 
 
-  // Fonction pour récupérer les dates disponibles pour le type de rendez-vous et le calendrier sélectionnés
   const fetchAvailableDates = async () => { 
     const appointmentTypeID = `${import.meta.env.VITE_FREE_RDV_BOOKING_APPOINTMENT_TYPE_ID}`;
-    const selectedCalendarID = selectedCalendar; // Récupérer l'ID du calendrier sélectionné
-    let allAvailableSlots = []; // Initialiser un tableau vide pour stocker toutes les dates disponibles
-
-    try { // Utilisation de try...catch pour gérer les erreurs
-      const currentYear = new Date().getFullYear(); // Récupérer l'année actuelle pour obtenir les dates disponibles pour l'année en cours
-
-      for (let month = 1; month <= 12; month++) { // Boucle pour obtenir les dates disponibles pour chaque mois de l'année
-        const monthFormatted = `${currentYear}-${month.toString().padStart(2, '0')}`; // Formater le mois au format 'YYYY-MM'
-        
-        // Utilisation de axios pour effectuer une requête GET (/fetch_appointment_dates)
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/fetch_appointment_dates`, {
-          params: { // Paramètres de requête pour filtrer les dates disponibles
-            appointmentTypeID: appointmentTypeID,
-            month: monthFormatted,
-            calendarID: selectedCalendarID
+    const selectedCalendarID = selectedCalendar;
+    const currentYear = new Date().getFullYear();
+    let allAvailableSlots = [];
+  
+    try {
+      
+      const promises = Array.from({ length: 12 }, (_, index) => {
+        const month = index + 1; 
+        const monthFormatted = `${currentYear}-${month.toString().padStart(2, '0')}`;
+  
+        return axios.get(`${import.meta.env.VITE_BACKEND_URL}/fetch_appointment_dates`, {
+          params: { 
+            appointmentTypeID,
+            month: monthFormatted, 
+            calendarID: selectedCalendarID,
           }
-        });
-
-        const dates = response.data.map(dateObj => {
+        }).then(response => response.data.map(dateObj => {
           const dateUTC = new Date(dateObj.date);
-          // Conversion de UTC à l'heure locale
-          const dateLocal = new Date(dateUTC.getTime() + dateUTC.getTimezoneOffset() * 60000);
-          return dateLocal;
-        });
-
-        allAvailableSlots = [...allAvailableSlots, ...dates];
-      }
-
+          return new Date(dateUTC.getTime() + dateUTC.getTimezoneOffset() * 60000);
+        }));
+      });
+  
+      
+      const results = await Promise.all(promises);
+      
+      allAvailableSlots = results.flat();
+  
       setAvailableSlots(allAvailableSlots);
     } catch (error) {
       console.error('Erreur lors de la récupération des dates disponibles :', error);
       setAvailableSlots([]);
     }
   };
-
+  
   useEffect(() => {
     if (selectedCalendar) {
       fetchAvailableDates();
