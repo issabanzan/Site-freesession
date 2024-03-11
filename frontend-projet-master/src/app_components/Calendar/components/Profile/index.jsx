@@ -1,47 +1,56 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import PropTypes from 'prop-types';
-import moment from 'moment-timezone';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Importation du module axios pour effectuer des requêtes HTTP
+import PropTypes from 'prop-types'; // Importation du module prop-types pour valider les props
+import moment from 'moment-timezone'; // Importation du module moment-timezone pour gérer les dates et heures
+import { useNavigate } from 'react-router-dom'; // Importation du module useNavigate pour la navigation
 
-const Profile = () => {
-    const [activeTab, setActiveTab] = useState('profile');
-    const [userData, setUserData] = useState({
-        Lastname: '', 
+const Profile = () => { // Définition du composant Profile
+    const [active, setActive] = useState('profile'); // Définition de l'état active pour gérer l'onglet actif
+    const [userData, setUserData] = useState({ // Définition de l'état userData pour stocker les données de l'utilisateur
+        Lastname: '', // Initialisation des champs avec des valeurs par défaut
         Firstname: '',
         Mail: '',
         Mobile: ''
     });
-    const [appointments, setAppointments] = useState([]);
+    // Définition de l'état appointments pour stocker les rendez-vous de l'utilisateur
+    const [appointments, setAppointments] = useState([]); 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
-        if (acuityUserId) {
-            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/user/${acuityUserId}`)
+    useEffect(() => { // Ajout de useEffect pour exécuter une action lors du chargement du composant
+        const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));/* Récupération de l'ID utilisateur
+        à partir du stockage local */
+
+        if (acuityUserId) {// Vérification de la présence de l'ID utilisateur
+
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/user/${acuityUserId}`)/*Récupérer les données de l'utilisateur connecté
+            à partir de son ID Acuity pour pré-remplir le formulaire */
+
             .then(response => {
-                setUserData({ 
-                    Lastname: response.data.last_name || '',
+                setUserData({ // Mise à jour de l'état userData avec les données de l'utilisateur
+                    Lastname: response.data.last_name || '', // Pré-remplissage des champs avec les données de l'utilisateur
                     Firstname: response.data.first_name || '',
                     Mail: response.data.email || '',
                     Mobile: response.data.phone || ''
                 });
             })
-            .catch(error => {
+            .catch(error => { // Gestion des erreurs
                 console.error('Error fetching user data:', error);
             });
         }
     }, []);
 
-    useEffect(() => {
-        const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
-        if (acuityUserId) {
+    useEffect(() => { 
+      // Récupération de l'ID utilisateur à partir du stockage local
+        const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId')); 
+        if (acuityUserId) { // Vérification de la présence de l'ID utilisateur
+
+           //Récupérer les rendez-vous de l'utilisateur connecté à partir de son ID Acuity
             axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/user/${acuityUserId}`)
-            .then(response => {
+            .then(response => { // Mise à jour de l'état appointments avec les rendez-vous de l'utilisateur
                 setAppointments(response.data);
             })
             .catch(error => {
-                console.error('Error fetching appointments:', error);
+                console.error('Erreur lors du traitement:', error);
             });
         }
     }, []);
@@ -51,20 +60,20 @@ const Profile = () => {
         navigate('/'); // Redirection vers la page d'accueil
     };
 
-    return (
+    return ( // Affichage de la page
         <div className="max-w-9xl bg-slate-100">
             <div className="bg-slate-100 rounded-lg mt-1 shadow-lg left-0 right-0 z-50">
                 <nav className="flex justify-center items-center p-4 border-b">
                     <div className="flex space-x-4">
                         <button
-                            className={`text-sm font-semibold ${activeTab === 'profile' ? 'text-[#333C4E]' : 'text-[#3BAFBC]'}`}
-                            onClick={() => setActiveTab('profile')}
+                            className={`text-sm font-semibold ${active === 'profile' ? 'text-[#333C4E]' : 'text-[#3BAFBC]'}`} 
+                            onClick={() => setActive('profile')}
                         >
                             My profile
                         </button>
                         <button
-                            className={`text-sm font-semibold ${activeTab === 'appointments' ? 'text-[#333C4E]' : 'text-[#3BAFBC]'}`}
-                            onClick={() => setActiveTab('appointments')}
+                            className={`text-sm font-semibold ${active === 'appointments' ? 'text-[#333C4E]' : 'text-[#3BAFBC]'}`}
+                            onClick={() => setActive('appointments')}
                         >
                             My appointments
                         </button>
@@ -80,8 +89,11 @@ const Profile = () => {
                 </nav>
             </div>
             <div className="pt-16 flex justify-center">
-                {activeTab === 'profile' && <ProfilePage userData={userData} setUserData={setUserData} />}
-                {activeTab === 'appointments' && <Appointments appointments={appointments} />}
+                {/*Affichage de la page de profil}*/}
+                {active === 'profile' && <ProfilePage userData={userData} setUserData={setUserData} />} 
+
+                {/*Affichage de la page de rendez-vous}*/}
+                {active === 'appointments' && <Appointments appointments={appointments} />}
             </div>
         </div>
     );
@@ -93,8 +105,10 @@ const ProfilePage = ({ userData, setUserData }) => {
         setUserData({ ...userData, [name]: value });
     };
 
-    const resetFields = () => {
-        setUserData({
+
+    // Réinitialiser les champs après la sauvegarde des données de l'utilisateur dans la base de données
+    const resetFields = () => { 
+        setUserData({ //  Réinitialiser les champs avec des valeurs par défaut
             Lastname: '',
             Firstname: '',
             Mail: '',
@@ -102,12 +116,15 @@ const ProfilePage = ({ userData, setUserData }) => {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => { // Gestion de la soumission du formulaire
         e.preventDefault();
+        // Récupération de l'ID utilisateur à partir du stockage local
         const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
         
-        try {
-            const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/user/${acuityUserId}`, {
+        try { // Envoi des données de l'utilisateur à l'API pour la mise à jour
+
+           // Envoi des données de l'utilisateur à l'API pour la mise à jour
+            const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/user/${acuityUserId}`, { 
                 Lastname: userData.Lastname,
                 Firstname: userData.Firstname,
                 Mail: userData.Mail,
@@ -121,43 +138,49 @@ const ProfilePage = ({ userData, setUserData }) => {
         }
     };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <div className="bg-white shadow-lg rounded-lg p-8 max-w-2xl mx-auto">
-                <h1 className="text-2xl font-bold text-gray-800 mb-8">My profile</h1>
-                <div className="grid grid-cols-2 gap-6 mb-6">
+            return (
+              <form onSubmit={handleSubmit}>
+                  <div className="bg-white shadow-lg rounded-lg p-8 max-w-2xl mx-auto">
+                      <h1 className="text-2xl font-bold text-gray-800 mb-8">My profile</h1>
+                      <div className="grid grid-cols-2 gap-6 mb-6">
                     <div className="col-span-2 sm:col-span-1">
                         <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Lastname</label>
-                        <input name="Lastname" type="text" value={userData.Lastname} onChange={handleInputChange} className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
+                        <input name="Lastname" 
+                        type="text" value={userData.Lastname} onChange={handleInputChange}
+                         className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
                     </div>
                     <div className="col-span-2 sm:col-span-1">
                         <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">Firstname</label>
-                        <input name="Firstname" type="text" value={userData.Firstname} onChange={handleInputChange} className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
+                        <input name="Firstname" type="text" value={userData.Firstname} onChange={handleInputChange}
+                         className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
                     </div>
                     <div className="col-span-2">
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">Mail</label>
-                        <input name="Mail" type="email" value={userData.Mail} onChange={handleInputChange} className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
+                        <input name="Mail" type="email" value={userData.Mail} onChange={handleInputChange} 
+                        className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
                     </div>
                     <div className="col-span-2">
                         <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Mobile</label>
-                        <input name="Mobile" type="tel" value={userData.Mobile} onChange={handleInputChange} className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
+                        <input name="Mobile" type="tel" value={userData.Mobile} onChange={handleInputChange} 
+                        className="text-black mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none" />
                     </div>
                 </div>
                 <div className="flex justify-end">
-                    <button className="px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#3BAFBC] hover:bg-[#3BAFBC] focus:outline-none focus:ring focus:ring-red-200 active:bg-red-700 transition ease-in-out duration-150">
+                    <button 
+                    className="px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#3BAFBC] hover:bg-[#3BAFBC] ">
                         Save
                     </button>
                 </div>
                 <p className="text-xs text-gray-500 mt-4">
-                    Ces données sont confidentielles et destinées aux praticiens
+                  This data is confidential and intended for practitioners
                 </p>
             </div>
         </form>
     );
 };
 
-ProfilePage.propTypes = {
-    userData: PropTypes.shape({
+ProfilePage.propTypes = { // Validation des props
+    userData: PropTypes.shape({ // Validation de la forme de l'objet userData
         Lastname: PropTypes.string,
         Firstname: PropTypes.string,
         Mail: PropTypes.string,
@@ -168,33 +191,37 @@ ProfilePage.propTypes = {
 
 
 
-const Appointments = ({ appointments }) => {
+const Appointments = ({ appointments }) => { // affichage des rendez-vous
 
-  const [newDate, setNewDate] = useState('');
+
+  // Définition de l'état newDate pour stocker la nouvelle date
+  const [newDate, setNewDate] = useState(''); 
+
+  // Définition de l'état newTime pour stocker la nouvelle heure
   const [newTime, setNewTime] = useState('');
+
+  // Définition de l'état selectedAppointment pour stocker le rendez-vous sélectionné
   const [selectedAppointment, setSelectedAppointment] = useState(null);
  
 
-  const handleDateChange = (e) => {
+  const handleDateChange = (e) => { // gestion de la modification de la date
     setNewDate(e.target.value);
   };
 
-  const handleTimeChange = (e) => {
+  const handleTimeChange = (e) => { // gestion de la modification de l'heure
     setNewTime(e.target.value);
   };
 
-  const handleAppointmentSelection = (appointment) => {
-    setSelectedAppointment(appointment);
-    setNewDate(appointment.date);
-    setNewTime(appointment.time);
+  const handleAppointmentSelection = (appointment) => { // gestion de la sélection d'un rendez-vous
+    setSelectedAppointment(appointment); // Mise à jour de l'état selectedAppointment avec le rendez-vous sélectionné
+    setNewDate(appointment.date); // Mise à jour de l'état newDate avec la date du rendez-vous sélectionné
+    setNewTime(appointment.time); // Mise à jour de l'état newTime avec l'heure du rendez-vous sélectionné
   };
 
- 
-
-  const rescheduleAppointment = async () => {
-    const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
+  const rescheduleAppointment = async () => { // reprogrammer un rendez-vous
+    const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId')); 
     if (selectedAppointment) {
-      try {
+      try { // Envoi des données de reprogrammation du rendez-vous à l'API pour la mise à jour du rendez-vous sélectionné
         const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/${acuityUserId}/reschedule`, {
           newDate,
           newTime
@@ -207,13 +234,8 @@ const Appointments = ({ appointments }) => {
       }
     }
   };
-  
-  
-  
 
-  
-
-  const cancelAppointment = async () => {
+  const cancelAppointment = async () => { // annuler un rendez-vous
     const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
     
     if (window.confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?')) {
@@ -231,26 +253,26 @@ const Appointments = ({ appointments }) => {
     }
   };
   
-  
-  const formatDate = (dateString) => {
-     const date = new Date(dateString);
-     return date.toLocaleDateString('fr-FR', {
+   
+  const formatDate = (dateString) => { // formater la date en format français
+     const date = new Date(dateString); 
+     return date.toLocaleDateString('fr-FR', { 
        day: '2-digit',
        month: '2-digit',
        year: 'numeric'
      });
    };
  
-   const formatTime = (timeString) => {
+   const formatTime = (timeString) => { // formater l'heure en format français
     const time = moment(timeString, 'HH:mm').tz('Europe/Paris');
     return time.format('HH:mm');
   };
   
-  if (!appointments || appointments.length === 0) {
+  if (!appointments || appointments.length === 0) { // affichage des rendez-vous
     return <p>No appointments.</p>;
   }
 
-  return (
+  return ( // affichage des rendez-vous
     <div className="flex justify-start -mx-2">
       <div className="w-full md:w-1/3 px-2 mb-4">
         {appointments.map((appointment) => (
@@ -302,16 +324,16 @@ const Appointments = ({ appointments }) => {
            
             <div className="flex flex-wrap justify-start -mx-2">
             {appointments.map((appointment) => (
-      <div key={appointment.id} className="w-full md:w-5/1 px-2 mb-4">
-        <div className="bg-white rounded-lg shadow p-4">
-          <h2 className="text-lg font-bold text-[#333C4E] mb-2">Appointments</h2>
-          <p className="text-sm text-black">Date : {formatDate(appointment.date)} à {formatTime(appointment.time)}</p>
-          <button
-            className="mt-1 bg-[#3BAFBC] text-white rounded px-1"
-            onClick={() => cancelAppointment(appointment.id)}
-          >
-            Cancel
-          </button>
+            <div key={appointment.id} className="w-full md:w-5/1 px-2 mb-4">
+              <div className="bg-white rounded-lg shadow p-4">
+                <h2 className="text-lg font-bold text-[#333C4E] mb-2">Appointments</h2>
+                <p className="text-sm text-black">Date : {formatDate(appointment.date)} à {formatTime(appointment.time)}</p>
+                <button
+                  className="mt-1 bg-[#3BAFBC] text-white rounded px-1"
+                  onClick={() => cancelAppointment(appointment.id)}
+                >
+                  Cancel
+                </button>
 
         </div>
       </div>
@@ -323,13 +345,13 @@ const Appointments = ({ appointments }) => {
   );
   
 };
-
+ // Validation des props
 Appointments.propTypes = {
-  appointments: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    date: PropTypes.string.isRequired,
+  appointments: PropTypes.arrayOf(PropTypes.shape({ // Validation de la forme de l'objet appointments
+    id: PropTypes.number.isRequired, // Validation de l'ID du rendez-vous
+    date: PropTypes.string.isRequired, // Validation de la date du rendez-vous
    
-  })).isRequired
+  })).isRequired // Validation de la présence des rendez-vous
 };
 
 
