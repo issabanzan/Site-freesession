@@ -40,7 +40,7 @@ function Header() { // création du composant Header
       <nav className={`${isMenuOpen ? 'flex' : 'hidden'} fixed inset-0 bg-[#225886] z-20 flex-col items-center justify-center`}>
         <a href="/AllSpecialities" className="text-white px-3 py-2 rounded-md text-base font-medium">Specialties</a>
         <a href="/AllDisorders" className="text-white px-3 py-2 rounded-md text-base font-medium">Troubles</a>
-        <a href="#" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Home</a>
+        <a href="/" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Home</a>
         <a href="/Contact" className="text-white px-3 py-2 rounded-md text-base font-medium">Contact Us</a>
         <a href="/login" className="text-white px-3 py-2 rounded-md text-base font-medium flex items-center">
           <LogIn className="mr-2" />
@@ -51,7 +51,7 @@ function Header() { // création du composant Header
       <div style={{ marginRight: '25rem' }}   className="hidden lg:flex items-center space-x-8">
         <a href="/AllSpecialities" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Specialies</a>
         <a href="/AllDisorders" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Disorders</a>
-        <a href="#" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Home</a>
+        <a href="/" className="text-[#333C4E] font-bold mt-7 leading-tight tracking-tighter inter text-1xl">Home</a>
         
       </div>
 
