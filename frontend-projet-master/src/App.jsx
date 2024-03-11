@@ -49,7 +49,6 @@ const StressPage = lazy(() => import('./app_components/StressPage'));
 const WellbeingPage = lazy(() => import('./app_components/WellbeingPage'));
 const WhoarewePage = lazy(() => import('./app_components/WhoarewePage'));
 
-
 const LazyLoader = ({ children }) => {
   return <Suspense fallback={<Loading />}>{children}</Suspense>;
 };
