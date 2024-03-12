@@ -357,6 +357,7 @@ const PraticionerDetails = () => {
               </div>
             </DetailsCard>
           </div>
+
           <DetailsCard title="In summary ">
             <div className="flex flex-col gap-2">
               <div className="flex items-center">
@@ -371,6 +372,7 @@ const PraticionerDetails = () => {
 
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setShowInput(!showInput)}>
                 Book an Appointment</button>
+
               {showInput && appointmentTypes.length > 0 && ( /*afficher le formulaire de prise de rendez-vous
                si showInput est vrai et s'il y a des types de rendez-vous disponibles */
                 <select // Utilisation de select pour afficher une liste déroulante des types de rendez-vous
@@ -385,6 +387,8 @@ const PraticionerDetails = () => {
                   ))}
                 </select>
               )}
+
+
               {selectedAppointmentType && showInput && (
 
                 <select id="calendar" // Utilisation de select pour afficher une liste déroulante des calendriers
@@ -403,19 +407,19 @@ const PraticionerDetails = () => {
                   }
                 </select>
               )}
-              {showInput && selectedCalendar && ( /*Afficher le calendrier et les horaires disponibles si showInput est vrai
-               et si un calendrier est sélectionné */
-                <div className="flex space-x-4">
-                  <Calendar // Utilisation de Calendar pour afficher un calendrier
-                    onChange={handleDateChange} // Gérer le changement de date
-                    value={selectedDate} // Valeur de l'élément Calendar
-                    tileDisabled={({ date, view }) => // Désactiver les dates non disponibles
-                      view === 'month' && !availableSlots.some(availableDate => /* Vérifier si la date est disponible dans availableSlots 
-                      et si la date est dans le mois en cours */
-                        availableDate.toISOString().slice(0, 10) === date.toISOString().slice(0, 10)) /*availableDate.toISOString().slice(0, 10) ->
-                         YYYY-MM-DDTHH:MM:SSZ' */
+
+
+
+              {showInput && selectedCalendar && (
+                <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                  <Calendar
+                    onChange={handleDateChange}
+                    value={selectedDate}
+                    tileDisabled={({ date, view }) =>
+                      view === 'month' && !availableSlots.some(availableDate =>
+                        availableDate.toISOString().slice(0, 10) === date.toISOString().slice(0, 10))
                     }
-                    className="react-calendar" // Ajouter la classe react-calendar pour styliser le calendrier avec le fichier css de react-calendar
+                    className="react-calendar"
                   />
                   {selectedDate && availableTimes.length > 0 && ( // Afficher les horaires disponibles si une date est sélectionnée
                     <div className="flex flex-col bg-white shadow rounded-md overflow-hidden">
@@ -441,8 +445,16 @@ const PraticionerDetails = () => {
                       </div>
                     </div>
                   )}
+
+
+
+
                 </div>
               )}
+
+
+
+
 
               {selectedTime && ( // Afficher le formulaire de prise de rendez-vous si une heure est sélectionnée 
                 <div className="mt-4">
