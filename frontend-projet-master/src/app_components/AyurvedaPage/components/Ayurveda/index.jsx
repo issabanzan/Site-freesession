@@ -2,7 +2,7 @@ import React from 'react';
 
 const Ayurveda = () => {
   return (
-    <div className="mt-8 mx-auto max-w-7xl sm:pl-0 lg:mr-[240px]">
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Ayurveda</h1>
       <p className="mb-4 font-semibold font-serif">
          Ayurveda is a traditional Indian medicine whose fundamental notions are those of a permanent balance to be maintained in order
