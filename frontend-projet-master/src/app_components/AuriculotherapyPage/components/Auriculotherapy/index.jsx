@@ -2,7 +2,7 @@ import React from 'react';
 
 const Auriculotherapy = () => {
   return (
-    <div style={{ marginRight: '20rem' }} className="mt-8 mx-auto max-w-7xl sm:pl-0 lg:mr-[240px]">
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto p-5`}>
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Auriculotherapy</h1>
       <p className="mb-4 font-semibold font-serif">
       Auriculotherapy stimulates energy points on different locations in the outer ear. This stimulation can be carried out
