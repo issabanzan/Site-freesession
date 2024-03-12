@@ -322,8 +322,8 @@ const PraticionerDetails = () => {
         <Header />
         <PresentationHeader practitioner={practitioner} />
         <NavigationLinks />
-        <section className='flex gap-4 max-w-7xl py-4 px-0.5 mx-auto'>
-          <div className="flex flex-col gap-3">
+        <section className='flex flex-col sm:flex-row gap-4 py-4 mx-auto max-w-7xl'>
+          <div className="flex flex-col gap-3 w-full">
             <DetailsCard id="#presentation" icon={<AlignLeft className='w-4 h-4 text-cyan-600' />} title="Présentation">
               <p className="text-slate-600 text-sm mb-2 inter">{practitioner.description}</p>
             </DetailsCard>
