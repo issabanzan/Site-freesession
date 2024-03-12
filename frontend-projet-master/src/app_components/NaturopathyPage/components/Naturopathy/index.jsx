@@ -2,7 +2,7 @@ import React from 'react';
 
 const Naturopathy = () => {
   return (
-    <div className="mt-8 mx-auto max-w-7xl sm:pl-0 lg:mr-[240px]">
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Naturopathy</h1>
       <p className="mb-4 font-semibold font-serif">
           Naturopathy's mission is to prevent and maintain the body's balance through the use of natural techniques and the establishment of an adapted and balanced lifestyle.

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Stopsmoking = () => {
   return (
-    <div className="mt-8 mx-auto max-w-7xl sm:pl-0 lg:mr-[240px]">
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Stop smoking</h1>
       <p className="mb-4 font-semibold font-serif">
       the Tobacco dependence is a real public health problem: it kills 5 million people per year. 

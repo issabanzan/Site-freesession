@@ -2,7 +2,7 @@ import React from 'react';
 
 const Energeticpractices = () => {
   return (
-    <div className="mt-8 mx-auto max-w-7xl sm:pl-0 lg:mr-[240px]">
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Energetic practices</h1>
       <p className="mb-4 font-semibold font-serif">
         Energy practices bring together a set of techniques that aim to influence, balance or harmonize an individual's vital energy.
