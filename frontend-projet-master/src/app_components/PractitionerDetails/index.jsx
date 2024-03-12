@@ -421,31 +421,34 @@ const PraticionerDetails = () => {
                     }
                     className="react-calendar"
                   />
-                  {selectedDate && availableTimes.length > 0 && (
-                    <div className="bg-white shadow rounded-md overflow-hidden">
-                      {/* Remplacement du bloc précédent par un menu déroulant */}
-                      <label htmlFor="time-select" className="block text-sm font-medium text-gray-700 px-4 pt-4">Choisissez une heure :</label>
-                      <select
-                        id="time-select"
-                        className="form-select block w-full text-sm border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 px-2 py-1"
-                        onChange={e => setSelectedTime(e.target.value)}
-                        value={selectedTime}
-                      >
-                        {availableTimes.map((timeSlot, index) => (
-                          <option key={index} value={timeSlot.time}>
-                            {timeSlot.time}
-                          </option>
-                        ))}
-                      </select>
+                  {selectedDate && availableTimes.length > 0 && ( // Afficher les horaires disponibles si une date est sélectionnée
+                    <div className="flex flex-col bg-white shadow rounded-md overflow-hidden">
+                      <div className="overflow-y-auto"> {/*Afficher les horaires disponibles
+                        dans un groupe de boutons radio*/}
 
+                        {availableTimes.map((timeSlot, index) => { // Mapper les horaires pour obtenir un bouton radio pour chaque horaire
+                          //timeSlot.time au format HH:mm
+                          return (
+                            <label key={index} className="flex items-center border-b last:border-b-0 px-4 py-2 cursor-pointer">
+                              <input // Utilisation de input pour afficher un bouton radio pour chaque horaire
+                                type="radio" // Type de l'élément input
+                                name="time" // Nom de l'élément input
+                                value={timeSlot.time} // Valeur de l'élément input
+                                className="form-radio text-blue-600" // Ajouter la classe form-radio pour styliser le bouton radio
+                                onChange={() => setSelectedTime(timeSlot.time)} // Gérer le changement de l'heure sélectionnée
+                              />
+
+                              <span className="ml-2 text-sm text-gray-700">{timeSlot.time}</span> {/*Afficher l'heure*/}
+                            </label>
+                          );
+                        })}
+                      </div>
                     </div>
                   )}
+
+
                 </div>
               )}
-
-
-
-
 
               {selectedTime && ( // Afficher le formulaire de prise de rendez-vous si une heure est sélectionnée 
                 <div className="mt-4">
