@@ -29,8 +29,8 @@ const Hypnose = () => {
 
         
         <div className="bg-white shadow-md rounded-md p-4">
-        <a href="chiropraxie">
-          <img src="/src/assets/chiporaxie.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+        <a href="chiporaxie">
+          <img src="/src/assets/chiropraxie-i.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Chiropraxie</h3>
           <p className="mb-4 font-semibold font-serif">
