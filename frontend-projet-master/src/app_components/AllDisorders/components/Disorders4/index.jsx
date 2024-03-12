@@ -3,7 +3,7 @@ import React from 'react';
 
 const Disorders4 = () => {
   return (
-    <div className="mt-8 mx-auto max-w-7xl sm:pl-0 lg:mr-[240px]">
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
       <h2 className="text-2xl font-semibold mb-6 text-black font-serif">
       behavioral problems, Stop smoking, Well-being and personal development ...
       </h2>
