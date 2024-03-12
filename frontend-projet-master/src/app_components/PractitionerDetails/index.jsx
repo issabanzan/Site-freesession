@@ -22,7 +22,7 @@ const PraticionerDetails = () => {
   /* Déclaration de selectedAppointmentType avec la fonction useState
    qui retourne un tableau avec deux éléments, le premier élément est la valeur initiale 
    de selectedAppointmentType, le deuxième élément est une fonction pour mettre à jour la valeur de selectedAppointmentType*/
-  const [selectedAppointmentType, setSelectedAppointmentType] = useState('');
+  const [selectedAppointmentType, setSelectedAppointmentType] = useState(''); 
   const [appointmentTypes, setAppointmentTypes] = useState([]);
   const [calendars, setCalendars] = useState([]);
   const [selectedCalendar, setSelectedCalendar] = useState('');
@@ -40,12 +40,12 @@ const PraticionerDetails = () => {
   const [emailError, setEmailError] = useState('');
   const [phoneError, setPhoneError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const { id } = useParams();
+  const { id } = useParams(); 
 
   const handleSubmit = async (e) => { // Fonction pour gérer la soumission du formulaire de prise de rendez-vous
-    e.preventDefault();
+    e.preventDefault(); 
     let isValid = true; // Initialiser isValid à true pour valider les champs du formulaire
-    setFirstNameError('');
+    setFirstNameError(''); 
     setLastNameError('');
     setEmailError('');
     setPhoneError('');
@@ -68,7 +68,7 @@ const PraticionerDetails = () => {
       isValid = false;
     }
     if (!phone) { // Vérifier si le téléphone est vide
-      setPhoneError('Please enter your phone number');
+      setPhoneError('Please enter your phone number'); 
       isValid = false;
     }
     if (!password || !Passwordvalidate(password)) { // Vérifier si le mot de passe est vide ou s'il est invalide
@@ -88,7 +88,7 @@ const PraticionerDetails = () => {
       const month = (date.getMonth() + 1).toString().padStart(2, '0'); /* Récupérer le mois en ajoutant 1 pour obtenir le mois actuel
        et en utilisant padStart pour ajouter un 0 si le mois est inférieur à 10*/
 
-      const day = date.getDate().toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0'); 
 
       return `${year}-${month}-${day}`; // Retourner la date formatée au format YYYY-MM-DD
     };
@@ -99,7 +99,7 @@ const PraticionerDetails = () => {
     // Si tout est valide, procéder avec la logique de soumission
     try {
       const formattedDate = selectedDate ? formatDate(selectedDate) : '';
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/book-appointment`, {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/book-appointment`, { 
         firstName,
         lastName,
         email,
@@ -122,7 +122,7 @@ const PraticionerDetails = () => {
       setEmail('');
       setPhone('');
       setPassword('');
-      setShowInput(false);
+      setShowInput(false);  
       setSelectedDate(null);
       setSelectedTime(null);
     } catch (error) {
@@ -170,15 +170,15 @@ const PraticionerDetails = () => {
    de selectedAppointmentType*/
 
   const Passwordvalidate = (password) => {  // Fonction pour valider le mot de passe
-
+    
     const hasValidLength = password.length >= 8; // Vérifier la longueur minimale de 8 caractères
-
+    
     const hasUpperCase = /[A-Z]/.test(password); // Vérifier si le mot de passe contient des majuscules
-
+    
     const hasLowerCase = /[a-z]/.test(password); // Vérifie si le mot de passe contient des minuscules
-
+    
     const hasNumbers = /\d/.test(password); // Vérifier si le mot de passe contient des chiffres
-
+    
     const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password); // Vérifier si le mot de passe contient des caractères spéciaux
 
     // Le mot de passe est valide seulement si tous les critères sont respectés 
@@ -195,19 +195,19 @@ const PraticionerDetails = () => {
     try { // Utilisation de try...catch pour gérer les erreurs
 
       // Utilisation de axios pour effectuer une requête GET (/calendars/all)
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/calendars/all`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/calendars/all`); 
       const filteredData = response.data.calendars.map(calendar => ({ // Filtrer les données pour obtenir uniquement les propriétés nécessaires
         id: calendar.id, // ID du calendrier
         name: calendar.name, // Nom du calendrier
         appointmentTypes: calendar.appointmentTypes // Types de rendez-vous disponibles pour le calendrier
-      }));
+      })); 
       setCalendars(filteredData); // Mettre à jour le state avec les calendriers filtrés
     } catch (error) { // Gérer les erreurs avec catch en cas d'échec de la requête
       console.error(error);
     }
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     fetchAppointmentTypes(); // Appel de la fonction fetchAppointmentTypes pour récupérer les types de rendez-vous
     fetchCalendars(); // Appel de la fonction fetchCalendars pour récupérer les calendriers
   }, []); // Utilisation de [] comme dépendance pour exécuter le code une seule fois au montage du composant
@@ -215,23 +215,23 @@ const PraticionerDetails = () => {
 
 
 
-
-  const fetchAvailableDates = async () => {
+  
+  const fetchAvailableDates = async () => { 
     const appointmentTypeID = `${import.meta.env.VITE_FREE_RDV_BOOKING_APPOINTMENT_TYPE_ID}`;
     const selectedCalendarID = selectedCalendar;
     const currentYear = new Date().getFullYear();
     let allAvailableSlots = [];
-
+  
     try {
-
+      
       const promises = Array.from({ length: 12 }, (_, index) => {
-        const month = index + 1;
+        const month = index + 1; 
         const monthFormatted = `${currentYear}-${month.toString().padStart(2, '0')}`;
-
+  
         return axios.get(`${import.meta.env.VITE_BACKEND_URL}/fetch_appointment_dates`, {
-          params: {
+          params: { 
             appointmentTypeID,
-            month: monthFormatted,
+            month: monthFormatted, 
             calendarID: selectedCalendarID,
           }
         }).then(response => response.data.map(dateObj => {
@@ -239,19 +239,19 @@ const PraticionerDetails = () => {
           return new Date(dateUTC.getTime() + dateUTC.getTimezoneOffset() * 60000);
         }));
       });
-
-
+  
+      
       const results = await Promise.all(promises);
-
+      
       allAvailableSlots = results.flat();
-
+  
       setAvailableSlots(allAvailableSlots);
     } catch (error) {
       console.error('Erreur lors de la récupération des dates disponibles :', error);
       setAvailableSlots([]);
     }
   };
-
+  
   useEffect(() => {
     if (selectedCalendar) {
       fetchAvailableDates();
@@ -260,7 +260,7 @@ const PraticionerDetails = () => {
 
 
 
-  // Fonction pour récupérer les horaires disponibles pour le type de rendez-vous, le calendrier et la date sélectionnés
+   // Fonction pour récupérer les horaires disponibles pour le type de rendez-vous, le calendrier et la date sélectionnés
   const fetchAvailableTimes = async (date) => {
     const parisDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
       .toISOString() // Convertir la date en chaîne ISO par exemple 2022-02-19T00:00:00.000Z
@@ -298,18 +298,18 @@ const PraticionerDetails = () => {
 
   /* récupérer les détails du praticien avec l'ID spécifié details du praticien comme par exemple la description, 
   les horaires, les spécialités, les langues, etc */
-  const service = usePractitionerService();
+  const service = usePractitionerService(); 
 
   /*Déclaration de practitioner avec la fonction useState qui retourne un tableau avec deux éléments, 
   le premier élément est la valeur initiale de practitioner,
   le deuxième élément est une fonction pour mettre à jour la valeur de practitioner */
-  const [practitioner, setPractitioner] = useState(undefined);
+ const [practitioner, setPractitioner] = useState(undefined); 
 
   useEffect(() => { // Utilisation de useEffect pour appeler getPractionerDetails lorsque le composant est monté
     const get = async () => { // Utilisation de async...await pour gérer les requêtes asynchrones
       const resovedPractitioner = await service.getPractionerDetails(id);// Récupérer les détails du praticien avec l'ID spécifié
       setPractitioner(resovedPractitioner);
-    };
+    }; 
 
     get();
   }, [service, id]); // Utilisation de [service, id] comme dépendance pour exécuter le code à chaque changement de service ou id
@@ -318,41 +318,44 @@ const PraticionerDetails = () => {
 
   return (
     practitioner === undefined ? <Loading /> :
-      <div className='bg-slate-100 h-screen w-screen overflow-y-auto'>
+      <div className='bg-slate-100 min-h-screen overflow-y-auto'>
         <Header />
         <PresentationHeader practitioner={practitioner} />
         <NavigationLinks />
-        <section className='flex gap-4 max-w-7xl py-4 px-0.5 mx-auto'>
-          <div className="flex flex-col gap-3">
+        <section className='flex flex-col lg:flex-row max-w-7xl py-4 px-2 lg:px-4 mx-auto'>
+          <div className="flex flex-col lg:w-2/3 gap-4">
             <DetailsCard id="#presentation" icon={<AlignLeft className='w-4 h-4 text-cyan-600' />} title="Présentation">
               <p className="text-slate-600 text-sm mb-2 inter">{practitioner.description}</p>
             </DetailsCard>
+  
             <DetailsCard id="#openings_hours" icon={<Clock className='w-4 h-4 text-cyan-600' />} title="Horaires & contact">
-              <div className='grid grid-cols-2 gap-8'>
+              <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
                 <div>
                   <h5 className="text-slate-700 font-bold text-sm mb-2">Hours</h5>
                   <p className="text-slate-600 text-sm mb-2 inter">{practitioner.openingHours}</p>
                 </div>
+  
                 <div>
                   <h5 className="text-slate-700 font-bold text-sm mb-2">Contact</h5>
                   <p className="text-slate-600 text-sm mb-2 inter">{practitioner.contact}</p>
                 </div>
               </div>
             </DetailsCard>
+  
             <DetailsCard id="#specialites" icon={<AlignLeft className='w-4 h-4 text-cyan-600' />} title="Specialties">
-              <div className='grid grid-cols-2 gap-8'>
+              <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
                 <div>
                   <h5 className="text-slate-700 font-bold text-sm mb-2">Specialist</h5>
-                  <p className="text-slate-600 text-sm mb-2 inter">{practitioner.specialist.specialities[0]},
-                    {practitioner.specialist.specialities[1]}, {practitioner.specialist.specialities[2]}</p>
+                  <p className="text-slate-600 text-sm mb-2 inter">{practitioner.specialist.specialities.join(', ')}</p>
                 </div>
-                <div className='ml-50'>
+                <div>
                   <h5 className="text-slate-700 font-bold text-sm mb-2">Languages</h5>
-                  <p className="text-slate-600 text-sm mb-2 inter">{practitioner.languages[0]}, {practitioner.languages[1]}</p>
+                  <p className="text-slate-600 text-sm mb-2 inter">{practitioner.languages.join(', ')}</p>
                 </div>
               </div>
             </DetailsCard>
           </div>
+
           <DetailsCard title="In summary ">
             <div className="flex flex-col gap-2">
               <div className="flex items-center">
@@ -367,6 +370,7 @@ const PraticionerDetails = () => {
 
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setShowInput(!showInput)}>
                 Book an Appointment</button>
+
               {showInput && appointmentTypes.length > 0 && ( /*afficher le formulaire de prise de rendez-vous
                si showInput est vrai et s'il y a des types de rendez-vous disponibles */
                 <select // Utilisation de select pour afficher une liste déroulante des types de rendez-vous
@@ -381,14 +385,16 @@ const PraticionerDetails = () => {
                   ))}
                 </select>
               )}
-              {selectedAppointmentType && showInput && (
+
+
+              {selectedAppointmentType && showInput && ( 
 
                 <select id="calendar" // Utilisation de select pour afficher une liste déroulante des calendriers
-                  value={selectedCalendar} // Valeur de l'élément select
-                  onChange={(e) => setSelectedCalendar(e.target.value)}  // Gérer le changement de calendrier
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  required // Champ obligatoire
-                >
+                value={selectedCalendar} // Valeur de l'élément select
+                onChange={(e) => setSelectedCalendar(e.target.value)}  // Gérer le changement de calendrier
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                required // Champ obligatoire
+                > 
                   <option value="" disabled>Choose calendar</option>
                   {
                     calendars.map((calendar) => ( // Mapper les calendriers pour obtenir une option pour chaque calendrier
@@ -399,22 +405,24 @@ const PraticionerDetails = () => {
                   }
                 </select>
               )}
+
+
+
               {showInput && selectedCalendar && ( /*Afficher le calendrier et les horaires disponibles si showInput est vrai
                et si un calendrier est sélectionné */
                 <div className="flex space-x-4">
                   <Calendar // Utilisation de Calendar pour afficher un calendrier
                     onChange={handleDateChange} // Gérer le changement de date
                     value={selectedDate} // Valeur de l'élément Calendar
-                    tileDisabled={({ date, view }) => // Désactiver les dates non disponibles
-                      view === 'month' && !availableSlots.some(availableDate => /* Vérifier si la date est disponible dans availableSlots 
-                      et si la date est dans le mois en cours */
+                    tileDisabled={({ date, view }) => 
+                      view === 'month' && !availableSlots.some(availableDate => 
                         availableDate.toISOString().slice(0, 10) === date.toISOString().slice(0, 10)) /*availableDate.toISOString().slice(0, 10) ->
                          YYYY-MM-DDTHH:MM:SSZ' */
                     }
                     className="react-calendar" // Ajouter la classe react-calendar pour styliser le calendrier avec le fichier css de react-calendar
                   />
                   {selectedDate && availableTimes.length > 0 && ( // Afficher les horaires disponibles si une date est sélectionnée
-                    <div className="flex flex-col bg-white shadow rounded-md overflow-hidden">
+                    <div className="flex flex-col bg-white shadow rounded-md overflow-hidden">  
                       <div className="overflow-y-auto" style={{ maxHeight: '200px' }}> {/*Afficher les horaires disponibles
                         dans un groupe de boutons radio*/}
 
@@ -422,15 +430,15 @@ const PraticionerDetails = () => {
                           //timeSlot.time au format HH:mm
                           return (
                             <label key={index} className="flex items-center border-b last:border-b-0 px-4 py-2 cursor-pointer">
-                              <input // Utilisation de input pour afficher un bouton radio pour chaque horaire
-                                type="radio" // Type de l'élément input
-                                name="time" // Nom de l'élément input
-                                value={timeSlot.time} // Valeur de l'élément input
-                                className="form-radio text-blue-600" // Ajouter la classe form-radio pour styliser le bouton radio
-                                onChange={() => setSelectedTime(timeSlot.time)} // Gérer le changement de l'heure sélectionnée
+                              <input
+                                type="radio" 
+                                name="time" 
+                                value={timeSlot.time} 
+                                className="form-radio text-blue-600" 
+                                onChange={() => setSelectedTime(timeSlot.time)} 
                               />
 
-                              <span className="ml-2 text-sm text-gray-700">{timeSlot.time}</span> {/*Afficher l'heure*/}
+                              <span className="ml-2 text-sm text-gray-700">{timeSlot.time}</span> 
                             </label>
                           );
                         })}
@@ -440,8 +448,8 @@ const PraticionerDetails = () => {
                 </div>
               )}
 
-              {selectedTime && ( // Afficher le formulaire de prise de rendez-vous si une heure est sélectionnée 
-                <div className="mt-4">
+              {selectedTime && ( 
+                <div className="mt-4"> 
                   <div className="flex flex-col space-y-4">
                     <div>
                       <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name *</label>
@@ -498,10 +506,10 @@ const PraticionerDetails = () => {
                       />
                       {passwordError && <p className="text-red-500 text-xs italic">{passwordError}</p>}
                     </div>
-                    <button className="bg-[#3BAFBC] text-white font-bold py-2 px-4 rounded mb-2"
-                      onClick={() => setShowPaymentForm(true)}>
-                      Additional sessions beyond 30 min: $50 before take appointment.
-                    </button>
+                    <button className="bg-[#3BAFBC] text-white font-bold py-2 px-4 rounded mb-2" 
+                    onClick={() => setShowPaymentForm(true)}>
+                     Additional sessions beyond 30 min: $50 before take appointment.
+                    </button>     
                     <button
                       type="submit"
                       className="inline-flex justify-center py-2 px-4 border border-transparent bg-blue-500 w-full text-white"
