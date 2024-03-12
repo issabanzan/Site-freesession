@@ -27,10 +27,10 @@ const Hypnose = () => {
           </p>
         </div>
 
-        {/* Card 2 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
         <a href="chiropraxie">
-          <img src="/src/assets/chiropraxie-i.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/chiporaxie.jpg" alt="Chiropraxie" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Chiropraxie</h3>
           <p className="mb-4 font-semibold font-serif">
@@ -38,7 +38,7 @@ const Hypnose = () => {
           </p>
         </div>
 
-        {/* Card 3 */}
+       
         <div className="bg-white shadow-md rounded-md p-4">
         <a href="hypnosis">
           <img src="/src/assets/hypnose-i.jpg" alt="hypnosis" className="w-full h-48 object-cover rounded-md mb-4" />
