@@ -2,7 +2,7 @@ import React from 'react';
 
 const Psychologist = () => {
   return (
-    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto mt-10`}>
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Psychologist</h1>
       <p className="mb-4 font-semibold font-serif">
        Psychology is the study of ideas about psychological cases, behaviors and intellectual processes.

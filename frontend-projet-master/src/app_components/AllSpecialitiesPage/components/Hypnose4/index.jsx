@@ -3,7 +3,7 @@ import React from 'react';
 
 const Hypnose4 = () => {
   return (
-    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto `}>
       <h2 className="text-2xl font-semibold mb-6 text-black font-serif">
       Sophrology, Meditation, Ayurveda ...
       </h2>

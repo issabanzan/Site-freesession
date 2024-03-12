@@ -2,7 +2,7 @@ import React from 'react';
 
 const Behavioralproblems = () => {
   return (
-    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto mt-10`}>
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Behavioral problems</h1>
       <p className="mb-4 font-semibold font-serif">
       The term disorder comes from the Greek “tủrbê” which means “disorder” as for the term behavior, 

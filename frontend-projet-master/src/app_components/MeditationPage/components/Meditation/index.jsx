@@ -2,7 +2,7 @@ import React from 'react';
 
 const Meditation = () => {
   return (
-    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto mt-10`}>
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Mindfulness - Meditation</h1>
       <p className="mb-4 font-semibold font-serif">
        Meditation is a psycho-corporeal practice accessible to everyone which consists of focusing attention on one's thoughts and sensations.

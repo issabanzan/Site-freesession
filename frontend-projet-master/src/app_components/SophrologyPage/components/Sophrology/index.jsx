@@ -2,7 +2,7 @@ import React from 'react';
 
 const Sophrology = () => {
   return (
-    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto mt-10`}>
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Sophrology</h1>
       <p className="mb-4 font-semibold font-serif">
           Sophrology is a psycho-corporal practice that promotes a good balance between body, mind and emotions.

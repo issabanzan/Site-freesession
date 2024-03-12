@@ -2,7 +2,7 @@ import React from 'react';
 
 const Hypnosis = () => {
   return (
-    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto mt-10`}>
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Hypnosis</h1>
       <p className="mb-4 font-semibold font-serif">
        The principle of hypnosis is to access a modified state of consciousness to revisit reality and the way you perceive it,

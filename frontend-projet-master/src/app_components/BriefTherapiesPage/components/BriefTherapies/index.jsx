@@ -2,7 +2,7 @@ import React from 'react';
 
 const BriefTherapies = () => {
   return (
-    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto mt-10`}>
       <h1 className="text-3xl font-serif font-bold mb-4 text-black">Brief Therapies</h1>
       <p className="mb-4 font-semibold font-serif">
        The goal of brief therapies is to manage suffering and eliminate symptoms quickly and effectively.

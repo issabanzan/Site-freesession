@@ -3,7 +3,7 @@ import React from 'react';
 
 const Hypnose5 = () => {
   return (
-    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
+    <div className="mt-8 mx-auto max-w-7xl sm:pl-0 lg:mr-[240px]">
       <h2 className="text-2xl font-semibold mb-6 text-black font-serif">
       Nutrition, Life Coaching, Psychologist ...
       </h2>

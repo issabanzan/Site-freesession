@@ -2,7 +2,7 @@ import React from 'react';
 
 const LifeCoaching = () => {
   return (
-    <div className={`lg:mr-[20rem] max-w-7xl mx-auto`}>
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto mt-10`}>
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Life Coaching</h1>
       <p className="mb-4 font-semibold font-serif">
          Today, the term coaching is used in different ways. Very popular in recent years,
