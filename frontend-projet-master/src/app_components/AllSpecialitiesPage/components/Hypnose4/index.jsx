@@ -3,14 +3,14 @@ import React from 'react';
 
 const Hypnose4 = () => {
   return (
-    <div className={`lg:mr-[20rem] max-w-7xl mx-auto `}>
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto mt-10`}>
       <h2 className="text-2xl font-semibold mb-6 text-black font-serif">
       Sophrology, Meditation, Ayurveda ...
       </h2>
      
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Card 1 */}
+       
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="sophrology">
           <img src="/src/assets/sophroloie.png" alt="sophrology" className="w-full h-48 object-cover rounded-md mb-4" />
@@ -25,7 +25,7 @@ const Hypnose4 = () => {
           </ul>
         </div>
 
-        {/* Card 2 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="meditation">
           <img src="/src/assets/Meditation.jpg" alt="meditation" className="w-full h-48 object-cover rounded-md mb-4" />
@@ -36,7 +36,7 @@ const Hypnose4 = () => {
           </p>
         </div>
 
-        {/* Card 3 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="ayurveda">
           <img src="/src/assets/main.png" alt="ayurveda" className="w-full h-48 object-cover rounded-md mb-4" />
