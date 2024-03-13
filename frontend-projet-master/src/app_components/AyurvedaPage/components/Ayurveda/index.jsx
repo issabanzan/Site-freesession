@@ -9,7 +9,7 @@ const Ayurveda = () => {
          to be in full health and the development of our self-healing capacities, in harmony with our environment.
       </p>
       <img
-        src="/src/assets/main.png" 
+        src="/src/assets/ayurveda2.jpg" 
         alt="Ayurveda"
         className="mb-4 w-full"
       />

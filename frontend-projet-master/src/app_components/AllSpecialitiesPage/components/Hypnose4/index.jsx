@@ -13,7 +13,7 @@ const Hypnose4 = () => {
        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="sophrology">
-          <img src="/src/assets/sophroloie.png" alt="sophrology" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/sophrology.jpg" alt="sophrology" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Sophrology</h3>
           <p className="mb-4 font-semibold font-serif">
@@ -39,7 +39,7 @@ const Hypnose4 = () => {
         
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="ayurveda">
-          <img src="/src/assets/main.png" alt="ayurveda" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/ayurved2.jpg" alt="ayurveda" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black">Ayurveda</h3>
           <p className="mb-4 font-semibold font-serif">
