@@ -11,7 +11,7 @@ const TraditionalJapaneseMedicine = () => {
       combining effective manual techniques, such as Shiatsu, acupuncture or traditional Amma massage, with real approach to health prevention.
       </p>
       <img
-        src="/src/assets/japenese.jpeg" 
+        src="/src/assets/japenese.jpg" 
         alt="TraditionalJapaneseMedicine"
         className="mb-4 w-full h-[450px]"
       />

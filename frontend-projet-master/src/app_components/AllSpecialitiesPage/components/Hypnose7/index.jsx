@@ -13,7 +13,7 @@ const Hypnose7 = () => {
         
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="traditionalJapaneseMedicine">
-          <img src="/src/assets/japenese.jpeg" alt="traditionalJapaneseMedicine" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/japenese.jpg" alt="traditionalJapaneseMedicine" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Traditional Japanese medicine</h3>
           <p className="mb-4 font-semibold font-serif">
