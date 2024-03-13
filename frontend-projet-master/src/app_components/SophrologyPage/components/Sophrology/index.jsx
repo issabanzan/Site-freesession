@@ -10,7 +10,7 @@ const Sophrology = () => {
           Sophrology is a tool of choice to better manage stress, open up to relaxation, regain self-confidence and learn to be positive.
       </p>
       <img
-        src="/src/assets/sophrology.jpg" 
+        src="/src/assets/sophrology.jpeg" 
         alt="sophroloie"
         className="mb-4 w-full"
       />
