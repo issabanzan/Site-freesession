@@ -8,9 +8,9 @@ const Kinesiology = () => {
          Kinesiology uses muscle testing to identify a person's imbalances and disorders.
       </p>
       <img
-        src="/src/assets/kine.jpg" 
+        src="/src/assets/kinologie.jpg" 
         alt="Kinesiology"
-        className="mb-4 w-full"
+        className="mb-4 w-full h-[450px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Kinesiology: What is it?</h2>
       <h1 className="text-2xl text-black font-semibold font-serif mb-3">Definition of kinesiology</h1>

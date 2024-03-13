@@ -10,10 +10,10 @@ const Hypnose7 = () => {
      
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Card 1 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="traditionalJapaneseMedicine">
-          <img src="/src/assets/medecine.png" alt="traditionalJapaneseMedicine" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/japenese.jpeg" alt="traditionalJapaneseMedicine" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Traditional Japanese medicine</h3>
           <p className="mb-4 font-semibold font-serif">
@@ -21,10 +21,10 @@ const Hypnose7 = () => {
           </p>
         </div>
 
-        {/* Card 2 */}
+       
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="kinesiology">
-          <img src="/src/assets/kine.jpg" alt="kinesiology" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/kinologie.jpg" alt="kinesiology" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">Kinesiology</h3>
           <p className="mb-4 font-semibold font-serif">
@@ -32,7 +32,7 @@ const Hypnose7 = () => {
           </p>
         </div>
 
-        {/* Card 3 */}
+       
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="energeticPractices">
           <img src="/src/assets/pratiques eergiques.png" alt="energeticPractices" className="w-full h-48 object-cover rounded-md mb-4" />
