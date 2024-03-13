@@ -37,7 +37,7 @@ const Contact = () => {
       <div className="max-w-9xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center bg-cyan-500 p-5">
           <div>
-            <h1 className="text-3xl md:text-4xl font-semibold mb-5 text-white">Contactez-nous !</h1>
+            <h1 className="text-3xl md:text-4xl font-semibold mb-5 text-white">Contact us!</h1>
             <p className="text-md md:text-lg text-white font-medium max-w-xl">
               Free your future or that of a loved one with the ADIOS method.
               Contact us for more information about our method,
@@ -60,7 +60,7 @@ const Contact = () => {
                 name="name"
                 value={name}
                 className="mt-1 p-3 w-full border rounded-md text-black"
-                placeholder="lastname and firstname"
+                placeholder="last name and first name"
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
