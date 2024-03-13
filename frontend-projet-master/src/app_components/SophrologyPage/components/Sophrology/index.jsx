@@ -12,7 +12,7 @@ const Sophrology = () => {
       <img
         src="/src/assets/sophrology.jpeg" 
         alt="sophroloie"
-        className="mb-4 w-full"
+        className="mb-4 w-full h-[450px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Sophrology: How does it work?</h2>
      
