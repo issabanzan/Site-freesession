@@ -10,7 +10,7 @@ const Hypnose6 = () => {
     
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Card 1 */}
+        
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="briefTherapies">
           <img src="/src/assets/brief.jpeg" alt="briefTherapies" className="w-full h-48 object-cover rounded-md mb-4" />
@@ -30,10 +30,9 @@ const Hypnose6 = () => {
           </ul>
         </div>
 
-        {/* Card 2 */}
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="auriculotherapy">
-          <img src="/src/assets/auriculo.png" alt="auriculotherapy" className="w-full h-48 object-cover rounded-md mb-4" />
+          <img src="/src/assets/auriculotherapie.jpg" alt="auriculotherapy" className="w-full h-48 object-cover rounded-md mb-4" />
           </a>
           <h3 className="text-lg font-semibold mb-2 text-black font-serif">auriculotherapy</h3>
           <p className="mb-4 font-semibold font-serif">
@@ -41,7 +40,7 @@ const Hypnose6 = () => {
           </p>
         </div>
 
-        {/* Card 3 */}
+      
         <div className="bg-white shadow-md rounded-md p-4">
           <a href="yoga">
           <img src="/src/assets/yoga.jpg" alt="yoga" className="w-full h-48 object-cover rounded-md mb-4" />

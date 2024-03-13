@@ -9,9 +9,9 @@ const Auriculotherapy = () => {
       by different means: needles, acupressure, magnets, by cold with a cryogenic system. It helps in particular to relieve pain.
       </p>
       <img
-        src="/src/assets/auriculo.png" 
-        alt="auriculo"
-        className="mb-4 w-full"
+        src="/src/assets/auriculotherapie.jpg" 
+        alt="auriculotherapy"
+        className="mb-4 w-full h-[450px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">Auriculotherapy: How does it work?</h2>
       
