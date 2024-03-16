@@ -217,13 +217,7 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
     setNewDate(appointment.date); // Mise à jour de l'état newDate avec la date du rendez-vous sélectionné
     setNewTime(appointment.time); // Mise à jour de l'état newTime avec l'heure du rendez-vous sélectionné
   };
-  const formatTime = (timeString) => {
-    // Cette fonction prend une chaîne d'heure au format "HH:mm"
-    // et la convertit en heure locale en utilisant le fuseau horaire de Paris
-    const time = moment(timeString, 'HH:mm').tz('Europe/Paris');
-    return time.format('HH:mm');
-  };
-  
+
 
   const rescheduleAppointment = async () => {
     const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId')); 
