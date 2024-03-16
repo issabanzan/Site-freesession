@@ -221,31 +221,33 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
 
   const rescheduleAppointment = async () => {
     const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
-    if (selectedAppointment) {
-      // Assurez-vous que newDate et newTime sont valides avant de continuer
-      if (!newDate || !newTime) {
-        console.error('La nouvelle date ou la nouvelle heure est invalide.');
-        return;
-      }
-  
-      // Utilisez moment-timezone pour créer et formater la nouvelle date et heure
+    if (selectedAppointment && newDate && newTime) {
+      // Conversion de la nouvelle date et heure en objet moment dans le fuseau horaire cible pour validation
       const newDateTime = moment.tz(`${newDate} ${newTime}`, 'YYYY-MM-DD HH:mm', 'Europe/Paris');
+  
+      // Vérification de la validité de la nouvelle date et heure
       if (!newDateTime.isValid()) {
         console.error('La combinaison de la nouvelle date et de la nouvelle heure est invalide.');
         return;
       }
   
       try {
+        // Envoi de la requête de reprogrammation avec la date et l'heure formatées
         const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/${acuityUserId}/reschedule`, {
-          newDate: newDateTime.format(), // Envoyez la date et l'heure en format ISO
+          // Utilisation de .format() pour obtenir la date et l'heure dans les formats attendus
+          newDate: newDateTime.format('YYYY-MM-DD'),
+          newTime: newDateTime.format('HH:mm'), // Ajoutez 'newTime' si votre API attend la date et l'heure séparément
         });
         console.log('Rendez-vous reprogrammé avec succès:', response.data);
         window.location.reload();
       } catch (error) {
         console.error('Erreur lors de la reprogrammation du rendez-vous:', error);
       }
+    } else {
+      console.error('La nouvelle date ou la nouvelle heure est manquante.');
     }
   };
+  
   
   
 
