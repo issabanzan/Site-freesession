@@ -81,19 +81,19 @@ const PraticionerDetails = () => {
       return;
     }
 
-    const formatDate = (date) => {
-      if (!(date instanceof Date)) return '';
+    const formatDate = (date) => { /// Fonction pour formater la date au format YYYY-MM-DD
+      if (!(date instanceof Date)) return ''; // Vérifier si la date est une instance de Date
 
-      // Ajuster l'heure si nécessaire (dans ce cas, en reculant d'une heure)
-      date.setHours(date.getHours() - 1);
+      const year = date.getFullYear(); // Récupérer l'année      
+      const month = (date.getMonth()).toString().padStart(2, '0'); /* Récupérer le mois en ajoutant 1 pour obtenir le mois actuel
+       et en utilisant padStart pour ajouter un 0 si le mois est inférieur à 10*/
 
-      const year = date.getFullYear();
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
       const day = date.getDate().toString().padStart(2, '0');
 
-      return `${year}-${month}-${day}`;
+      return `${year}-${month}-${day}`; // Retourner la date formatée au format YYYY-MM-DD
     };
-
+    const formattedDate = formatDate(selectedDate); // Appel de la fonction formatDate pour formater la date sélectionnée en format YYYY-MM-DD
+    console.log('Formatdate', formattedDate);
 
 
     // Si tout est valide, procéder avec la logique de soumission
