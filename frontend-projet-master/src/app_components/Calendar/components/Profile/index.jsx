@@ -221,31 +221,39 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
   const rescheduleAppointment = async () => {
     const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
     if (selectedAppointment && newDate && newTime) {
+      // Formatage de la nouvelle date, si c'est nécessaire
       const formattedNewDate = typeof newDate === 'string' ? newDate : formatDate(new Date(newDate));
-      const formattedNewTime = `${newTime}:00`;
+      // Utilisation de newTime directement sans ajouter de secondes
+      const formattedNewTime = newTime;
   
-      // Ajoutez ce console.log pour afficher la date et l'heure formatées
+      // Affichage de la date et de l'heure formatées pour la vérification
       console.log('Date et heure soumises pour la reprogrammation:', formattedNewDate, formattedNewTime);
   
       try {
+        // Envoi de la nouvelle date et de la nouvelle heure pour la reprogrammation du rendez-vous
         const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/${acuityUserId}/reschedule`, {
           date: formattedNewDate,
-          time: formattedNewTime,
+          time: formattedNewTime, // Ici, nous envoyons l'heure sans secondes
         }, {
           headers: {
             'Content-Type': 'application/json',
           },
         });
   
+        // Confirmation de la reprogrammation du rendez-vous
         console.log('Rendez-vous reprogrammé avec succès:', response.data);
+        // Rechargement de la page pour mettre à jour l'affichage des rendez-vous
         window.location.reload();
       } catch (error) {
+        // Gestion des erreurs éventuelles
         console.error('Erreur lors de la reprogrammation du rendez-vous:', error);
       }
     } else {
+      // Message d'erreur si les informations nécessaires ne sont pas disponibles
       console.error('La nouvelle date ou la nouvelle heure est manquante.');
     }
   };
+  
   
   
 
