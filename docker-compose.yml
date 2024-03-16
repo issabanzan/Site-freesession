@@ -33,6 +33,8 @@ services:
     networks:
       - server-client
       - server-database
+    environment:
+      - TZ=Europe/Paris
 
   mysql:
     volumes:
