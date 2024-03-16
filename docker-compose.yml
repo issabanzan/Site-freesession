@@ -17,8 +17,7 @@ services:
       - mysql
     networks:
       - server-client
-    environment:
-      TZ: Europe/Paris
+    
 
   server:
     image: node:20.3.1

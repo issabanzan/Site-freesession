@@ -95,9 +95,26 @@ const PraticionerDetails = () => {
     const formattedDate = formatDate(selectedDate); // Appel de la fonction formatDate pour formater la date sélectionnée en format YYYY-MM-DD
     console.log('Formatdate', formattedDate);
 
+    const formatTime = (date) => {
+      if (!(date instanceof Date)) return ''; // Vérifier si l'entrée est une instance de Date
+    
+      // Créer un objet Date en assumant que 'date' est déjà dans le fuseau horaire local voulu (e.g., Paris)
+      let timeString = date.toLocaleTimeString('fr-FR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'Europe/Paris'
+      });
+    
+      return timeString; // Retourner l'heure formatée en HH:mm
+    };
+    
+
+    
+
 
     // Si tout est valide, procéder avec la logique de soumission
     try {
+      const formattedTime = selectedTime ? formatTime(selectedTime) : '';
       const formattedDate = selectedDate ? formatDate(selectedDate) : '';
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/book-appointment`, {
         firstName,
@@ -108,7 +125,7 @@ const PraticionerDetails = () => {
         appointmentTypeID: selectedAppointmentType,
         calendar: selectedCalendar,
         date: formattedDate,
-        time: selectedTime,
+        time: formattedTime,
       }, {
         headers: {
           'Content-Type': 'application/json',
