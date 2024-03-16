@@ -222,22 +222,33 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
   const rescheduleAppointment = async () => {
     const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
     if (selectedAppointment && newDate && newTime) {
-      // Conversion de la nouvelle date et heure en objet moment dans le fuseau horaire cible pour validation
-      const newDateTime = moment.tz(`${newDate} ${newTime}`, 'YYYY-MM-DD HH:mm', 'Europe/Paris');
+      // Formater la nouvelle date
+      const formatDate = (date) => {
+        if (!(date instanceof Date)) return '';
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      };
   
-      // Vérification de la validité de la nouvelle date et heure
-      if (!newDateTime.isValid()) {
-        console.error('La combinaison de la nouvelle date et de la nouvelle heure est invalide.');
-        return;
-      }
+      // Convertir newDate en objet Date pour pouvoir utiliser formatDate
+      const appointmentDateObj = new Date(newDate);
+      const formattedNewDate = formatDate(appointmentDateObj);
+  
+      // Formater l'heure, en ajoutant les secondes et le 'Z' pour indiquer l'heure UTC
+      const formattedNewDateTime = `${formattedNewDate}T${newTime}:00.000Z`;
   
       try {
-        // Envoi de la requête de reprogrammation avec la date et l'heure formatées
         const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/${acuityUserId}/reschedule`, {
-          // Utilisation de .format() pour obtenir la date et l'heure dans les formats attendus
-          newDate: newDateTime.format('YYYY-MM-DD'),
-          newTime: newDateTime.format('HH:mm'), // Ajoutez 'newTime' si votre API attend la date et l'heure séparément
+          
+          dateTime: formattedNewDateTime, // Envoyer la date et l'heure combinées si attendu ainsi
+         
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
         });
+  
         console.log('Rendez-vous reprogrammé avec succès:', response.data);
         window.location.reload();
       } catch (error) {
@@ -247,6 +258,7 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
       console.error('La nouvelle date ou la nouvelle heure est manquante.');
     }
   };
+  
   
   
   
