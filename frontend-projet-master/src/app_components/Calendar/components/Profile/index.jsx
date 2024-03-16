@@ -217,23 +217,33 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
     setNewDate(appointment.date); // Mise à jour de l'état newDate avec la date du rendez-vous sélectionné
     setNewTime(appointment.time); // Mise à jour de l'état newTime avec l'heure du rendez-vous sélectionné
   };
+  const formatTime = (timeString) => {
+    // Cette fonction prend une chaîne d'heure au format "HH:mm"
+    // et la convertit en heure locale en utilisant le fuseau horaire de Paris
+    const time = moment(timeString, 'HH:mm').tz('Europe/Paris');
+    return time.format('HH:mm');
+  };
+  
 
-  const rescheduleAppointment = async () => { // reprogrammer un rendez-vous
+  const rescheduleAppointment = async () => {
     const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId')); 
     if (selectedAppointment) {
-      try { // Envoi des données de reprogrammation du rendez-vous à l'API pour la mise à jour du rendez-vous sélectionné
+      // Créer un objet moment avec la date et l'heure sélectionnées
+      const newDateTime = moment.tz(`${newDate} ${newTime}`, 'Europe/Paris');
+      try {
         const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/${acuityUserId}/reschedule`, {
-          newDate,
-          newTime
+          // Envoyer la date et l'heure en format ISO ou un format standardisé
+          newDate: newDateTime.format(),
+          // Ici, vous pouvez choisir de ne pas envoyer l'heure séparément si elle est incluse dans newDate
         });
         console.log('Rendez-vous reprogrammé avec succès:', response.data);
-        // Actualiser la page après la confirmation de changement de rendez-vous
-        window.location.reload(); // Actualiser la page
+        window.location.reload();
       } catch (error) {
         console.error('Erreur lors de la reprogrammation du rendez-vous:', error);
       }
     }
   };
+  
 
   const cancelAppointment = async () => { // annuler un rendez-vous
     const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
