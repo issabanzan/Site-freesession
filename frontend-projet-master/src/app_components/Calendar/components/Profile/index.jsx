@@ -218,31 +218,16 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
     setNewTime(appointment.time); // Mise à jour de l'état newTime avec l'heure du rendez-vous sélectionné
   };
 
-
   const rescheduleAppointment = async () => {
-    const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
-    if (selectedAppointment && newDate && newTime) {
-      // Formater la nouvelle date
-      const formatDate = (date) => {
-        if (!(date instanceof Date)) return '';
-        const year = date.getFullYear();
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-        return `${year}-${month}-${day}`;
-      };
-  
-      // Convertir newDate en objet Date pour pouvoir utiliser formatDate
-      const appointmentDateObj = new Date(newDate);
-      const formattedNewDate = formatDate(appointmentDateObj);
-  
-      // Formater l'heure, en ajoutant les secondes et le 'Z' pour indiquer l'heure UTC
-      const formattedNewDateTime = `${formattedNewDate}T${newTime}:00.000Z`;
+    const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId')); 
+    if (selectedAppointment) {
+      // Supposons que newDate est déjà au format YYYY-MM-DD ou est un objet Date
+      const formattedDate = typeof newDate === 'string' ? newDate : formatDate(new Date(newDate));
   
       try {
         const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/${acuityUserId}/reschedule`, {
-          
-          dateTime: formattedNewDateTime, // Envoyer la date et l'heure combinées si attendu ainsi
-         
+          date: formattedDate,
+          time: newTime, // newTime est supposé être déjà au format HH:mm
         }, {
           headers: {
             'Content-Type': 'application/json',
@@ -258,9 +243,6 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
       console.error('La nouvelle date ou la nouvelle heure est manquante.');
     }
   };
-  
-  
-  
   
 
   const cancelAppointment = async () => { // annuler un rendez-vous
