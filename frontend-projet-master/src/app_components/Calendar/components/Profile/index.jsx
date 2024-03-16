@@ -220,15 +220,24 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
 
 
   const rescheduleAppointment = async () => {
-    const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId')); 
+    const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
     if (selectedAppointment) {
-      // Créer un objet moment avec la date et l'heure sélectionnées
-      const newDateTime = moment.tz(`${newDate} ${newTime}`, 'Europe/Paris');
+      // Assurez-vous que newDate et newTime sont valides avant de continuer
+      if (!newDate || !newTime) {
+        console.error('La nouvelle date ou la nouvelle heure est invalide.');
+        return;
+      }
+  
+      // Utilisez moment-timezone pour créer et formater la nouvelle date et heure
+      const newDateTime = moment.tz(`${newDate} ${newTime}`, 'YYYY-MM-DD HH:mm', 'Europe/Paris');
+      if (!newDateTime.isValid()) {
+        console.error('La combinaison de la nouvelle date et de la nouvelle heure est invalide.');
+        return;
+      }
+  
       try {
         const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/${acuityUserId}/reschedule`, {
-          // Envoyer la date et l'heure en format ISO ou un format standardisé
-          newDate: newDateTime.format(),
-          // Ici, vous pouvez choisir de ne pas envoyer l'heure séparément si elle est incluse dans newDate
+          newDate: newDateTime.format(), // Envoyez la date et l'heure en format ISO
         });
         console.log('Rendez-vous reprogrammé avec succès:', response.data);
         window.location.reload();
@@ -237,6 +246,7 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
       }
     }
   };
+  
   
 
   const cancelAppointment = async () => { // annuler un rendez-vous
