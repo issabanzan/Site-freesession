@@ -94,6 +94,17 @@ const PraticionerDetails = () => {
     };
     const formattedDate = formatDate(selectedDate); // Appel de la fonction formatDate pour formater la date sélectionnée en format YYYY-MM-DD
     console.log('Formatdate', formattedDate);
+    // Supposons que selectedTime est l'heure choisie par l'utilisateur, par exemple "13:00"
+// Et que selectedDate est la date choisie par l'utilisateur
+const timeParts = selectedTime.split(':');
+const appointmentDate = new Date(selectedDate);
+appointmentDate.setHours(parseInt(timeParts[0]), parseInt(timeParts[1]), 0, 0);
+
+// Formattez l'heure pour l'envoyer
+const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5);
+
+// Utilisez `formattedTime` pour envoyer l'heure dans votre requête
+
 
 
     // Si tout est valide, procéder avec la logique de soumission
@@ -108,7 +119,7 @@ const PraticionerDetails = () => {
         appointmentTypeID: selectedAppointmentType,
         calendar: selectedCalendar,
         date: formattedDate,
-        time: selectedTime,
+        time: formattedTime,
       }, {
         headers: {
           'Content-Type': 'application/json',
