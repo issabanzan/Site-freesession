@@ -188,24 +188,28 @@ async cancelAppointment(id) {
 
 
 
-  public createAppointement(acuityUserId: Number, appointment_type_id: Number, calendar_id: Number, date: string, time: string) { // enregistrer un rendez-vous dans ma base de données avec les informations suivantes : id de l'utilisateur, id du type de rendez-vous, id du calendrier, date et heure du rendez-vous
+public createAppointement(acuityUserId: Number, appointment_type_id: Number, calendar_id: Number, date: string, time: string) {
+  // Convertir l'heure en objet Date pour faciliter les manipulations
+  const timeParts = time.split(":");
+  let appointmentTime = new Date(date);
+  appointmentTime.setHours(parseInt(timeParts[0]), parseInt(timeParts[1]), 0);
 
-    const formattedTime = `${time}:00`; // Ajoute les secondes à l'heure pour obtenir un format de date complet (HH:MM:SS)
+  appointmentTime.setHours(appointmentTime.getHours() + 1); 
 
+  // Formater l'heure ajustée pour l'envoi à la base de données
+  const formattedTime = `${appointmentTime.getHours()}:${appointmentTime.getMinutes()}:00`;
 
-    const sql = `INSERT INTO appointments (user_id, appointment_type_id, calendar_id, date, time) VALUES (?, ?, ?, ?, ?)`; // isertion des données dans la table appointments contenant les colonnes user_id, appointment_type_id, calendar_id, date, time
+  const sql = `INSERT INTO appointments (user_id, appointment_type_id, calendar_id, date, time) VALUES (?, ?, ?, ?, ?)`;
 
+  const params = [acuityUserId, appointment_type_id, calendar_id, date, formattedTime];
 
-    const params = [acuityUserId, appointment_type_id, calendar_id, date, formattedTime]; // params est un tableau qui contient les valeurs des colonnes de la table appointments
-
-
-    this.query(sql, params) // this.query est une méthode de la classe Database qui permet d'executer une requete sql
-      .then(results => { // .then est une méthode qui permet de traiter les résultats de la requete sql
-        console.log(`Resultat createAppointement :\n${results}`); // affiche les résultats de la requete sql dans la console
-      }).catch(err => { // .catch est une méthode qui permet de traiter les erreurs de la requete sql
-        console.log(`Une erreur s'est produite pour createAppointement\n${err}`); // affiche un message d'erreur dans la console
+  this.query(sql, params)
+      .then(results => {
+          console.log(`Resultat createAppointement :\n${results}`);
+      }).catch(err => {
+          console.log(`Une erreur s'est produite pour createAppointement\n${err}`);
       });
-  }
+}
 
 }
 
