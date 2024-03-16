@@ -95,6 +95,11 @@ const PraticionerDetails = () => {
     const formattedDate = formatDate(selectedDate); // Appel de la fonction formatDate pour formater la date sélectionnée en format YYYY-MM-DD
     console.log('Formatdate', formattedDate);
 
+    const adjustedTime = new Date(selectedTime);
+adjustedTime.setHours(adjustedTime.getHours() - 1); // Ajustez l'heure d'une heure en arrière pour compenser le décalage
+const formattedTime = adjustedTime.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+
+
 
     // Si tout est valide, procéder avec la logique de soumission
     try {
@@ -108,7 +113,7 @@ const PraticionerDetails = () => {
         appointmentTypeID: selectedAppointmentType,
         calendar: selectedCalendar,
         date: formattedDate,
-        time: selectedTime,
+        time: formattedTime,
       }, {
         headers: {
           'Content-Type': 'application/json',
