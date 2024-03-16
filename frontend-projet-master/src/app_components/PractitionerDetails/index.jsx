@@ -85,7 +85,7 @@ const PraticionerDetails = () => {
       if (!(date instanceof Date)) return ''; // Vérifier si la date est une instance de Date
 
       const year = date.getFullYear(); // Récupérer l'année      
-      const month = (date.getMonth()).toString().padStart(2, '0'); /* Récupérer le mois en ajoutant 1 pour obtenir le mois actuel
+      const month = (date.getMonth() + 1).toString().padStart(2, '0'); /* Récupérer le mois en ajoutant 1 pour obtenir le mois actuel
        et en utilisant padStart pour ajouter un 0 si le mois est inférieur à 10*/
 
       const day = date.getDate().toString().padStart(2, '0');
