@@ -219,15 +219,18 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
   };
 
   const rescheduleAppointment = async () => {
-    const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId')); 
-    if (selectedAppointment) {
-      // Supposons que newDate est déjà au format YYYY-MM-DD ou est un objet Date
-      const formattedDate = typeof newDate === 'string' ? newDate : formatDate(new Date(newDate));
+    const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
+    if (selectedAppointment && newDate && newTime) {
+      const formattedNewDate = typeof newDate === 'string' ? newDate : formatDate(new Date(newDate));
+      const formattedNewTime = `${newTime}:00`;
+  
+      // Ajoutez ce console.log pour afficher la date et l'heure formatées
+      console.log('Date et heure soumises pour la reprogrammation:', formattedNewDate, formattedNewTime);
   
       try {
         const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/${acuityUserId}/reschedule`, {
-          date: formattedDate,
-          time: newTime, // newTime est supposé être déjà au format HH:mm
+          date: formattedNewDate,
+          time: formattedNewTime,
         }, {
           headers: {
             'Content-Type': 'application/json',
@@ -243,6 +246,7 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
       console.error('La nouvelle date ou la nouvelle heure est manquante.');
     }
   };
+  
   
 
   const cancelAppointment = async () => { // annuler un rendez-vous
