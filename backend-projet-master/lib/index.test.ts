@@ -1,29 +1,68 @@
-import request from 'supertest';
-import app from 'C:/wamp64/www/backend-projet-master/lib/index'; 
+import { ContactService } from '../../backend-projet-master/lib/services/Contact/contact.service';
+import { ContactForm } from '../../backend-projet-master/lib/services/Contact/contact.interface';
+import nodemailer from 'nodemailer';
 
-describe('Tests de l\'API', () => {
-    it('GET /api/become-practitioner devrait retourner un statut 200', async () => {
-      const response = await request(app).get('/api/become-practitioner');
-      expect(response.status).toBe(200);
-    });
-  
-    it('GET /appointment-types/alldevrait retourner un statut 200', async () => {
-      const response = await request(app).get('/appointment-types/all');
-      expect(response.status).toBe(200);
-    });
+jest.mock('nodemailer', () => ({
+  createTransport: jest.fn().mockReturnValue({
+    sendMail: jest.fn().mockResolvedValue(true),
+  }),
+}));
 
-    it('GET /api/book-appointment devrait retourner un statut 200', async () => {
-      const response = await request(app).get('/api/book-appointment');
-      expect(response.status).toBe(200);
-    });
+describe('ContactService', () => {
+  let contactService: ContactService;
+  const contactForm: ContactForm = {
+    name: 'John Doe',
+    email: 'issabanzan.konate@yahoo.fr',
+    message: 'Hello',
+  };
 
-    it('GET /api/contact devrait retourner un statut 200', async () => {
-      const response = await request(app).get('/api/contact');
-      expect(response.status).toBe(200);
-    });
-
-    it('GET /api/create-client devrait retourner un statut 200', async () => {
-      const response = await request(app).get('/api/create-client');
-      expect(response.status).toBe(200);
-    });
+  beforeEach(() => {
+    contactService = new ContactService();
   });
+
+  it('envoie un mail de contact et une confirmation', async () => {
+    await contactService.sendMail(contactForm);
+
+    expect(nodemailer.createTransport().sendMail).toHaveBeenCalledWith(
+      expect.objectContaining({
+        from: contactForm.email,
+        to: 'support@institutadios.com',
+        subject: expect.stringContaining(contactForm.name),
+        text: expect.stringContaining(contactForm.message),
+      }),
+    );
+
+    expect(nodemailer.createTransport().sendMail).toHaveBeenCalledWith(
+      expect.objectContaining({
+        from: 'support@institutadios.com',
+        to: contactForm.email,
+        subject: 'Confirmation of receipt - Book free sessions with practitioners',
+        text: expect.stringContaining(contactForm.name),
+      }),
+    );
+  });
+
+  it('gère les erreurs lors de l\'envoi d\'un mail', async () => {
+    nodemailer.createTransport().sendMail.mockRejectedValueOnce(new Error('Erreur d\'envoi'));
+
+    await expect(contactService.sendMail(contactForm)).rejects.toThrow('Erreur d\'envoi');
+  });
+
+  it('envoie un email de réinitialisation du mot de passe', async () => {
+    const email = 'user@example.com';
+    const token = 'reset-token';
+
+    await contactService.sendResetEmail(email, token);
+
+    expect(nodemailer.createTransport().sendMail).toHaveBeenCalledWith(
+      expect.objectContaining({
+        from: 'support@institutadios.com',
+        to: email,
+        subject: 'Resetting your password',
+        html: expect.stringContaining(token),
+      }),
+    );
+  });
+
+
+});
