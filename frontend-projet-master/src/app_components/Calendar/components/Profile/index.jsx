@@ -218,38 +218,22 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
     setNewTime(appointment.time); // Mise à jour de l'état newTime avec l'heure du rendez-vous sélectionné
   };
 
-  const rescheduleAppointment = async () => {
-    const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
-    if (selectedAppointment && newDate && newTime) {
-      // Utilisez le format de date et d'heure sans ajouter de secondes ou de fuseau horaire
-      const formattedNewDate = typeof newDate === 'string' ? newDate : formatDate(new Date(newDate));
-      const formattedNewTime = newTime; // Si Acuity n'aime pas les secondes, n'ajoutez pas ':00'
-  
-      console.log('Date et heure soumises pour la reprogrammation:', formattedNewDate, formattedNewTime);
-  
-      try {
+  const rescheduleAppointment = async () => { // reprogrammer un rendez-vous
+    const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId')); 
+    if (selectedAppointment) {
+      try { // Envoi des données de reprogrammation du rendez-vous à l'API pour la mise à jour du rendez-vous sélectionné
         const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/${acuityUserId}/reschedule`, {
-          date: formattedNewDate,
-          time: formattedNewTime,
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          newDate,
+          newTime
         });
-  
         console.log('Rendez-vous reprogrammé avec succès:', response.data);
-        window.location.reload();
+        // Actualiser la page après la confirmation de changement de rendez-vous
+        window.location.reload(); // Actualiser la page
       } catch (error) {
         console.error('Erreur lors de la reprogrammation du rendez-vous:', error);
       }
-    } else {
-      console.error('La nouvelle date ou la nouvelle heure est manquante.');
     }
   };
-  
-  
-  
-  
 
   const cancelAppointment = async () => { // annuler un rendez-vous
     const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
