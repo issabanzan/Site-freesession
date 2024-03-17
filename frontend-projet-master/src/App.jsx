@@ -49,6 +49,7 @@ const StressPage = lazy(() => import('./app_components/StressPage'));
 const WellbeingPage = lazy(() => import('./app_components/WellbeingPage'));
 const WhoarewePage = lazy(() => import('./app_components/WhoarewePage'));
 import TagManager from 'react-gtm-module';
+import ReactGA from "react-ga4";
 
 const LazyLoader = ({ children }) => {
   return <Suspense fallback={<Loading />}>{children}</Suspense>;
@@ -57,7 +58,11 @@ const LazyLoader = ({ children }) => {
 export default function App() {
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-TGNVB5QH' });
+    ReactGA.initialize("G-2PPWVTH1KE");
+    ReactGA.send('pageview');
   }, []);
+  
+ 
   return (
     <Router>
       <Routes>
