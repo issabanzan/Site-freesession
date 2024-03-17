@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'; 
+import React, { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Loading from './app_components/Loading/Loading';
 const Login = lazy(() => import('./app_components/Auth/Login'));
@@ -48,12 +48,16 @@ const StopsmokingPage = lazy(() => import('./app_components/StopsmokingPage'));
 const StressPage = lazy(() => import('./app_components/StressPage'));
 const WellbeingPage = lazy(() => import('./app_components/WellbeingPage'));
 const WhoarewePage = lazy(() => import('./app_components/WhoarewePage'));
+import TagManager from 'react-gtm-module';
 
 const LazyLoader = ({ children }) => {
   return <Suspense fallback={<Loading />}>{children}</Suspense>;
 };
 
 export default function App() {
+  useEffect(() => {
+    TagManager.initialize({ gtmId: 'GTM-TGNVB5QH' });
+  }, []);
   return (
     <Router>
       <Routes>
