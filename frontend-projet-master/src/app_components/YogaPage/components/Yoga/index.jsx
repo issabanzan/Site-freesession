@@ -20,7 +20,7 @@ const Yoga = () => {
       
       <p className="mb-4 font-semibold font-serif">
       Two elements bring these practices together: movement and physical exercise. 
-      Indeed, whether it is gentler or more rhythmic, there's no Yoga, Tai chi, Qi Gong or Feldenkrais Method without a certain physical gymnastics.
+      Indeed, whether it is gentler or more rhythmic, there is no Yoga, Tai chi, Qi Gong or Feldenkrais Method without a certain physical gymnastics.
       Although “chi” and “Qi” have an identical pronunciation, we are not talking about the same “chi”. 
       The “chi” in tai chi means “the peak”. While the “Qi” of Qigong represents the vital energy which is fundamental to traditional Chinese medicine.
       </p>
