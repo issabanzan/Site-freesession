@@ -7,7 +7,7 @@ const Yoga = () => {
       <p className="mb-4 font-semibold font-serif">
       These practices combine gymnastics techniques that are both gentle and energetic. 
       Yoga, Tai Chi and Qi Gong have almost similar effects, it is their practices and their movements that differ. 
-      The Feldenkrais method is much more recent and is part of this family of approaches commonly called "gentle gymnastics". 
+      The Feldenkrais method is much more recent
       This method aims to deeply connect the individual to their body through movement.
       </p>
       <img
