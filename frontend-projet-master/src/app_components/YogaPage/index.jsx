@@ -5,9 +5,7 @@ import Yoga from "./components/Yoga";
 const YogaPage = () => {
     return ( 
         <Layout>
-            <Yoga />
-          
-            
+            <Yoga />           
             
         </Layout>
     )
