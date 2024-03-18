@@ -8,7 +8,6 @@ import axios from 'axios';
 import crypto from 'crypto';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-
 import cors from 'cors';
 
 const port = process.env.PORT || 3000;
