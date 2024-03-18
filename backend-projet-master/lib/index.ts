@@ -9,10 +9,6 @@ import crypto from 'crypto';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 
-
-const upload = multer();
-
-
 import cors from 'cors';
 
 const port = process.env.PORT || 3000;

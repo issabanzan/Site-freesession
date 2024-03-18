@@ -58,7 +58,7 @@ const LazyLoader = ({ children }) => {
 export default function App() {
   useEffect(() => {
     
-   
+    ReactGA.initialize("G-2PPWVTH1KE");
    ReactGA.send({
       hitType :"pageview",
       page : window.location.pathname,      
