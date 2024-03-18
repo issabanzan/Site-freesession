@@ -2,7 +2,7 @@ import React from 'react';
 
 const Wellbeing = () => {
   return (
-    <div className={`lg:mr-[20rem] max-w-7xl mx-auto mt-10}>
+    <div style={{ marginRight: '21rem' }}  className="max-w-7xl mx-auto p-5">
       <h1 className="text-3xl font-bold mb-4 text-black font-semibold font-serif">Well-being and personal development</h1>
       <p className="mb-4 font-semibold font-serif">
       32% of French people are in the dark about their well-being and don't know what to do to get better. 
@@ -11,7 +11,7 @@ const Wellbeing = () => {
       </p>
       <img
         src="/src/assets/bien.jpg" 
-        alt="Well-being"
+        alt="bien"
         className="mb-4 w-full h-[460px]"
       />
       <h2 className="text-2xl text-black font-semibold font-serif mb-3">What is well-being and personal development?</h2>
