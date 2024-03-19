@@ -244,7 +244,7 @@ app.post('/api/payment', async (req, res) => {
       currency: 'eur',
       payment_method: id,
       confirm: true,
-      return_url: 'https://google.com',
+      return_url: 'https://freesession.net',
     });
 
     console.log('Paiement réussi', paymentIntent);
