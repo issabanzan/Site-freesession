@@ -30,7 +30,7 @@ const CheckoutForm = () => {
       console.log('methode de paiement', paymentMethod);
       const response = await axios.post("https://api.freesession.net/api/payment", {
         payment_method_id: paymentMethod.id,
-        amount: 10000, // Montant du paiement
+        amount: 100, // Montant du paiement
         name, // Nom de l'utilisateur
         surname, //  Prénom de l'utilisateur
         email, // Email de l'utilisateur
