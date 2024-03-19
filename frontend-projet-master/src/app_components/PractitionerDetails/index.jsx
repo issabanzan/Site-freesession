@@ -529,6 +529,7 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                       onClick={() => setShowPaymentForm(true)}>
                       Additional sessions beyond 30 min: $50 before take appointment.
                     </button>
+                    {showPaymentForm && <StripeContainer />}
                     <button
                       type="submit"
                       className="inline-flex justify-center py-2 px-4 border border-transparent bg-blue-500 w-full text-white"

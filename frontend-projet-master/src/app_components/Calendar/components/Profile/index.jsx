@@ -228,8 +228,7 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
         });
         console.log('Rendez-vous reprogrammé avec succès:', response.data);
         // Actualiser la page après la confirmation de changement de rendez-vous
-        window.location.reload(); // Actualiser la page
-      } catch (error) {
+        window.location.reload();
         console.error('Erreur lors de la reprogrammation du rendez-vous:', error);
       }
     }
