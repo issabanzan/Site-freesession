@@ -1,65 +1,58 @@
-// Importations nécessaires de React, Stripe et axios pour les requêtes HTTP
-import React from 'react';
-import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import React, { useState } from 'react';
+import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'; 
 import axios from 'axios';
 
-// Définition du composant CheckoutForm
-const CheckoutForm = () => {
-  // Utilisation des hooks fournis par Stripe pour accéder à l'instance de Stripe et aux éléments du formulaire
-  const stripe = useStripe();
-  const elements = useElements();
+const CheckoutForm = () => { 
+  const stripe = useStripe(); // stripe est un objet qui contient les méthodes de paiement
+  const elements = useElements(); // elements est un objet qui contient les éléments de paiement
 
-  // Fonction de gestion de la soumission du formulaire
+  
+  const [name, setName] = useState(''); 
+  const [surname, setSurname] = useState('');
+  const [email, setEmail] = useState('');
+
   const handleSubmit = async (event) => {
-    // Empêcher le comportement par défaut du formulaire (rechargement de la page)
     event.preventDefault();
 
-    // Vérifier si Stripe est chargé et prêt
-    if (!stripe || !elements) {
-      // Si Stripe.js n'est pas encore chargé, ne rien faire
+    if (!stripe || !elements) { // Vérification de la présence de stripe et elements
       return;
     }
 
-    // Récupérer l'élément CardElement et créer une méthode de paiement
-    const cardElement = elements.getElement(CardElement);
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
+    const cardElement = elements.getElement(CardElement); // Récupération de l'élément de carte
+    const { error, paymentMethod } = await stripe.createPaymentMethod({ // Création de la méthode de paiement
+      type: 'card', // Type de paiement
+      card: cardElement, // Élément de carte
     });
 
-    // Gérer les erreurs éventuelles lors de la création de la méthode de paiement
     if (error) {
-      console.log('[error]', error);
+      console.log('erreur', error);
     } else {
-      // Si la création est réussie, utiliser l'ID de la méthode de paiement pour effectuer un paiement côté serveur
-      console.log('[PaymentMethod]', paymentMethod);
-      const response = await axios.post("http://localhost:4000/api/payment", {
-  payment_method_id: paymentMethod.id,
-  amount: 100, // Ajoutez l'amount ici, 2000 centimes = 20 euros
-});
+      console.log('methode de paiement', paymentMethod);
+      const response = await axios.post("https://api.freesession.net/api/payment", {
+        payment_method_id: paymentMethod.id,
+        amount: 10000, // Montant du paiement
+        name, // Nom de l'utilisateur
+        surname, //  Prénom de l'utilisateur
+        email, // Email de l'utilisateur
+      });
 
-
-      // Gérer la réponse de votre serveur (succès ou échec du paiement)
-      if (response.data.success) {
+      if (response.data.message === 'paiement reussi') { // Vérification de la réponse 
         console.log('Paiement réussi');
-        // Traitement en cas de succès du paiement
       } else {
         console.log('Paiement échoué');
-        // Traitement en cas d'échec du paiement
       }
     }
   };
 
-  // Rendu du formulaire avec CardElement pour saisir les informations de la carte, et un bouton pour soumettre
-  return (
+  return ( // Retourne le formulaire de paiement
     <form onSubmit={handleSubmit}>
+      <input type="text" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} />
+      <input type="text" placeholder="Prénom" value={surname} onChange={(e) => setSurname(e.target.value)} />
+      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
       <CardElement />
-      <button type="submit" disabled={!stripe}>
-        Payer
-      </button>
+      <button type="submit" disabled={!stripe}>Payer</button>
     </form>
   );
 };
 
-// Exportation par défaut du composant CheckoutForm pour l'utiliser ailleurs dans l'application
 export default CheckoutForm;
