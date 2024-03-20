@@ -1,4 +1,4 @@
-import Layout from "../Layout";
+import Layout from "../../Layout";
 import Yoga from "./components/Yoga";
 
 

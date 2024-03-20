@@ -1,4 +1,4 @@
-import Layout from "../Layout";
+import Layout from "../../Layout";
 import Disorders from "./components/Disorders";
 import Disorders2 from "./components/Disorders2";
 import Disorders3 from "./components/Disorders3";

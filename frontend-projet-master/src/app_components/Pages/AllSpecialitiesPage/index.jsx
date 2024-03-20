@@ -1,4 +1,4 @@
-import Layout from "../Layout";
+import Layout from "../../Layout";
 import Hypnose from "./components/Hypnose";
 import Hypnose2 from "./components/Hypnose2";
 import Hypnose3 from "./components/Hypnose3";

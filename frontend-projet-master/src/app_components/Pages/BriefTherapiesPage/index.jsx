@@ -1,4 +1,4 @@
-import Layout from "../Layout";
+import Layout from "../../Layout";
 import BriefTherapies from "./components/BriefTherapies";
 
 
