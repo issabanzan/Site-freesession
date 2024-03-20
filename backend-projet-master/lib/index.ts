@@ -6,6 +6,7 @@ import { ContactService } from "./services/Contact/contact.service";
 import Database from "./services/Database";
 import axios from 'axios';
 import crypto from 'crypto';
+const moment = require('moment-timezone');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 import cors from 'cors';
@@ -157,36 +158,26 @@ app.put('/api/appointments/:acuityUserId/reschedule', async (req, res) => {
   const { acuityUserId } = req.params;
   const { newDate, newTime } = req.body;
 
-
-  const newDateTimeISO = new Date(`${newDate}T${newTime}`).toISOString();
-
+  // Assurez-vous d'ajuster 'Europe/Paris' au fuseau horaire souhaité
+  const newDateTimeISO = moment.tz(`${newDate} ${newTime}`, 'YYYY-MM-DD HH:mm', 'Europe/Paris').toISOString();
 
   const authHeader = {
     'Authorization': `Basic ${Buffer.from(`${process.env.ACUITY_USER_ID}:${process.env.ACUITY_API_KEY}`).toString('base64')}`,
     'Content-Type': 'application/json'
   };
 
-
   const url = `${process.env.ACUITY_BASE_URL}/appointments/${acuityUserId}/reschedule`;
 
-
   try {
-
     const acuityResponse = await axios.put(url, { datetime: newDateTimeISO }, { headers: authHeader });
-
     const db = new Database();
     await db.updateAppointment(newDate, newTime, acuityUserId);
-    
-
-
     res.json({ message: 'Le rendez-vous a été reprogrammé avec succès.', data: acuityResponse.data });
   } catch (error) {
     console.error('Erreur lors de la connexion à l\'API Acuity ou de la mise à jour de la base de données :', error);
-
     if (error.response) {
       res.status(error.response.status).json({ message: 'Erreur lors de la reprogrammation avec l\'API Acuity', details: error.response.data });
     } else {
-
       res.status(500).json({ message: 'Erreur interne du serveur' });
     }
   }
