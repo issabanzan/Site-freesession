@@ -229,10 +229,12 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
         console.log('Rendez-vous reprogrammé avec succès:', response.data);
         // Actualiser la page après la confirmation de changement de rendez-vous
         window.location.reload();
+      } catch (error) { // Correction: le bloc catch attrape l'erreur
         console.error('Erreur lors de la reprogrammation du rendez-vous:', error);
       }
     }
   };
+  
 
   const cancelAppointment = async () => { // annuler un rendez-vous
     const acuityUserId = JSON.parse(localStorage.getItem('acuityUserId'));
