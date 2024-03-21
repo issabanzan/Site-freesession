@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className="bg-[#225886] text-white p-4">
-      <div className="mx-auto max-w-7xl sm:pl-0 lg:mr-[330px]">
+      <div className="mx-auto max-w-7xl sm:pl-0 lg:mr-[305px]">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           <div>
             <h5 className="text-lg font-semibold mb-2">Call freesession</h5>
