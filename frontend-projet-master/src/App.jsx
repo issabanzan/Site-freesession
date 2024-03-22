@@ -48,6 +48,7 @@ const StopsmokingPage = lazy(() => import('./app_components/Pages/StopsmokingPag
 const StressPage = lazy(() => import('./app_components/Pages/StressPage'));
 const WellbeingPage = lazy(() => import('./app_components/Pages/WellbeingPage'));
 const WhoarewePage = lazy(() => import('./app_components/WhoarewePage'));
+const Cookie = lazy(() => import('./app_components/Cookie'));
 
 import ReactGA from "react-ga4";
 
@@ -353,6 +354,12 @@ export default function App() {
          <Route path="/whoarewe" element={
           <LazyLoader>
             <WhoarewePage />
+          </LazyLoader>
+        } />
+
+        <Route path="/cookie" element={
+          <LazyLoader>
+            <Cookie />
           </LazyLoader>
         } />                
         

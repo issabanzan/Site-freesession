@@ -15,14 +15,14 @@ const Footer = () => {
           <div>
             <h5 className="text-lg font-semibold mb-2">Discover freesession</h5>
             <ul>
-              <li className="mb-1"><a href="/who-we-are" className="hover:underline">Who are we?</a></li>
+              <li className="mb-1"><a href="/whoarewe" className="hover:underline">Who are we?</a></li>
               
             </ul>
           </div>
           <div>
             <h5 className="text-lg font-semibold mb-2">Freesession</h5>
             <ul>
-              <li className="mb-1"><a href="?" className="hover:underline">Privacy policy (Cookies)</a></li>
+              <li className="mb-1"><a href="/cookie" className="hover:underline">Privacy policy (Cookies)</a></li>
             </ul>
           </div>
           <div>
