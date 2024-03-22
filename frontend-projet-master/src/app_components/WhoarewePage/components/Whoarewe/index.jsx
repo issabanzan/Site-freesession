@@ -2,7 +2,7 @@ import React from 'react';
 
 const Whoarewe = () => {
   return (
-    <div className="mt-8 mx-auto max-w-7xl sm:pl-0 lg:mr-[240px]">
+    <div className={`lg:mr-[20rem] max-w-7xl mx-auto mt-10`}>
       <h1 className="text-2xl text-black font-semibold font-serif mt-6 mb-4">
         Who are we ?
       </h1>
