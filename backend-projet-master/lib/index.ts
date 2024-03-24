@@ -238,6 +238,7 @@ app.post('/api/payment', async (req, res) => {
       payment_method: id, // Méthode de paiement
       confirm: true, // Confirmation automatique
       receipt_email: email, // Email pour l'envoi du reçu
+      return_url: 'https://freesession.net',
     });
 
     console.log('Paiement réussi', paymentIntent);
