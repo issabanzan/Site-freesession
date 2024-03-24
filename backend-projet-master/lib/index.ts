@@ -226,23 +226,25 @@ app.post("/api/contact", async (req, res) => {
 });
 
 app.post('/api/payment', async (req, res) => {
-  const { amount, payment_method_id: id } = req.body;
-  console.log('Payment', amount, id); // Debug: Vérifiez que amount et id sont bien reçus
+  // extraire les données de paiement de la requête
+  const { amount, payment_method_id: id, name, surname, email } = req.body;
+  console.log('Payment', amount, id, name, surname, email); //vérification des données reçues 
   
   try {
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount, // Utilisez l'amount extrait du corps de la requête
-      currency: 'eur',
-      payment_method: id,
-      confirm: true,
-      return_url: 'https://freesession.net',
+    // Créer un paiement avec Stripe
+    const paymentIntent = await stripe.paymentIntents.create({ // Création d'un paiement
+      amount: amount, // Montant du paiement
+      currency: 'eur', // Devise
+      payment_method: id, // Méthode de paiement
+      confirm: true, // Confirmation automatique
+      receipt_email: email, // Email pour l'envoi du reçu
     });
 
     console.log('Paiement réussi', paymentIntent);
-    res.json({ message: 'Payment successful', paymentIntent });
+    res.json({ message: 'Paiement reussi', paymentIntent });
   } catch (error) {
     console.error('Payment error:', error);
-    res.status(400).json({ message: 'Payment failed', error: error.message });
+    res.status(400).json({ message: 'paiment réjeté', error: error.message });
   }
 });
 
