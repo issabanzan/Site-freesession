@@ -41,7 +41,9 @@ const Hi = () => {
             </div>
 
             
-            <button className="border-2 border-white rounded-full px-4 py-2 mt-9 text-white bg-black hover:bg-white hover:text-black leading-tight tracking-tighter inter text-2xl">
+            <button 
+            onClick={() => window.location.href='/AllSpecialities'}
+            className="border-2 border-white rounded-full px-4 py-2 mt-9 text-white bg-black hover:bg-white hover:text-black leading-tight tracking-tighter inter text-2xl">
                 All specialties
             </button>
         </section>

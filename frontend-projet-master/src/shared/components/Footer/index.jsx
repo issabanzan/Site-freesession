@@ -25,12 +25,6 @@ const Footer = () => {
               <li className="mb-1"><a href="/cookie" className="hover:underline">Privacy policy (Cookies)</a></li>
             </ul>
           </div>
-          <div>
-            <h5 className="text-lg font-semibold mb-2">Rejoin us</h5>
-            <ul>
-              <li className="mb-1"><a href="/We are hiring" className="hover:underline">We are hiring</a></li>
-            </ul>
-          </div>
         </div>
 
         <div className="text-sm mt-4">

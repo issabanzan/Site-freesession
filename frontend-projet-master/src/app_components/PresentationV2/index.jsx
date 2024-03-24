@@ -17,9 +17,7 @@ const PresentationV2 = () => {
             <Rejoins />
             <Fonctionnalite2 />
             <Fonctionnalite6 />
-            <Fonctionnalite7 />
-            
-            
+            <Fonctionnalite7 />        
         </Layout>
     )
 };
