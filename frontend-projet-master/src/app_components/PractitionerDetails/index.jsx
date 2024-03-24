@@ -40,6 +40,7 @@ const PraticionerDetails = () => {
   const [emailError, setEmailError] = useState('');
   const [phoneError, setPhoneError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
   const { id } = useParams();
 
   const handleSubmit = async (e) => { // Fonction pour gérer la soumission du formulaire de prise de rendez-vous
@@ -136,13 +137,12 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
       setShowInput(false);
       setSelectedDate(null);
       setSelectedTime(null);
+      setShowPaymentForm(false); // Close the payment form
+      setPaymentSuccess(true); // Show success messag
     } catch (error) {
       console.error(error);
     }
   };
-
-
-
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const handleDateChange = (date) => {
 
@@ -448,7 +448,6 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                                 className="form-radio text-blue-600" // Ajouter la classe form-radio pour styliser le bouton radio
                                 onChange={() => setSelectedTime(timeSlot.time)} // Gérer le changement de l'heure sélectionnée
                               />
-
                               <span className="ml-2 text-sm text-gray-700">{timeSlot.time}</span> {/*Afficher l'heure*/}
                             </label>
                           );
@@ -456,17 +455,8 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                       </div>
                     </div>
                   )}
-
-
-
-
                 </div>
               )}
-
-
-
-
-
               {selectedTime && ( // Afficher le formulaire de prise de rendez-vous si une heure est sélectionnée 
                 <div className="mt-4">
                   <div className="flex flex-col space-y-4">
@@ -530,6 +520,12 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                       Additional sessions beyond 30 min: $50 before take appointment.
                     </button>
                     {showPaymentForm && <StripeContainer />}
+                    {/* Conditional rendering for the payment success message */}
+                    {paymentSuccess && (
+                      <div className="text-center p-4 mb-4 bg-green-100 text-black">
+                        Payment has been successfully processed to take your appointment.
+                      </div>
+                    )}
                     <button
                       type="submit"
                       className="inline-flex justify-center py-2 px-4 border border-transparent bg-blue-500 w-full text-white"
