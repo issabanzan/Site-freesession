@@ -137,8 +137,8 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
       setShowInput(false);
       setSelectedDate(null);
       setSelectedTime(null);
-      setShowPaymentForm(false); // Close the payment form
-      setPaymentSuccess(true); // Show success messag
+      setShowPaymentForm(false);
+      setPaymentSuccess(true);
     } catch (error) {
       console.error(error);
     }
@@ -149,6 +149,12 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
     console.log(date)
     setSelectedDate(date);
     fetchAvailableTimes(date);
+  };
+
+  const handlePaymentSuccess = () => {
+    setPaymentSuccess(true); // Affiche le message de succès
+    setShowPaymentForm(false); // Ferme le formulaire de paiement
+    // Réinitialisez ici les autres états/formulaires si nécessaire
   };
 
 
@@ -519,7 +525,8 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                       onClick={() => setShowPaymentForm(true)}>
                       Additional sessions beyond 30 min: $50 before take appointment.
                     </button>
-                    {showPaymentForm && <StripeContainer />}
+                    {showPaymentForm && <StripeContainer onPaymentSuccess={handlePaymentSuccess} />}
+
                     {/* Conditional rendering for the payment success message */}
                     {paymentSuccess && (
                       <div className="text-center p-4 mb-4 bg-green-100 text-black">

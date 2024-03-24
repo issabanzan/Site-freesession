@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types'; // Assurez-vous d'avoir importé PropTypes
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'; 
 import axios from 'axios';
 
-const CheckoutForm = () => { 
-  const stripe = useStripe(); // stripe est un objet qui contient les méthodes de paiement
-  const elements = useElements(); // elements est un objet qui contient les éléments de paiement
+const CheckoutForm = ({ onPaymentSuccess }) => { 
+  const stripe = useStripe();
+  const elements = useElements();
 
-  
-  const [name, setName] = useState(''); 
+  const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!stripe || !elements) { // Vérification de la présence de stripe et elements
+    if (!stripe || !elements) {
       return;
     }
 
-    const cardElement = elements.getElement(CardElement); // Récupération de l'élément de carte
-    const { error, paymentMethod } = await stripe.createPaymentMethod({ // Création de la méthode de paiement
-      type: 'card', // Type de paiement
-      card: cardElement, // Élément de carte
+    const cardElement = elements.getElement(CardElement);
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
     });
 
     if (error) {
@@ -30,21 +30,22 @@ const CheckoutForm = () => {
       console.log('methode de paiement', paymentMethod);
       const response = await axios.post("https://api.freesession.net/api/payment", {
         payment_method_id: paymentMethod.id,
-        amount: 100, // Montant du paiement
-        name, // Nom de l'utilisateur
-        surname, //  Prénom de l'utilisateur
-        email, // Email de l'utilisateur
+        amount: 100, // Ajustez le montant selon votre besoin
+        name,
+        surname,
+        email,
       });
 
-      if (response.data.message === 'paiement reussi') { // Vérification de la réponse 
+      if (response.data.message === 'paiement reussi') {
         console.log('Paiement réussi');
+        onPaymentSuccess();
       } else {
         console.log('Paiement échoué');
       }
     }
   };
 
-  return ( // Retourne le formulaire de paiement
+  return (
     <form onSubmit={handleSubmit}>
       <input type="text" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} />
       <input type="text" placeholder="Prénom" value={surname} onChange={(e) => setSurname(e.target.value)} />
@@ -53,6 +54,10 @@ const CheckoutForm = () => {
       <button type="submit" disabled={!stripe}>Payer</button>
     </form>
   );
+};
+
+CheckoutForm.propTypes = {
+  onPaymentSuccess: PropTypes.func.isRequired,
 };
 
 export default CheckoutForm;
