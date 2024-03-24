@@ -152,10 +152,13 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
   };
 
   const handlePaymentSuccess = () => {
-    setPaymentSuccess(true); // Affiche le message de succès
-    setShowPaymentForm(false); // Ferme le formulaire de paiement
-    // Réinitialisez ici les autres états/formulaires si nécessaire
+    setShowPaymentForm(false);
+    setPaymentSuccess(true);
+    setFirstName('');
+    setLastName('');
+    setEmail('');
   };
+  
 
 
   const fetchAppointmentTypes = async () => { // Fonction pour récupérer les types de rendez-vous
@@ -521,10 +524,13 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                       />
                       {passwordError && <p className="text-red-500 text-xs italic">{passwordError}</p>}
                     </div>
-                    <button className="bg-[#3BAFBC] text-white font-bold py-2 px-4 rounded mb-2"
-                      onClick={() => setShowPaymentForm(true)}>
-                      Additional sessions beyond 30 min: $50 before take appointment.
-                    </button>
+                        {!paymentSuccess && (
+                        <button className="bg-[#3BAFBC] text-white font-bold py-2 px-4 rounded mb-2"
+                          onClick={() => setShowPaymentForm(true)}>
+                          Additional sessions beyond 30 min: $50 before take appointment.
+                        </button>
+                      )}
+
                     {showPaymentForm && <StripeContainer onPaymentSuccess={handlePaymentSuccess} />}
 
                     {/* Conditional rendering for the payment success message */}
