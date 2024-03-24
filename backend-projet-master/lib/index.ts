@@ -241,8 +241,8 @@ app.post('/api/payment', async (req, res) => {
       return_url: 'https://freesession.net',
     });
 
-    console.log('Paiement réussi', paymentIntent);
-    res.json({ message: 'Paiement reussi', paymentIntent });
+    console.log('Payment successful', paymentIntent);
+    res.json({ message: 'Payment successful', paymentIntent });
   } catch (error) {
     console.error('Payment error:', error);
     res.status(400).json({ message: 'paiment réjeté', error: error.message });

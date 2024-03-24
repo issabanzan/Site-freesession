@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'; 
 import axios from 'axios';
 
-const CheckoutForm = () => { 
+const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
-  // Ajouter des états pour gérer les messages
-  const [paymentSuccess, setPaymentSuccess] = useState('');
-  const [paymentError, setPaymentError] = useState('');
+  // Ajoutez des états pour le message de succès et d'erreur
+  const [paymentSuccess, setPaymentSuccess] = useState(null);
+  const [paymentError, setPaymentError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,6 +21,9 @@ const CheckoutForm = () => {
     if (!stripe || !elements) {
       return;
     }
+
+    setPaymentSuccess(null); // Réinitialisez les messages avant de soumettre
+    setPaymentError(null);
 
     const cardElement = elements.getElement(CardElement);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -41,12 +44,12 @@ const CheckoutForm = () => {
         email,
       });
 
-      if (response.data.message === 'paiement reussi') {
-        setPaymentSuccess('Paiement réussi'); // Mettre à jour l'état de succès
-        console.log('Paiement réussi');
+      if (response.data.message === 'Payment successful') {
+        setPaymentSuccess('Payment successful'); // Mettre à jour l'état de succès
+        console.log('Payment successful');
       } else {
-        setPaymentError('Paiement échoué'); // Mettre à jour l'état d'erreur
-        console.log('Paiement échoué');
+        setPaymentError('Failed payment'); // Mettre à jour l'état d'erreur
+        console.log('Failed payment');
       }
     }
   };
