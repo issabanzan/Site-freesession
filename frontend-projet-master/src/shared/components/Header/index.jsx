@@ -10,7 +10,7 @@ function Header() { // création du composant Header
   return ( // le return permet de retourner le code JSX qui sera affiché dans le navigateur
     <header className="px-3 py-1 h-20 flex flex-row justify-between items-center max-w-8xl mx-auto">
     
-     <a className="flex items-center">
+     <a href="/" className="flex items-center">
         <img src={logo} alt="logo" className="h-auto w-20 sm:w-47 md:w-36 lg:w-43 object-contain mt-7 hidden sm:block" />
       </a>
         
