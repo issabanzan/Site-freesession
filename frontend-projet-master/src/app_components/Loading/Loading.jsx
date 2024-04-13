@@ -13,7 +13,7 @@ function Loading({ message, showLoader = true }) {
                 )}
                 {/* Afficher la barre de chargement si showLoader est true */}
                 {showLoader && (
-                    <div className="bg-[#225886] h-1 max-w-40 w-full rounded-full mb-8 relative overflow-hidden">
+                    <div className="bg-[#225886] h-1 max-w-10 w-full rounded-full mb-8 relative overflow-hidden">
                         <div className="an_load_bar bg-cyan-600"></div>
                     </div>
                 )}
