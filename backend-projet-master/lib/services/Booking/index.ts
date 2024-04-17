@@ -6,7 +6,6 @@ import axios, { AxiosError } from "axios";
 import Database from "../Database"; //pour pouvoir utiliser les méthodes de la classe Database
 import bcrypt from 'bcrypt';
 
-
 class Booking extends Core { // la classe Booking étend la classe Core ça veut dire que la classe Booking hérite de la classe Core
   constructor() {// un constructeur est une méthode qui est appelée automatiquement lorsqu'une instance de la classe est créée
     super(); // super() appelle le constructeur de la classe parente (Core) et permet d'accéder aux méthodes de la classe parente
@@ -50,7 +49,6 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
       this.logError(error);
     }
   };
-
 
   public getCalendarsIdsFromAppointmentTypeId = async (request: Request, res: Response) => {
     try {
@@ -153,8 +151,6 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
         return;
       }
       
-
-
       const dateTime = new Date(`${date}T${time}`).toISOString(); // je convertis la date et l'heure en format ISO 8601
       const postData = { // je stocke les données du rendez-vous dans la variable postData
         firstName,

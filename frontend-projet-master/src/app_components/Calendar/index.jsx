@@ -6,9 +6,9 @@ import Profile from "./components/Profile";
 const Calendar = () => {
     return ( 
         <Layout>
-            <Profile />
+            <Profile />     
             
-            
+                           
         </Layout>
     )
 };

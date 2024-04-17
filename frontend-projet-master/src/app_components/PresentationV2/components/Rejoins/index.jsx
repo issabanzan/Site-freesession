@@ -1,7 +1,7 @@
 import Image1 from '../../../../assets/D3.png';
 import Image2 from '../../../../assets/D4.png';
 import Image3 from '../../../../assets/D5.png';
-import Image4 from '../../../../assets/D6.png'; 
+import Image4 from '../../../../assets/D6.png';
 
 const Hi = () => {
     return (
@@ -12,7 +12,7 @@ const Hi = () => {
             <p className="text-lg text-white text-center mb-6 leading-tight tracking-tighter inter text-2xl">
                 Join the network of the best French practitioners
             </p>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-20 mt-5">
                 <div className="flex flex-col items-center">
                     <img src={Image1} alt="Image 1" className="w-60 h-40 object-cover rounded-md" />
@@ -39,11 +39,9 @@ const Hi = () => {
                     </p>
                 </div>
             </div>
-
-            
-            <button 
-            onClick={() => window.location.href='/AllSpecialities'}
-            className="border-2 border-white rounded-full px-4 py-2 mt-9 text-white bg-black hover:bg-white hover:text-black leading-tight tracking-tighter inter text-2xl">
+            <button
+                onClick={() => window.location.href = '/AllSpecialities'}
+                className="border-2 border-white rounded-full px-4 py-2 mt-9 text-white bg-black hover:bg-white hover:text-black leading-tight tracking-tighter inter text-2xl">
                 All specialties
             </button>
         </section>

@@ -4,8 +4,6 @@ import Layout from "../Layout";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-// Les autres importations restent inchangées
-
 
 const login = async (email, password) => {
   try {

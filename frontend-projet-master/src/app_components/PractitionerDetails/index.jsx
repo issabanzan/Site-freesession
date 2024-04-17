@@ -1,8 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useParams } from 'react-router-dom';
-// import de useEffect depuis react useEffect est un Hook qui permet d'effectuer des effets de bord dans les composants fonctionnels
 import { useEffect } from 'react';
-// import de PresentationHeader depuis le dossier components dans le dossier PractitionerDetails 
 import PresentationHeader from './components/PresentationHeader';
 import { useState } from 'react';
 import Header from '../../shared/components/Header';
@@ -12,16 +10,13 @@ import { AlignLeft, Clock } from 'react-feather';
 import usePractitionerService from '../../app_hooks/usePractitionerService';
 import { PractitionerProvider } from '../../app_contexts/Practitioner';
 import Loading from '../Loading/Loading';
-import { Heart, Home } from 'react-feather'; // import de Heart et Home depuis react-feather pour les icônes
-import Calendar from 'react-calendar'; // import de Calendar depuis react-calendar pour afficher un calendrier 
-import 'react-calendar/dist/Calendar.css'; // import du fichier css de react-calendar pour styliser le calendrier 
-import axios from 'axios'; // import d'axios depuis axios pour effectuer des requêtes HTTP
+import { Heart, Home } from 'react-feather';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import axios from 'axios';
 import StripeContainer from './components/StripeContainer';
 
 const PraticionerDetails = () => {
-  /* Déclaration de selectedAppointmentType avec la fonction useState
-   qui retourne un tableau avec deux éléments, le premier élément est la valeur initiale 
-   de selectedAppointmentType, le deuxième élément est une fonction pour mettre à jour la valeur de selectedAppointmentType*/
   const [selectedAppointmentType, setSelectedAppointmentType] = useState('');
   const [appointmentTypes, setAppointmentTypes] = useState([]);
   const [calendars, setCalendars] = useState([]);
@@ -42,72 +37,64 @@ const PraticionerDetails = () => {
   const [passwordError, setPasswordError] = useState('');
   const { id } = useParams();
 
-  const handleSubmit = async (e) => { // Fonction pour gérer la soumission du formulaire de prise de rendez-vous
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let isValid = true; // Initialiser isValid à true pour valider les champs du formulaire
+    let isValid = true;
     setFirstNameError('');
     setLastNameError('');
     setEmailError('');
     setPhoneError('');
     setPasswordError('');
 
-    if (!firstName || firstName.length < 2) { // Vérifier si le prénom est vide ou s'il contient moins de 2 caractères
+    if (!firstName || firstName.length < 2) {
       setFirstNameError('The firstName must contain at least 2 characters');
       isValid = false;
     }
 
 
-    if (!lastName || lastName.length < 2) { // Vérifier si le nom est vide ou s'il contient moins de 2 caractères
+    if (!lastName || lastName.length < 2) {
       setLastNameError('The name must contain at least 2 characters');
       isValid = false;
     }
 
 
-    if (!email || !Emailvalidate(email)) { // Vérifier si l'email est vide ou s'il est invalide
+    if (!email || !Emailvalidate(email)) {
       setEmailError('Please enter a valid email');
       isValid = false;
     }
-    if (!phone) { // Vérifier si le téléphone est vide
+    if (!phone) {
       setPhoneError('Please enter your phone number');
       isValid = false;
     }
-    if (!password || !Passwordvalidate(password)) { // Vérifier si le mot de passe est vide ou s'il est invalide
+    if (!password || !Passwordvalidate(password)) {
       setPasswordError('The password must be at least 8 characters long, include letters, numbers and special characters.');
       isValid = false;
     }
 
-    if (!isValid) { // Vérifier si le formulaire est valide
+    if (!isValid) {
 
       return;
     }
 
-    const formatDate = (date) => { /// Fonction pour formater la date au format YYYY-MM-DD
-      if (!(date instanceof Date)) return ''; // Vérifier si la date est une instance de Date
+    const formatDate = (date) => {
+      if (!(date instanceof Date)) return '';
 
-      const year = date.getFullYear(); // Récupérer l'année      
-      const month = (date.getMonth() + 1).toString().padStart(2, '0'); /* Récupérer le mois en ajoutant 1 pour obtenir le mois actuel
-       et en utilisant padStart pour ajouter un 0 si le mois est inférieur à 10*/
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+
 
       const day = date.getDate().toString().padStart(2, '0');
 
-      return `${year}-${month}-${day}`; // Retourner la date formatée au format YYYY-MM-DD
+      return `${year}-${month}-${day}`;
     };
-    const formattedDate = formatDate(selectedDate); // Appel de la fonction formatDate pour formater la date sélectionnée en format YYYY-MM-DD
+    const formattedDate = formatDate(selectedDate);
     console.log('Formatdate', formattedDate);
-    // Supposons que selectedTime est l'heure choisie par l'utilisateur, par exemple "13:00"
-// Et que selectedDate est la date choisie par l'utilisateur
-const timeParts = selectedTime.split(':');
-const appointmentDate = new Date(selectedDate);
-appointmentDate.setHours(parseInt(timeParts[0]), parseInt(timeParts[1]), 0, 0);
+    const timeParts = selectedTime.split(':');
+    const appointmentDate = new Date(selectedDate);
+    appointmentDate.setHours(parseInt(timeParts[0]), parseInt(timeParts[1]), 0, 0);
 
-// Formattez l'heure pour l'envoyer
-const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5);
+    const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5);
 
-// Utilisez `formattedTime` pour envoyer l'heure dans votre requête
-
-
-
-    // Si tout est valide, procéder avec la logique de soumission
     try {
       const formattedDate = selectedDate ? formatDate(selectedDate) : '';
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/book-appointment`, {
@@ -127,7 +114,6 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
       });
 
       console.log(response.data);
-      // Réinitialiser les champs et fermer le formulaire après la soumission réussie
       setFirstName('');
       setLastName('');
       setEmail('');
@@ -141,8 +127,6 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
     }
   };
 
-
-
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const handleDateChange = (date) => {
 
@@ -152,80 +136,69 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
   };
 
 
-  const fetchAppointmentTypes = async () => { // Fonction pour récupérer les types de rendez-vous
-    try { // Utilisation de try...catch pour gérer les erreurs
-
-      // Utilisation de axios pour effectuer une requête GET (/appointment-types/all)
+  const fetchAppointmentTypes = async () => {
+    try {
       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/appointment-types/all`);
 
       const specificAppointmentType = response.data.filter(appointmentType => appointmentType.id === parseInt(import.meta.env.VITE_FREE_RDV_BOOKING_APPOINTMENT_TYPE_ID)); // Filtrer les types de rendez-vous pour obtenir le type de rendez-vous spécifique
-      setAppointmentTypes(specificAppointmentType); // Mettre à jour le state avec le type de rendez-vous spécifique
+      setAppointmentTypes(specificAppointmentType);
 
-      if (specificAppointmentType.length > 0) { // Si le type de rendez-vous spécifique existe
-        setSelectedAppointmentType(specificAppointmentType[0].id); // Mettre à jour le state avec l'ID du type de rendez-vous spécifique
+      if (specificAppointmentType.length > 0) {
+        setSelectedAppointmentType(specificAppointmentType[0].id);
       }
-    } catch (error) { // Gérer les erreurs avec catch en cas d'échec de la requête
-      console.error(error); // Afficher l'erreur dans la console
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const handleAppointmentTypeChange = (e) => { // Fonction pour gérer le changement de type de rendez-vous
-    const appointmentTypeId = e.target.value; // Récupérer la valeur de l'option sélectionnée
+  const handleAppointmentTypeChange = (e) => {
+    const appointmentTypeId = e.target.value;
 
-    setSelectedAppointmentType(appointmentTypeId); // Mettre à jour le state avec l'ID du type de rendez-vous sélectionné
+    setSelectedAppointmentType(appointmentTypeId);
   };
 
-  useEffect(() => { // Utilisation de useEffect pour afficher le type de rendez-vous sélectionné 
+  useEffect(() => {
     console.log(`Le type de rendez-vous sélectionné est: ${selectedAppointmentType}`);
-  }, [selectedAppointmentType]); /* Utilisation de [selectedAppointmentType] comme dépendance pour exécuter le code à chaque changement
-   de selectedAppointmentType*/
+  }, [selectedAppointmentType]);
 
-  const Passwordvalidate = (password) => {  // Fonction pour valider le mot de passe
+  const Passwordvalidate = (password) => {
 
-    const hasValidLength = password.length >= 8; // Vérifier la longueur minimale de 8 caractères
+    const hasValidLength = password.length >= 8;
 
-    const hasUpperCase = /[A-Z]/.test(password); // Vérifier si le mot de passe contient des majuscules
+    const hasUpperCase = /[A-Z]/.test(password);
 
-    const hasLowerCase = /[a-z]/.test(password); // Vérifie si le mot de passe contient des minuscules
+    const hasLowerCase = /[a-z]/.test(password);
 
-    const hasNumbers = /\d/.test(password); // Vérifier si le mot de passe contient des chiffres
+    const hasNumbers = /\d/.test(password);
 
-    const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password); // Vérifier si le mot de passe contient des caractères spéciaux
+    const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-    // Le mot de passe est valide seulement si tous les critères sont respectés 
     return hasValidLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChars;
   };
 
   const Emailvalidate = (email) => {
-    // Expression régulière simple pour la validation d'email
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
 
-  const fetchCalendars = async () => { // Fonction pour récupérer les calendriers
-    try { // Utilisation de try...catch pour gérer les erreurs
-
-      // Utilisation de axios pour effectuer une requête GET (/calendars/all)
+  const fetchCalendars = async () => {
+    try {
       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/calendars/all`);
-      const filteredData = response.data.calendars.map(calendar => ({ // Filtrer les données pour obtenir uniquement les propriétés nécessaires
-        id: calendar.id, // ID du calendrier
-        name: calendar.name, // Nom du calendrier
-        appointmentTypes: calendar.appointmentTypes // Types de rendez-vous disponibles pour le calendrier
+      const filteredData = response.data.calendars.map(calendar => ({
+        id: calendar.id,
+        name: calendar.name,
+        appointmentTypes: calendar.appointmentTypes
       }));
-      setCalendars(filteredData); // Mettre à jour le state avec les calendriers filtrés
-    } catch (error) { // Gérer les erreurs avec catch en cas d'échec de la requête
+      setCalendars(filteredData);
+    } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    fetchAppointmentTypes(); // Appel de la fonction fetchAppointmentTypes pour récupérer les types de rendez-vous
-    fetchCalendars(); // Appel de la fonction fetchCalendars pour récupérer les calendriers
-  }, []); // Utilisation de [] comme dépendance pour exécuter le code une seule fois au montage du composant
-  // en gros fetchcacalendars sert à récupérer les calendriers et fetchAppointmentTypes sert à récupérer les types de rendez-vous
-
-
-
+    fetchAppointmentTypes();
+    fetchCalendars();
+  }, []);
 
   const fetchAvailableDates = async () => {
     const appointmentTypeID = `${import.meta.env.VITE_FREE_RDV_BOOKING_APPOINTMENT_TYPE_ID}`;
@@ -251,7 +224,6 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
         }));
       });
 
-
       const results = await Promise.all(promises);
 
       allAvailableSlots = results.flat();
@@ -269,61 +241,49 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
     }
   }, [selectedAppointmentType, selectedCalendar]);
 
-
-
-  // Fonction pour récupérer les horaires disponibles pour le type de rendez-vous, le calendrier et la date sélectionnés
   const fetchAvailableTimes = async (date) => {
     const parisDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
-      .toISOString() // Convertir la date en chaîne ISO par exemple 2022-02-19T00:00:00.000Z
-      .replace(/T.*$/, ''); // Remplacer tout ce qui suit 'T' par une chaîne vide par exemple 2022-02-19
-    console.log('parisDate', parisDate) // Afficher la date formatée pour le fuseau horaire de Paris
+      .toISOString()
+      .replace(/T.*$/, '');
+    console.log('parisDate', parisDate)
 
-    try { // Utilisation de try...catch pour gérer les erreurs
-
-      // Utilisation de axios pour effectuer une requête GET (/fetch_appointment_times)
+    try {
       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/fetch_appointment_times`, {
         params: {
-          appointmentTypeID: selectedAppointmentType, // ID du type de rendez-vous
-          calendarID: selectedCalendar, // ID du calendrier
-          date: parisDate, // j'utilise la date formatée pour le fuseau horaire de Paris
+          appointmentTypeID: selectedAppointmentType,
+          calendarID: selectedCalendar,
+          date: parisDate,
         },
       });
-      // Conversion des horaires en format HH:mm
-      const timesInParis = response.data.map((timeSlot) => { // Mapper les horaires pour obtenir un tableau d'horaires
-        // Création d'une date JavaScript avec la date et l'heure
+
+      const timesInParis = response.data.map((timeSlot) => {
         let dateTime = new Date(timeSlot.time);
-        // Les horaires locales (GMT+1 pour Paris)
-        let timeString = dateTime.toLocaleTimeString('fr-FR', { // Convertir l'heure en chaîne de caractères au format HH:mm
-          hour: '2-digit', // 2 chiffres pour l'heure
-          minute: '2-digit', // 2 chiffres pour les minutes
-          timeZone: 'Europe/Paris' // Fuseau horaire de Paris
+        let timeString = dateTime.toLocaleTimeString('fr-FR', {
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZone: 'Europe/Paris'
         });
-        return { ...timeSlot, time: timeString }; // Retourner un objet avec l'heure formatée
+        return { ...timeSlot, time: timeString };
       });
-      setAvailableTimes(timesInParis); // Mettre à jour le state avec les horaires disponibles pour le fuseau horaire de Paris
+      setAvailableTimes(timesInParis);
     } catch (error) {
       console.error('Error fetching available times:', error);
       setAvailableTimes([]);
     }
   };
 
-  /* récupérer les détails du praticien avec l'ID spécifié details du praticien comme par exemple la description, 
-  les horaires, les spécialités, les langues, etc */
   const service = usePractitionerService();
 
-  /*Déclaration de practitioner avec la fonction useState qui retourne un tableau avec deux éléments, 
-  le premier élément est la valeur initiale de practitioner,
-  le deuxième élément est une fonction pour mettre à jour la valeur de practitioner */
   const [practitioner, setPractitioner] = useState(undefined);
 
-  useEffect(() => { // Utilisation de useEffect pour appeler getPractionerDetails lorsque le composant est monté
-    const get = async () => { // Utilisation de async...await pour gérer les requêtes asynchrones
-      const resovedPractitioner = await service.getPractionerDetails(id);// Récupérer les détails du praticien avec l'ID spécifié
+  useEffect(() => {
+    const get = async () => {
+      const resovedPractitioner = await service.getPractionerDetails(id);
       setPractitioner(resovedPractitioner);
     };
 
     get();
-  }, [service, id]); // Utilisation de [service, id] comme dépendance pour exécuter le code à chaque changement de service ou id
+  }, [service, id]);
 
   const [showInput, setShowInput] = useState(false);
 
@@ -384,42 +344,38 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setShowInput(!showInput)}>
                 Book an Appointment</button>
 
-              {showInput && appointmentTypes.length > 0 && ( /*afficher le formulaire de prise de rendez-vous
-               si showInput est vrai et s'il y a des types de rendez-vous disponibles */
-                <select // Utilisation de select pour afficher une liste déroulante des types de rendez-vous
-                  id="appointmentType" // ID de l'élément select
-                  value={selectedAppointmentType} // Valeur de l'élément select
-                  onChange={(e) => handleAppointmentTypeChange(e.target.value)} // Gérer le changement de type de rendez-vous
-                  required // Champ obligatoire
+              {showInput && appointmentTypes.length > 0 && (
+                <select
+                  id="appointmentType"
+                  value={selectedAppointmentType}
+                  onChange={(e) => handleAppointmentTypeChange(e.target.value)}
+                  required
                 >
                   <option value="" disabled>Choose appointment type</option>
-                  {appointmentTypes.map((type) => ( // Mapper les types de rendez-vous pour obtenir une option pour chaque type
-                    <option key={type.id} value={type.id}>{type.name}</option> // Afficher le nom du type de rendez-vous
+                  {appointmentTypes.map((type) => (
+                    <option key={type.id} value={type.id}>{type.name}</option>
                   ))}
                 </select>
               )}
 
-
               {selectedAppointmentType && showInput && (
 
-                <select id="calendar" // Utilisation de select pour afficher une liste déroulante des calendriers
-                  value={selectedCalendar} // Valeur de l'élément select
-                  onChange={(e) => setSelectedCalendar(e.target.value)}  // Gérer le changement de calendrier
+                <select id="calendar"
+                  value={selectedCalendar}
+                  onChange={(e) => setSelectedCalendar(e.target.value)}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  required // Champ obligatoire
+                  required
                 >
                   <option value="" disabled>Choose calendar</option>
                   {
-                    calendars.map((calendar) => ( // Mapper les calendriers pour obtenir une option pour chaque calendrier
+                    calendars.map((calendar) => (
                       <option key={calendar.id} value={calendar.id}>
                         {calendar.name}
-                      </option> // Afficher le nom du calendrier
+                      </option>
                     ))
                   }
                 </select>
               )}
-
-
 
               {showInput && selectedCalendar && (
                 <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
@@ -432,24 +388,22 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                     }
                     className="react-calendar"
                   />
-                  {selectedDate && availableTimes.length > 0 && ( // Afficher les horaires disponibles si une date est sélectionnée
+                  {selectedDate && availableTimes.length > 0 && (
                     <div className="flex flex-col bg-white shadow rounded-md overflow-hidden">
-                      <div className="overflow-y-auto" style={{ maxHeight: '200px' }}> {/*Afficher les horaires disponibles
-                        dans un groupe de boutons radio*/}
+                      <div className="overflow-y-auto" style={{ maxHeight: '200px' }}>
 
-                        {availableTimes.map((timeSlot, index) => { // Mapper les horaires pour obtenir un bouton radio pour chaque horaire
-                          //timeSlot.time au format HH:mm
+                        {availableTimes.map((timeSlot, index) => {
                           return (
                             <label key={index} className="flex items-center border-b last:border-b-0 px-4 py-2 cursor-pointer">
-                              <input // Utilisation de input pour afficher un bouton radio pour chaque horaire
-                                type="radio" // Type de l'élément input
-                                name="time" // Nom de l'élément input
-                                value={timeSlot.time} // Valeur de l'élément input
-                                className="form-radio text-blue-600" // Ajouter la classe form-radio pour styliser le bouton radio
-                                onChange={() => setSelectedTime(timeSlot.time)} // Gérer le changement de l'heure sélectionnée
+                              <input
+                                type="radio"
+                                name="time"
+                                value={timeSlot.time}
+                                className="form-radio text-blue-600"
+                                onChange={() => setSelectedTime(timeSlot.time)}
                               />
 
-                              <span className="ml-2 text-sm text-gray-700">{timeSlot.time}</span> {/*Afficher l'heure*/}
+                              <span className="ml-2 text-sm text-gray-700">{timeSlot.time}</span>
                             </label>
                           );
                         })}
@@ -457,15 +411,8 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                     </div>
                   )}
 
-
-
-
                 </div>
               )}
-
-
-
-
 
               {selectedTime && ( // Afficher le formulaire de prise de rendez-vous si une heure est sélectionnée 
                 <div className="mt-4">
@@ -480,7 +427,6 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                       />
                       {firstNameError && <p className="text-red-500 text-xs italic">{firstNameError}</p>}
                     </div>
-
                     <div>
                       <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name *</label>
                       <input
@@ -491,7 +437,6 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                       />
                       {lastNameError && <p className="text-red-500 text-xs italic">{lastNameError}</p>}
                     </div>
-
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email *</label>
                       <input
@@ -502,7 +447,6 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                       />
                       {emailError && <p className="text-red-500 text-xs italic">{emailError}</p>}
                     </div>
-
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone *</label>
                       <input
@@ -513,7 +457,6 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                       />
                       {phoneError && <p className="text-red-500 text-xs italic">{phoneError}</p>}
                     </div>
-
                     <div>
                       <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password *</label>
                       <input
@@ -538,9 +481,7 @@ const formattedTime = appointmentDate.toISOString().split('T')[1].substring(0, 5
                       Take Appointment
                     </button>
                   </div>
-
                 </div>
-
               )}
 
             </div>

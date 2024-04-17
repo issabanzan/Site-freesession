@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 const faqData = [
   {
     question: "How to find the right complementary practice practitioner for you?",
@@ -22,10 +21,7 @@ const faqData = [
     question: "What are the common health problems people face today and what are their impacts?",
     answer: "More and more people are encountering daily problems: musculoskeletal disorders, digestive disorders, stress or even sleep disorders. These ailments sometimes have repercussions on their health, their quality of life and their professional life.",
   },
-
-  
 ];
-  
 
 const FAQItem = ({ faq }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,9 +40,6 @@ const FAQItem = ({ faq }) => {
       <dd className={`${isOpen ? 'block' : 'hidden'} text-white mt-2 mb-4`}>
         {faq.answer}
       </dd>
-      
-
-      
       <hr />
     </div>
   );
@@ -56,15 +49,13 @@ const HelpSection = () => {
   return (
     <div className="max-w-7xl mx-auto p-6 bg-[#3BAFBC] mt-10">
       <div className="flex flex-wrap md:flex-nowrap">
-        
         {/* Contact information */}
         <div className="flex-1 md:ml-20 lg:ml-20">
-
           <div className="mb-4">
             <img
-              src="/src/assets/plm.png" 
+              src="/src/assets/plm.png"
               alt="Contact"
-              className="w-40 h-30 rounded-full" 
+              className="w-40 h-30 rounded-full"
             />
           </div>
           <div className="text-black">
@@ -72,9 +63,7 @@ const HelpSection = () => {
             <p className='ml-4 text-white font-semibold'>contact@freesession.net</p>
           </div>
         </div>
-
-        
-        <div style={{ marginRight: '5rem' }} className="flex-1 ml-8 mt-3"> 
+        <div style={{ marginRight: '5rem' }} className="flex-1 ml-8 mt-3">
           <h3 className="text-white text-xl font-semibold mb-4 leading-tight tracking-tighter inter text-2xl">a question? need help?</h3>
           <dl className="space-y-3">
             {faqData.map(faq => (
@@ -82,7 +71,6 @@ const HelpSection = () => {
             ))}
           </dl>
         </div>
-
       </div>
     </div>
   );

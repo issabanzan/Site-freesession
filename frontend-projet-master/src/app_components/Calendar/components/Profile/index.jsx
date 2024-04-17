@@ -320,7 +320,7 @@ const Appointments = ({ appointments }) => { // affichage des rendez-vous
         </div>
       </div>
 
-
+      
       <div className="flex flex-wrap justify-start -mx-2">
         {appointments.map((appointment) => (
           <div key={appointment.id} className="w-full md:w-5/1 px-2 mb-4">
