@@ -6,7 +6,6 @@ const ForgotPassword = lazy(()=> import('./app_components/Auth/components/Forgot
 const ResetPassword = lazy(()=> import('./app_components/Auth/components/ResetPassword'));
 const PresentationV2 = lazy(() => import('./app_components/PresentationV2'));
 const PractitionerDetails = lazy(() => import('./app_components/PractitionerDetails'));
-const BecomePractitioner = lazy(() => import('./app_components/BecomePractitioner'));
 const AyurvedaPage = lazy(() => import('./app_components/Pages/AyurvedaPage'));
 const Calendar = lazy(() => import('./app_components/Calendar'));
 const Contact = lazy(() => import('./app_components/Contact'));
@@ -92,7 +91,6 @@ export default function App() {
             <ResetPassword />
           </LazyLoader>
         } />
-        
       
         <Route path="/details/:id" element={
           <LazyLoader>
@@ -100,19 +98,11 @@ export default function App() {
           </LazyLoader>
         } />
         
-
-        <Route path="/become-practitioner" element={
-          <LazyLoader>
-            <BecomePractitioner />
-          </LazyLoader>
-        } />
         <Route path="/ayurveda" element={
           <LazyLoader>
             <AyurvedaPage />
           </LazyLoader>
         } />
-
-        
 
         <Route path="/allspecialities" element={
           <LazyLoader>
@@ -130,7 +120,6 @@ export default function App() {
             <Calendar />
           </LazyLoader>
         } />
-
         <Route path="/contact" element={
           <LazyLoader>
             <Contact />
@@ -148,15 +137,11 @@ export default function App() {
             <BriefTherapiesPage />
           </LazyLoader>
         } /> 
-
-      
-        
         <Route path="/chiporaxie" element={
           <LazyLoader>
             <ChiporaxiePage />
           </LazyLoader>
         } />
-
         <Route path="/energeticpractices" element={
           <LazyLoader>
             <EnergeticpracticesPage />
