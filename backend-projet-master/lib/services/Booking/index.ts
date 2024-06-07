@@ -1,22 +1,22 @@
-import { Request, Response} from "express"; // pour pouvoir utiliser les types Request et Response
-import Core from "../Core";// pour pouvoir utiliser les méthodes de la classe Core
+import { Request, Response} from "express";
+import Core from "../Core";
 import { acuityConfiguration } from "./booking.config";
 import { AcuityAppointmentDate, AcuityAppointmentTime, AcuityAppointmentType, AcuityCalendar } from "./interfaces"; 
 import axios, { AxiosError } from "axios"; 
-import Database from "../Database"; //pour pouvoir utiliser les méthodes de la classe Database
+import Database from "../Database"; 
 import bcrypt from 'bcrypt';
 
-class Booking extends Core { // la classe Booking étend la classe Core ça veut dire que la classe Booking hérite de la classe Core
-  constructor() {// un constructeur est une méthode qui est appelée automatiquement lorsqu'une instance de la classe est créée
-    super(); // super() appelle le constructeur de la classe parente (Core) et permet d'accéder aux méthodes de la classe parente
+class Booking extends Core { 
+  constructor() {
+    super(); 
   }
 
-  private getBookingAuthorizationHeader = () => { //private parceque cette méthode ne sera utilisée que dans cette classe
-    const encodedCredentials = btoa( // btoa() est une fonction javascript qui permet de convertir une chaine de caractères en base64
+  private getBookingAuthorizationHeader = () => { 
+    const encodedCredentials = btoa(
       `${acuityConfiguration.user}:${acuityConfiguration.password}`
-    ); // on encode le user et le password en base64 pour pouvoir les utiliser dans l'entête de la requête http 
+    );  
 
-    return { // on retourne un objet qui contient l'entête de la requête http
+    return { 
       Authorization: `Basic ${encodedCredentials}`,
     };
   };
@@ -35,12 +35,12 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
     }
   };
 
-   public getAllAppointmentTypes = async (): Promise<AcuityAppointmentType[]> => { //public parceque cette méthode sera utilisée à l'extérieur de cette classe
+   public getAllAppointmentTypes = async (): Promise<AcuityAppointmentType[]> => { 
     try {
-      const header = this.getBookingAuthorizationHeader(); // on récupère l'entête de la requête http de type Basic Authentification pour pouvoir accéder à l'API Acuity
+      const header = this.getBookingAuthorizationHeader();
 
-      const response = await this.get<AcuityAppointmentType[]>( // on envoie une requête http de type GET à l'API Acuity pour récupérer la liste des types de rendez-vous
-        `${acuityConfiguration.endpoint}/appointment-types`, // on envoie une requête http de type GET à l'API Acuity pour récupérer la liste des types de rendez-vous
+      const response = await this.get<AcuityAppointmentType[]>( 
+        `${acuityConfiguration.endpoint}/appointment-types`, 
         header
       );
 
@@ -52,68 +52,68 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
 
   public getCalendarsIdsFromAppointmentTypeId = async (request: Request, res: Response) => {
     try {
-      const appointmentTypeID = this.getQueryParams( // je récupère l'ID du type de rendez-vous à partir des paramètres de la requête http 
+      const appointmentTypeID = this.getQueryParams( 
         request,
-        "appointmentTypeID", // le nom du paramètre de la requête http qui contient l'ID du type de rendez-vous
+        "appointmentTypeID", 
         false
       );
 
       const resolvedAppointmentTypeID = Number(
         appointmentTypeID ?? acuityConfiguration.defaultAppointmentTypeID
-      ); // je convertis l'ID du type de rendez-vous en nombre entier et je stocke la valeur dans la variable resolvedAppointmentTypeID
+      ); 
 
-      const appointmentTypes = await this.getAllAppointmentTypes(); // cosnt appointmentTypes contient la liste des types de rendez-vous
+      const appointmentTypes = await this.getAllAppointmentTypes(); 
 
       const appointmentTypeFound = this.getAppointmentTypeFromId(
         resolvedAppointmentTypeID,
         appointmentTypes
       ); 
 
-      if (!appointmentTypeFound) { // si le type de rendez-vous n'est pas trouvé on retourne une erreur
+      if (!appointmentTypeFound) { 
         throw new Error(
           `No appointment type found for id : ${appointmentTypeID}`
         );
       }
 
-      const { calendarIDs } = appointmentTypeFound; // appoitmentTypeFound contient les IDs des calendriers
+      const { calendarIDs } = appointmentTypeFound;
 
-      const calendars = await this.getAllCalendars(); // la liste des calendriers
+      const calendars = await this.getAllCalendars(); 
 
-      const calendarsFound = this.getCalendarFromIds(calendarIDs, calendars); //liste des calendriers trouvés à partir de leurs IDs
+      const calendarsFound = this.getCalendarFromIds(calendarIDs, calendars); 
 
-      if (calendarsFound.length === 0) { // si aucun calendrier n'est trouvé on retourne une erreur
+      if (calendarsFound.length === 0) { 
         throw new Error(
           `No calendars found for the appointment type : ${resolvedAppointmentTypeID}`
         );
       }
 
-      return res.status(200).send({ //res status 200 pour dire que la requête a réussi et on envoie la liste des calendriers trouvés
-        isSuccess: true, // un booléen qui indique si la requête a réussi ou non
-        calendars: calendarsFound, // ca  caleendars contient la liste des calendriers trouvés
+      return res.status(200).send({
+        isSuccess: true,
+        calendars: calendarsFound, 
       });
-    } catch (error: unknown) { // si une erreur est levée on entre dans le bloc catch et on récupère l'erreur dans la variable error
-      return res.status(500).send({ //res status 500 pour dire que la requête a échoué
-        isSucess: false, // un booléen qui indique si la requête a réussi ou non
-        calendars: [], //calendars contient un tableau vide car aucun calendrier n'est trouvé
-        error, // error contient l'erreur levée
+    } catch (error: unknown) {
+      return res.status(500).send({
+        isSucess: false, 
+        calendars: [],
+        error,
       });
     }
   }; 
 
-  private getAppointmentTypeFromId = ( // cette méthode permet de récupérer le type de rendez-vous à partir de l'ID du type de rendez-vous
+  private getAppointmentTypeFromId = ( 
     appointmentTypeIdToFind: number, 
-    appointmentTypes: AcuityAppointmentType[] // la liste des types de rendez-vous
-  ): AcuityAppointmentType | undefined => { // cette méthode retourne un objet de type AcuityAppointmentType ou undefined
-    return appointmentTypes.find( // retourne le premier élément du tableau qui est trouvé
-      (appointmentType) => appointmentType.id === appointmentTypeIdToFind // appointmentType.id  est égal à appointmentTypeIdToFind ()
+    appointmentTypes: AcuityAppointmentType[] 
+  ): AcuityAppointmentType | undefined => { 
+    return appointmentTypes.find( 
+      (appointmentType) => appointmentType.id === appointmentTypeIdToFind 
     );
-  }; // en gros cette méthode permet de récupérer le type de rendez-vous à partir de l'ID du type de rendez-vous
+  }; 
 
   private getCalendarFromIds = (calendarsIdsToFinds: number[], calendars: AcuityCalendar[]): AcuityCalendar[] | undefined => { 
-    return calendars.filter((calendar) => // on utilise la méthode filter() pour chercher les calendriers à partir de leurs IDs
-      calendarsIdsToFinds.includes(calendar.id) // je compare les IDs des calendriers avec les IDs des calendriers à chercher
+    return calendars.filter((calendar) => 
+      calendarsIdsToFinds.includes(calendar.id) 
     );
-  }; // getCalendarFromIds() retourne un tableau qui contient les calendriers trouvés à partir de leurs IDs
+  }; 
 
   public createClient = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -141,18 +141,18 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
   };
 
 
-  public createAppointment = async (req: Request, res: Response): Promise<void> => { // cette méthode permet de créer un rendez-vous
+  public createAppointment = async (req: Request, res: Response): Promise<void> => { 
     try {
       const { firstName, lastName, email, date, time, appointmentTypeID, calendar, phone, password } = req.body;
 
 
       if (!firstName || !lastName || !email || !date || !time || !appointmentTypeID || !calendar || !phone || !password) {
-        res.status(400).json({ message: 'les champs manquent' }); // si un ou plusieurs champs manquent on retourne un message d'erreur
+        res.status(400).json({ message: 'les champs manquent' }); 
         return;
       }
       
-      const dateTime = new Date(`${date}T${time}`).toISOString(); // je convertis la date et l'heure en format ISO 8601
-      const postData = { // je stocke les données du rendez-vous dans la variable postData
+      const dateTime = new Date(`${date}T${time}`).toISOString(); 
+      const postData = { 
         firstName,
         lastName,
         email,
@@ -166,7 +166,7 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
       const header = this.getBookingAuthorizationHeader();
 
 
-      const apiResponse = await axios.post( // j'envoie une requête http de type POST à l'API Acuity pour créer un rendez-vous
+      const apiResponse = await axios.post( 
         `${acuityConfiguration.endpoint}/appointments`, 
         postData,
         { headers: header }
@@ -174,14 +174,14 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
 
       console.log("apiResponse :");
       console.log(apiResponse);
-      const acuityUserId = apiResponse.data.id; // je récupère l'ID du client à partir de la réponse de l'API Acuity
-      console.log(acuityUserId); // j'affiche l'ID du client dans la console
+      const acuityUserId = apiResponse.data.id; 
+      console.log(acuityUserId);
 
 
 
-      const db = new Database(); // je crée une instance de la classe Database
-      await db.createUser(acuityUserId, firstName, lastName, email, phone, password); // j'ajoute le client dans la base de données
-      await db.createAppointement(acuityUserId, appointmentTypeID, calendar, date, time); // j'ajoute le rendez-vous dans la base de données
+      const db = new Database(); 
+      await db.createUser(acuityUserId, firstName, lastName, email, phone, password); 
+      await db.createAppointement(acuityUserId, appointmentTypeID, calendar, date, time); 
 
 
 
@@ -205,7 +205,7 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
 
   public updateClientInAcuity = async (acuityUserId: number, firstName: string, lastName: string, email: string, phone: string): Promise<void> => {
     try {
-      const postData = { // je stocke les données du client dans la variable postData
+      const postData = { 
         firstName,
         lastName,
         email,
@@ -218,11 +218,11 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
   
       const response = await axios.put(url, postData, { headers: header }); 
   
-      console.log('Client lis a jour dans acuity aevc sucees:', response.data); // j'affiche la réponse de l'API Acuity dans la console
-      return response.data;  // je retourne la réponse de l'API Acuity
-    } catch (error) { // si une erreur est levée on entre dans le bloc catch et on récupère l'erreur dans la variable error
-      console.error('Erreur de mis de jour', error); // j'affiche l'erreur dans la console
-      throw error; // je relance l'erreur pour qu'elle soit gérée dans le bloc catch de la méthode appelante
+      console.log('Client lis a jour dans acuity aevc sucees:', response.data); 
+      return response.data;  
+    } catch (error) {
+      console.error('Erreur de mis de jour', error); 
+      throw error;
     }
   };
   
@@ -230,36 +230,36 @@ class Booking extends Core { // la classe Booking étend la classe Core ça veut
   public rescheduleAppointment = async (req: Request, res: Response): Promise<void> => {
     const { id, newDate, newTime } = req.body;
 
-    if (!id || !newDate || !newTime) { // si un ou plusieurs champs manquent on retourne un message d'erreur
+    if (!id || !newDate || !newTime) { 
       res.status(400).json({ message: 'des champs manquent' });
       return; 
     
     }
 
-    try { // si une erreur est levée on entre dans le bloc catch et on récupère l'erreur dans la variable error
-      const dateTime = new Date(`${newDate}T${newTime}`).toISOString(); // je convertis la date et l'heure en format ISO 8601
+    try { 
+      const dateTime = new Date(`${newDate}T${newTime}`).toISOString(); 
 
       const url = `${acuityConfiguration.endpoint}/appointments/${id}/reschedule`;
 
-      const postData = { // je stocke les données du rendez-vous dans la variable postData date et heure
+      const postData = { 
         datetime: dateTime
       };
 
       const header = this.getBookingAuthorizationHeader();
 
-      const response = await axios.put(url, postData, { headers: header }); // j'envoie une requête http de type PUT à l'API Acuity pour modifier le rendez-vous
+      const response = await axios.put(url, postData, { headers: header }); 
 
       
-      const acuityUserId = response.data.user.id;// je récupère l'ID du client à partir de la réponse de l'API Acuity
+      const acuityUserId = response.data.user.id;
  
-      console.log(acuityUserId); // j'affiche l'ID du client dans la console
+      console.log(acuityUserId); 
 
-      const db = new Database(); // je crée une instance de la classe Database
-      await db.updateAppointment(newDate, newTime, acuityUserId); // j'ajoute le rendez-vous dans la base de données
+      const db = new Database();
+      await db.updateAppointment(newDate, newTime, acuityUserId); 
 
-      res.status(200).json({ message: 'rendez vous reprogrammer avec succes' }); // je retourne un message de succès
-    } catch (error) { // si une erreur est levée on entre dans le bloc catch et on récupère l'erreur dans la variable error
-      this.logError(error); // j'affiche l'erreur dans la console
+      res.status(200).json({ message: 'rendez vous reprogrammer avec succes' }); 
+    } catch (error) {
+      this.logError(error); 
       if (axios.isAxiosError(error) && error.response) {  
         res.status(error.response.status).json(error.response.data);
         return; 
@@ -343,14 +343,14 @@ public fetchAppointmentDates = async (req: Request, res: Response): Promise<void
       );
 
       res.json(response);
-    } catch (error) { // si une erreur est levée on entre dans le bloc catch et on récupère l'erreur dans la variable error
-      if (axios.isAxiosError(error)) { // si l'erreur est de type AxiosError on entre dans le bloc if
-        const axiosError = error as AxiosError; // on convertit la variable error en AxiosError et on la stocke dans la variable axiosError
-        if (axiosError.response) { // si la propriété response de axiosError est définie on entre dans le bloc if
-          res.status(400).json(axiosError.response.data); // en cas d'erreur on retourne le message d'erreur 400
+    } catch (error) { 
+      if (axios.isAxiosError(error)) { 
+        const axiosError = error as AxiosError; 
+        if (axiosError.response) { 
+          res.status(400).json(axiosError.response.data); 
         }
-      } else { //sinon on entre dans le bloc else pour gérer les autres types d'erreurs
-        res.status(400).json({ message: error.message }); // en cas d'erreur on retourne le message d'erreur 400
+      } else { 
+        res.status(400).json({ message: error.message }); 
       }
     }
   }; 
