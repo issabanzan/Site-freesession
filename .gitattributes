@@ -1,5 +1,5 @@
 # Définir les fichiers JSX comme des fichiers JavaScript
-*.jsx linguist-language=JavaScript
+*.jsx linguist-language=React jsx
 
 # Définir les fichiers TypeScript comme des fichiers TypeScript
 *.ts linguist-language=TypeScript
@@ -11,10 +11,16 @@
 *.css linguist-language=CSS
 
 # Définir les fichiers avec des styles Tailwind CSS comme des fichiers CSS
-*.tailwindcss linguist-language=CSS
+*.tailwindcss linguist-language=tailwindcss
 
 # Définir les fichiers JSON comme des fichiers JSON
 *.json linguist-language=JSON
 
 # Définir les fichiers Markdown comme des fichiers Markdown
 *.md linguist-language=Markdown
+
+# Définir les fichiers Node.js comme des fichiers JavaScript
+*.js linguist-language=JavaScript
+
+# Définir docker-compose.yml comme un fichier YAML
+docker-compose.yml linguist-language=docker-compose
