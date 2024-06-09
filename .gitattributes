@@ -1,5 +1,5 @@
 # Définir les fichiers JSX comme des fichiers JavaScript
-*.jsx linguist-language=JavaScript
+*.jsx linguist-language=JavaScript React
 
 # Définir les fichiers TypeScript comme des fichiers TypeScript
 *.ts linguist-language=TypeScript
