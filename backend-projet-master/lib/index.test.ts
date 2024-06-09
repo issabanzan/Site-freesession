@@ -13,7 +13,7 @@ describe('ContactService', () => {
   const contactForm: ContactForm = {
     name: 'John Doe',
     email: 'issabanzan.konate@yahoo.fr',
-    message: 'Hello',
+    message: 'Hello world',
   };
 
   beforeEach(() => {
