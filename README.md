@@ -23,3 +23,5 @@ Ce document sert de documentation technique pour le site de prise de rendez-vous
 - **Versionnage et Stockage de Code** : Bitbucket pour le contrôle de version et le stockage sécurisé du code source.
 - **Containerisation** : Docker pour la containerisation de l'application, facilitant le déploiement et la portabilité.
 - **Intégration et Déploiement Continus** : CircleCI
+- **Performance marketing** : Google Analytics
+- **API** : Acuity, Brevo, Stripe, sendgrid
