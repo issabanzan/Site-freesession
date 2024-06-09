@@ -1,0 +1,20 @@
+# Définir les fichiers JSX comme des fichiers JavaScript
+*.jsx linguist-language=JavaScript
+
+# Définir les fichiers TypeScript comme des fichiers TypeScript
+*.ts linguist-language=TypeScript
+
+# Définir les fichiers TSX (TypeScript avec syntaxe JSX) comme des fichiers TypeScript
+*.tsx linguist-language=TypeScript
+
+# Définir les fichiers CSS comme des fichiers CSS
+*.css linguist-language=CSS
+
+# Définir les fichiers avec des styles Tailwind CSS comme des fichiers CSS
+*.tailwindcss linguist-language=CSS
+
+# Définir les fichiers JSON comme des fichiers JSON
+*.json linguist-language=JSON
+
+# Définir les fichiers Markdown comme des fichiers Markdown
+*.md linguist-language=Markdown
